@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zon Print - طباعة حرارية احترافية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset وإعدادات عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* الترويسة */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            margin-right: 10px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover, 
+        nav ul li a.active {
+            background-color: var(--secondary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* قسم الهيرو */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(images/logo.png.png);
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+        }
+
+        /* قسم الميزات */
+        .features {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50%;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* قسم المنتجات */
+        .products {
+            padding: 80px 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .product-price {
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        /* قسم الخدمات */
+        .services {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-card h3 i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        /* قسم من نحن */
+        .about {
+            padding: 80px 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            padding: 20px;
+        }
+
+        .about-img {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* قسم الاتصال */
+        .contact {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-details p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* التذييل */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-left: 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* صفحات منفصلة */
+        .page {
+            display: none;
+            padding: 40px 0;
+            min-height: 70vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* التجاوب مع الشاشات المختلفة */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 0;
+                box-shadow: var(--shadow);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الترويسة -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Zon<span>Print</span></h1>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-page="home">الرئيسية</a></li>
+                        <li><a href="#" class="nav-link" data-page="services">الخدمات</a></li>
+                        <li><a href="#" class="nav-link" data-page="products">المنتجات</a></li>
+                        <li><a href="#" class="nav-link" data-page="about">من نحن</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- الصفحة الرئيسية -->
+    <section id="home" class="page active">
+        <!-- قسم الهيرو -->
+        <div class="hero">
+            <div class="container">
+                <h2>طباعة حرارية بجودة عالية</h2>
+                <p>نقدم خدمات طباعة حرارية احترافية على مختلف المنتجات والأقمشة بأعلى جودة وأفضل الأسعار</p>
+                <a href="index.html" class="btn" data-page="products">المنتجات</a>
+            </div>
+        </div>
+
+        <!-- قسم الميزات -->
+        <div class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>لماذا تختار Zon Print؟</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3>سرعة في التنفيذ</h3>
+                        <p>ننفذ طلباتك في أسرع وقت ممكن مع الحفاظ على الجودة العالية</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3>جودة عالية</h3>
+                        <p>نستخدم أحدث التقنيات وافضل المواد لضمان جودة الطباعة ودوامها</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>دعم فني متكامل</h3>
+                        <p>فريق دعم فني متاح على مدار الساعة لمساعدتك في جميع استفساراتك</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة الخدمات -->
+    <section id="services" class="page">
+        <div class="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>خدماتنا</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3><i class="fas fa-palette"></i> تصميم جرافيك</h3>
+                        <p>نقدم خدمات تصميم جرافيك احترافية لإنشاء تصاميم متميزة تناسب احتياجاتك. فريقنا من المصممين المحترفين جاهز لتحويل أفكارك إلى واقع ملموس.</p>
+                        <a href="https://wa.me/0645717242?text=أريد الاستفسار عن خدمة التصميم الجرافيكي" class="btn" target="_blank">اطلب الخدمة</a>
+                    </div>
+                    <div class="service-card">
+                        <h3><i class="fas fa-print"></i> طباعة حرارية</h3>
+                        <p>نقوم بالطباعة الحرارية على مختلف المنتجات باستخدام أحدث التقنيات. نضمن لك جودة عالية ودقة في الطباعة مع استخدام أفضل المواد.</p>
+                        <a href="https://wa.me/0645717242?text=أريد الاستفسار عن خدمة الطباعة الحرارية" class="btn" target="_blank">اطلب الخدمة</a>
+                    </div>
+                    <div class="service-card">
+                        <h3><i class="fas fa-shipping-fast"></i> توصيل سريع</h3>
+                        <p>نوفر خدمة توصيل سريعة وآمنة لجميع أنحاء المغرب . نضمن وصول طلباتك في الوقت المحدد وبأفضل حالة.</p>
+                        <a href="https://wa.me/0645717242?text=أريد الاستفسار عن خدمة التوصيل" class="btn" target="_blank">اطلب الخدمة</a>
+                    </div>
+                    <div class="service-card">
+                        <h3><i class="fas fa-cogs"></i> صيانة المعدات</h3>
+                        <p>نقدم خدمات صيانة وتحديث لمعدات الطباعة الحرارية. فريقنا الفني مؤهل للتعامل مع جميع أنواع المعدات وضمان عملها بكفاءة.</p>
+                        <a href="https://wa.me/0645717242?text=أريد الاستفسار عن خدمة صيانة المعدات" class="btn" target="_blank">اطلب الخدمة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة المنتجات -->
+    <section id="products" class="page">
+        <div class="products">
+            <div class="container">
+                <div class="section-title">
+                    <h2>منتجاتنا</h2>
+                </div>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-img" style="background-image: url(images/t-shert.jpg);"></div>
+                        <div class="product-info">
+                            <h3>طباعة على الملابس</h3>
+                            <p>طباعة حرارية على جميع أنواع الملابس والأقمشة بأعلى جودة</p>
+                            <div class="product-price">بدءًا من 25 درهم</div>
+                            <a href="https://wa.me/0645717242?text=أريد طلب خدمة الطباعة على الملابس" class="btn" target="_blank">اطلب الآن</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img" style="background-image: url(images/mug.jpg);"></div>
+                        <div class="product-info">
+                            <h3>طباعة على الأكواب</h3>
+                            <p>طباعة حرارية على الأكواب بمختلف الأحجام والأشكال والتصاميم</p>
+                            <div class="product-price">بدءًا من 15 درهم</div>
+                            <a href="https://wa.me/0645717242?text=أريد طلب خدمة الطباعة على الأكواب" class="btn" target="_blank">اطلب الآن</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img" style="background-image: url(images/mug.jpg);"></div>
+                        <div class="product-info">
+                            <h3>طباعة على الاقمصة الرياضية</h3>
+                            <p>طباعة حرارية على الساعات بمختلف التصاميم والأحجام والألوان</p>
+                            <div class="product-price">بدءًا من 30 درهم</div>
+                            <a href="https://wa.me/0645717242?text=أريد طلب خدمة الطباعة على الساعات" class="btn" target="_blank">اطلب الآن</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img" style="background-image: url(images/TELEPHONE.jpg);"></div>
+                        <div class="product-info">
+                            <h3>طباعة على الهواتف</h3>
+                            <p>طباعة حرارية على أغلفة الهواتف والأجهزة اللوحية بكافة الموديلات</p>
+                            <div class="product-price">بدءًا من 20 درهم</div>
+                            <a href="https://wa.me/0645717242?text=أريد طلب خدمة الطباعة على الهواتف" class="btn" target="_blank">اطلب الآن</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة من نحن -->
+    <section id="about" class="page">
+        <div class="about">
+            <div class="container">
+                <div class="section-title">
+                    <h2>من نحن</h2>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Zon Print هي شركة متخصصة في مجال الطباعة الحرارية على مختلف المنتجات. تأسست الشركة عام 2018 بهدف تقديم خدمات طباعة عالية الجودة بأسعار تنافسية.</p>
+                        <p>نحن نفتخر بفريقنا المحترف الذي يمتلك خبرة واسعة في مجال الطباعة الحرارية والتصميم الجرافيكي، مما يمكننا من تقديم حلول مبتكرة تلبي توقعات عملائنا.</p>
+                        <p>رسالتنا هي تقديم خدمات طباعة حرارية متميزة تساهم في نجاح عملائنا وتحقيق أهدافهم التسويقية والتجارية.</p>
+                        <p>نستخدم أحدث التقنيات والمواد عالية الجودة لضمان نتائج متميزة تدوم طويلاً. نحن نؤمن بأن الجودة والخدمة المتميزة هما أساس نجاحنا واستمراريتنا في السوق.</p>
+                        <a href="https://wa.me/0645717242?text=أريد معرفة المزيد عن شركة Zon Print" class="btn" target="_blank">تواصل معنا</a>
+                    </div>
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1468&q=80" alt="فريق العمل في Zon Print">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة الاتصال -->
+    <section id="contact" class="page">
+        <div class="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>اتصل بنا</h2>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>معلومات الاتصال</h3>
+                        <div class="contact-details">
+                            <p><i class="fas fa-map-marker-alt"></i> العنوان: سيدي مومن الدارالبيضاء المغرب </p>
+                            <p><i class="fas fa-phone"></i> الهاتف: +212645717242</p>
+                            <p><i class="fas fa-envelope"></i> البريد الإلكتروني: zonprint@gmail.com</p>
+                            <p><i class="fas fa-clock"></i> أوقات العمل: من الاتنين إلى الجمعة، 8 ص - 6 م</p>
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-snapchat"></i></a>
+                            <a href="https://wa.me/0645717242" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <input type="text" placeholder="الاسم الكامل" required>
+                            <input type="email" placeholder="البريد الإلكتروني" required>
+                            <input type="tel" placeholder="رقم الهاتف">
+                            <textarea placeholder="رسالتك" required></textarea>
+                            <button type="button" class="btn" onclick="sendToWhatsApp()">إرسال الرسالة</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Zon Print</h3>
+                    <p>شركة متخصصة في الطباعة الحرارية على مختلف المنتجات بأعلى جودة وأفضل الأسعار.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="home">الرئيسية</a></li>
+                        <li><a href="#" class="nav-link" data-page="services">الخدمات</a></li>
+                        <li><a href="#" class="nav-link" data-page="products">المنتجات</a></li>
+                        <li><a href="#" class="nav-link" data-page="about">من نحن</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>خدماتنا</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="products">طباعة على الملابس</a></li>
+                        <li><a href="#" class="nav-link" data-page="products">طباعة على الأكواب</a></li>
+                        <li><a href="#" class="nav-link" data-page="products">طباعة على الاقمصة الرياضية</a></li>
+                        <li><a href="#" class="nav-link" data-page="products">طباعة على الهواتف</a></li>
+                        <li><a href="#" class="nav-link" data-page="services">التصميم الجرافيكي</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 Zon Print</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript للتنقل بين الصفحات
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navUl = document.querySelector('nav ul');
+            
+            // إظهار الصفحة المحددة وإخفاء الآخرين
+            function showPage(pageId) {
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                document.getElementById(pageId).classList.add('active');
+                
+                // تحديث حالة الروابط النشطة
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // إضافة مستمعي الأحداث للروابط
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                    
+                    // إغلاق القائمة المتنقلة على الهواتف
+                    if(window.innerWidth <= 768) {
+                        navUl.classList.remove('show');
+                    }
+                    
+                    // التمرير إلى أعلى الصفحة
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // القائمة المتنقلة
+            mobileMenu.addEventListener('click', function() {
+                navUl.classList.toggle('show');
+            });
+            
+            // إغلاق القائمة عند النقر خارجها
+            document.addEventListener('click', function(e) {
+                if(!e.target.closest('nav') && !e.target.closest('.mobile-menu')) {
+                    navUl.classList.remove('show');
+                }
+            });
+            
+            // إظهار الصفحة الأولى افتراضيًا
+            showPage('home');
+        });
+        
+        // إرسال النموذج إلى واتساب
+        function sendToWhatsApp() {
+            const form = document.getElementById('contactForm');
+            const name = form.querySelector('input[type="text"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const phone = form.querySelector('input[type="tel"]').value;
+            const message = form.querySelector('textarea').value;
+            
+            const text = `مرحباً، أريد التواصل معكم%0A%0Aالاسم: ${name}%0Aالبريد الإلكتروني: ${email}%0Aالهاتف: ${phone}%0Aالرسالة: ${message}`;
+            
+            window.open(`https://wa.me/0645717242?text=${text}`, '_blank');
+        }
+    </script>
+</body>
+</html>
