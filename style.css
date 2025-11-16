@@ -91,7 +91,7 @@ nav ul li a.active {
 
 /* قسم الهيرو */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(images/logo.png.png);
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(images/hero-bg.jpg);
     background-size: cover;
     background-position: center;
     color: white;
