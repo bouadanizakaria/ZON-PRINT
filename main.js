@@ -70,3 +70,4 @@
             
             window.open(`https://wa.me/0645717242?text=${text}`, '_blank');
         }
+        

@@ -503,11 +503,11 @@ footer {
 
 /* هذا الكود يتحكم بحجم اللوقو والمسافة */
 .logo-container img {
-    width: 50px;
+    width: 60px;
     /* (غيّر الحجم حسب رغبتك) */
     height: auto;
     /* للحفاظ على أبعاد الصورة */
-    margin-right: 10px;
+    margin-right: 50px;
     /* لإضافة مسافة بسيطة بين اللوقو والنص */
 }
 
