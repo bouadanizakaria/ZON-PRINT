@@ -31,13 +31,61 @@ body {
 
 /* الترويسة */
 header {
-    background-color: var(--primary);
-    color: white;
-    padding: 15px 0;
-    position: sticky;
+    position: fixed;
+    /* تثبيت الهيدر */
     top: 0;
+    left: 0;
+    width: 100%;
+    /* ليمتد على كامل العرض */
     z-index: 1000;
-    box-shadow: var(--shadow);
+    /* ليظهر فوق كل العناصر الأخرى */
+    transition: 0.6s;
+    /* نعومة في التحول بين الشفاف واللون العادي */
+    padding: 20px 40px;
+    /* مسافة داخلية (يمكنك تعديلها) */
+}
+
+/* هذا الشكل سيظهر فقط عندما ننزل للأسفل */
+header.sticky {
+    padding: 10px 40px;
+    /* تقليل الحجم قليلاً ليكون أنيقاً */
+    background: rgba(9, 16, 72, 0.9);
+    /* لون أبيض شفاف قليلاً */
+    box-shadow: 0 px 20px rgba(0, 0, 0, 0.1);
+    /* ظل خفيف */
+}
+/* --- تغيير لون النص عند الهبوط --- */
+
+/* 1. تغيير لون كلمة Zon إلى الأبيض */
+header.sticky .logo-container h1 {
+    color: #ffffff; /* اللون الأبيض */
+    transition: color 0.3s; /* لجعل التغيير ناعماً */
+}
+
+/* 2. (اختياري) إذا أردت تغيير لون كلمة Print أيضاً */
+/* إذا كانت واضحة باللون البرتقالي، يمكنك تجاهل هذا الجزء */
+header.sticky .logo-container h1 span {
+    color: #e24400; /* اجعلها بيضاء أيضاً إذا أردت */
+    /* أو يمكنك اختيار لون آخر فاتح مثل الأصفر الفاتح */
+}
+
+/* --- تنسيق الروابط (الوضع الطبيعي) --- */
+.nav-link {
+    color: #333333;      /* اجعل اللون الافتراضي أسود غامق */
+    font-weight: 500;    /* سماكة الخط */
+    transition: color 0.3s; /* نعومة في تغيير اللون */
+}
+
+/* --- تنسيق الروابط (عند الهبوط - Sticky) --- */
+/* عندما ينزل الهيدر وتصبح خلفيته ملونة، نحول النص لأبيض */
+header.sticky .nav-link {
+    color: #ffffff !important; /* أبيض */
+}
+
+/* --- تنسيق الروابط (في الوضع الليلي) --- */
+/* عندما نفعل الوضع الليلي، الخلفية سوداء فالنص يجب أن يكون أبيض */
+body.dark-mode .nav-link {
+    color: #ffffff !important;/* أبيض */
 }
 
 .header-content {
@@ -91,12 +139,14 @@ nav ul li a.active {
 
 /* قسم الهيرو */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(images/hero-bg.jpg);
+    background:  url(images/hero-bg.jpg);
     background-size: cover;
     background-position: center;
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 150px 0;
     text-align: center;
+   
+
 }
 
 .hero h2 {
