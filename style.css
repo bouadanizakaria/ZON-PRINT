@@ -85,7 +85,7 @@ header.sticky .nav-link {
 /* --- تنسيق الروابط (في الوضع الليلي) --- */
 /* عندما نفعل الوضع الليلي، الخلفية سوداء فالنص يجب أن يكون أبيض */
 body.dark-mode .nav-link {
-    color: #ffffff !important; /* أبيض */
+    color: #ffffff !important;/* أبيض */
 }
 
 .header-content {
