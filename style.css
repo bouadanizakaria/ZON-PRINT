@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* CSS Reset وإعدادات عامة */
 * {
     margin: 0;
@@ -564,4 +565,572 @@ footer {
 /* (اختياري) لإزالة أي هوامش افتراضية قد تسبب مشاكل */
 .logo-container h1 {
     margin: 0;
+=======
+/* CSS Reset وإعدادات عامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary: #2c3e50;
+    --secondary: #e74c3c;
+    --accent: #3498db;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+    --text: #333;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: #f9f9f9;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* الترويسة */
+header {
+    position: fixed;
+    /* تثبيت الهيدر */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* ليمتد على كامل العرض */
+    z-index: 1000;
+    /* ليظهر فوق كل العناصر الأخرى */
+    transition: 0.6s;
+    /* نعومة في التحول بين الشفاف واللون العادي */
+    padding: 20px 40px;
+    /* مسافة داخلية (يمكنك تعديلها) */
+}
+
+/* هذا الشكل سيظهر فقط عندما ننزل للأسفل */
+header.sticky {
+    padding: 10px 40px;
+    /* تقليل الحجم قليلاً ليكون أنيقاً */
+    background: rgba(9, 16, 72, 0.9);
+    /* لون أبيض شفاف قليلاً */
+    box-shadow: 0 px 20px rgba(0, 0, 0, 0.1);
+    /* ظل خفيف */
+}
+/* --- تغيير لون النص عند الهبوط --- */
+
+/* 1. تغيير لون كلمة Zon إلى الأبيض */
+header.sticky .logo-container h1 {
+    color: #ffffff; /* اللون الأبيض */
+    transition: color 0.3s; /* لجعل التغيير ناعماً */
+}
+
+/* 2. (اختياري) إذا أردت تغيير لون كلمة Print أيضاً */
+/* إذا كانت واضحة باللون البرتقالي، يمكنك تجاهل هذا الجزء */
+header.sticky .logo-container h1 span {
+    color: #e24400; /* اجعلها بيضاء أيضاً إذا أردت */
+    /* أو يمكنك اختيار لون آخر فاتح مثل الأصفر الفاتح */
+}
+
+/* --- تنسيق الروابط (الوضع الطبيعي) --- */
+.nav-link {
+    color: #333333;      /* اجعل اللون الافتراضي أسود غامق */
+    font-weight: 500;    /* سماكة الخط */
+    transition: color 0.3s; /* نعومة في تغيير اللون */
+}
+
+/* --- تنسيق الروابط (عند الهبوط - Sticky) --- */
+/* عندما ينزل الهيدر وتصبح خلفيته ملونة، نحول النص لأبيض */
+header.sticky .nav-link {
+    color: #ffffff !important; /* أبيض */
+}
+
+/* --- تنسيق الروابط (في الوضع الليلي) --- */
+/* عندما نفعل الوضع الليلي، الخلفية سوداء فالنص يجب أن يكون أبيض */
+body.dark-mode .nav-link {
+    color: #ffffff !important;/* أبيض */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.logo span {
+    color: var(--secondary);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: var(--secondary);
+}
+
+.mobile-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* قسم الهيرو */
+.hero {
+    background:  url(images/hero-bg.jpg);
+    background-size: cover;
+    background-position: center;
+    color: rgb(0, 0, 0);
+    padding: 150px 0;
+    text-align: center;
+   
+
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--secondary);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-3px);
+}
+
+/* قسم الميزات */
+.features {
+    padding: 80px 0;
+    background-color: var(--light);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 3px;
+    background-color: var(--secondary);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+/* قسم المنتجات */
+.products {
+    padding: 80px 0;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h3 {
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+.product-price {
+    color: var(--secondary);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+/* قسم الخدمات */
+.services {
+    padding: 80px 0;
+    background-color: var(--light);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.service-card h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.service-card h3 i {
+    margin-left: 10px;
+    color: var(--accent);
+}
+
+/* قسم من نحن */
+.about {
+    padding: 80px 0;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    align-items: center;
+}
+
+.about-text {
+    padding: 20px;
+}
+
+.about-img {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.about-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* قسم الاتصال */
+.contact {
+    padding: 80px 0;
+    background-color: var(--light);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.contact-info h3 {
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.contact-details {
+    margin-bottom: 30px;
+}
+
+.contact-details p {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-details i {
+    margin-left: 10px;
+    color: var(--accent);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+/* التذييل */
+footer {
+    background-color: var(--dark);
+    color: white;
+    padding: 50px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-column h3 {
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--secondary);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #ddd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: var(--secondary);
+}
+
+.social-links {
+    display: flex;
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--secondary);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* صفحات منفصلة */
+.page {
+    display: none;
+    padding: 40px 0;
+    min-height: 70vh;
+}
+
+.page.active {
+    display: block;
+}
+
+/* التجاوب مع الشاشات المختلفة */
+@media (max-width: 768px) {
+    .mobile-menu {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        background-color: var(--primary);
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+        box-shadow: var(--shadow);
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+}
+
+/* ========================
+   صفحة معرض المنتجات
+   ======================== */
+
+.product-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background-color: rgb(255, 255, 255);
+    padding: 40px;
+}
+
+.product-gallery-grid img {
+    width: 100%;
+    height: 250px;
+    /* يمكنك تعديل الارتفاع */
+    object-fit: cover;
+    /* يضمن أن الصورة تملأ المكان بدون تشويه */
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+.product-gallery-grid img:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* هذا الكود يجعل اللوقو والنص بجانب بعضهما */
+.logo-container {
+    display: flex;
+    /* تفعيل الفليكس بوكس (للمحاذاة الأفقية) */
+    align-items: center;
+    /* للمحاذاة العامودية (يوسطهما) */
+}
+
+/* هذا الكود يتحكم بحجم اللوقو والمسافة */
+.logo-container img {
+    width: 60px;
+    /* (غيّر الحجم حسب رغبتك) */
+    height: auto;
+    /* للحفاظ على أبعاد الصورة */
+    margin-right: 50px;
+    /* لإضافة مسافة بسيطة بين اللوقو والنص */
+}
+
+/* (اختياري) لإزالة أي هوامش افتراضية قد تسبب مشاكل */
+.logo-container h1 {
+    margin: 0;
+>>>>>>> 653fee8551f748e506348e3fd52fa3dd2bc5832b
 }
