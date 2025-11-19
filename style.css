@@ -362,3 +362,24 @@ footer {
     transition: 0.3s;
 }
 .product-gallery-grid img:hover { transform: scale(1.05); }
+/* --- إصلاح صورة الهيرو في الموبايل --- */
+@media (max-width: 768px) {
+    .hero {
+        /* 1. تقليل الارتفاع في الموبايل */
+        min-height: 300px !important; /* قلل هذا الرقم إذا أردت الصورة أصغر */
+        padding: 50px 0 !important;
+
+        /* 2. ضبط موضع الصورة */
+        background-position: center center !important;
+        
+        /* 3. مهم جداً: منع التثبيت في الموبايل لأنه يسبب التكبير الزائد */
+        background-attachment: scroll !important;
+        
+        /* 4. خيار إضافي: إذا كنت تريد ظهور الصورة كاملة حتى لو ظهر فراغ أبيض فوقها وتحتها */
+        /* background-size: contain !important; /  / جرب تفعيل هذا السطر فقط إذا لم يعجبك الحل الأول */
+    }
+    
+    .hero h2 {
+        font-size: 1.5rem !important; /* تصغير الخط قليلاً ليتناسب */
+    }
+}
