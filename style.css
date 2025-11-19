@@ -196,17 +196,48 @@ nav ul li a.active {
     }
 }
 
-
-/* باقي الأقسام (الهيرو، الخدمات، المنتجات...) */
-
-/* قسم الهيرو */
+/* تصميم الهيرو للكمبيوتر والشاشات الكبيرة */
 .hero {
-    background: url(images/hero-bg.jpg);
+    background: url('images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
-    color: #000;
+    background-repeat: no-repeat;
+
+    /* --- هذا هو السطر السحري --- */
+    background-attachment: fixed;
+    /* يجعل الصورة ثابتة والموقع يتحرك فوقها */
+    /* -------------------------- */
+
+    color: white;
     padding: 150px 0;
     text-align: center;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    /* مهم لإضافة طبقة شفافة إذا أردت */
+}
+
+/* إضافة طبقة سوداء خفيفة فوق الصورة (Overlay) لجعل النص الأبيض واضحاً جداً */
+/* (هذا الجزء اختياري لكنه يجعل التصميم أجمل) */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(53, 52, 52, 0.4);
+    /* لون أسود شفاف بنسبة 40% */
+    z-index: 1;
+}
+
+/* التأكد أن النص يظهر فوق الطبقة السوداء */
+.hero .container {
+    position: relative;
+    z-index: 2;
 }
 
 .hero h2 {
@@ -527,11 +558,59 @@ footer {
     }
 }
 
-/* --- تنسيق قسم آراء الزبناء --- */
+/* --- قسم آراء الزبناء (تصحيح الصورة) --- */
 .reviews {
+    /* 1. تحديد الصورة بوضوح */
+    background-image: url('images/hero-bg.jpg');
+
+    /* 2. تثبيت الصورة (Parallax) */
+    background-attachment: fixed;
+
+    /* 3. تغطية المساحة */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     padding: 80px 0;
-    background-color: #f8f9fa;
-    /* لون خلفية فاتح جداً لتمييز القسم */
+    position: relative;
+    z-index: 1;
+    /* ضروري لترتيب الطبقات */
+}
+
+/* الطبقة السوداء الشفافة */
+.reviews::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* تأكد أن هذا الرقم 0.7 وليس 1 (لتبقى شفافة) */
+    background-color: rgba(53, 52, 52, 0.4);
+
+    z-index: -1;
+    /* لتكون خلف النصوص ولكن فوق الصورة */
+}
+
+/* تنسيق العنوان */
+.reviews .section-title h2 {
+    color: white !important;
+    position: relative;
+    z-index: 2;
+}
+
+/* تنسيق البطاقات */
+.review-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
+    /* لتظهر فوق الطبقة السوداء */
 }
 
 .reviews-grid {
