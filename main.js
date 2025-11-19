@@ -1,45 +1,50 @@
-// JavaScript للتنقل بين الصفحات وتشغيل الموقع
 document.addEventListener('DOMContentLoaded', function () {
-
-    // 1. حل مشكلة ظهور الموقع من الأسفل (يجبره يصعد للأعلى فوراً)
+    
+    // 1. إصلاح مشكلة التمرير (البدء من الأعلى)
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
     window.scrollTo(0, 0);
 
-    // 2. تعريف المتغيرات
-    const navLinks = document.querySelectorAll('.nav-link');
-    const pages = document.querySelectorAll('.page');
+    // 2. تعريف العناصر
     const mobileMenu = document.querySelector('.mobile-menu');
     const navUl = document.querySelector('nav ul');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
 
-    // 3. كود القائمة المتنقلة (تم التصحيح)
-    if (mobileMenu) {
-        mobileMenu.addEventListener('click', function () {
+    // 3. تشغيل زر القائمة (الموبايل)
+    if (mobileMenu && navUl) {
+        console.log('تم العثور على زر القائمة');
+        mobileMenu.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
             navUl.classList.toggle('show');
+            console.log('تم الضغط على القائمة');
         });
     }
 
     // إغلاق القائمة عند النقر خارجها
     document.addEventListener('click', function (e) {
-        if (mobileMenu && !e.target.closest('nav') && !e.target.closest('.mobile-menu')) {
-            navUl.classList.remove('show');
+        if (navUl && navUl.classList.contains('show')) {
+            if (!navUl.contains(e.target) && !mobileMenu.contains(e.target)) {
+                navUl.classList.remove('show');
+            }
         }
     });
 
-    // 4. دالة إظهار الصفحة المحددة وإخفاء الآخرين
+    // 4. التنقل بين الصفحات
     function showPage(pageId) {
-        // إخفاء كل الصفحات
-        pages.forEach(page => {
-            page.classList.remove('active');
-        });
-
-        // إظهار الصفحة المطلوبة فقط إذا كانت موجودة
+        // إخفاء الصفحات
+        pages.forEach(page => page.classList.remove('active'));
+        
+        // إظهار الصفحة المطلوبة
         const targetPage = document.getElementById(pageId);
         if (targetPage) {
             targetPage.classList.add('active');
-            // عند تغيير الصفحة، نصعد للأعلى أيضاً
             window.scrollTo(0, 0);
         }
 
-        // تحديث حالة الروابط (اللون البرتقالي للرابط النشط)
+        // تحديث الروابط
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('data-page') === pageId) {
@@ -48,47 +53,48 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 5. إضافة مستمعي الأحداث للروابط (عند الضغط على رابط)
+    // تفعيل الأزرار
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
             const pageId = this.getAttribute('data-page');
-            
-            showPage(pageId);
-
-            // إغلاق القائمة المتنقلة تلقائياً بعد اختيار صفحة (للهواتف)
-            if (window.innerWidth <= 768) {
-                navUl.classList.remove('show');
+            if (pageId) {
+                showPage(pageId);
+                // إغلاق القائمة بعد الاختيار
+                if (navUl) navUl.classList.remove('show');
             }
         });
     });
 
-    // 6. إظهار الصفحة الرئيسية افتراضياً عند فتح الموقع
+    // تشغيل الرئيسية افتراضياً
     showPage('home');
 });
 
 
-// --- دوال إضافية (خارج الـ EventListener) ---
-
-// إرسال النموذج إلى واتساب
+// دالة الواتساب (تم تبسيطها لمنع الأخطاء)
 function sendToWhatsApp() {
-    const form = document.getElementById('contactForm');
-    if (!form) return; // حماية من الخطأ إذا لم يجد الفورم
+    var form = document.getElementById('contactForm');
+    if (!form) return;
 
-    const name = form.querySelector('input[type="text"]').value;
-    const email = form.querySelector('input[type="email"]').value;
-    const phone = form.querySelector('input[type="tel"]').value;
-    const message = form.querySelector('textarea').value;
+    var name = form.querySelector('input[type="text"]').value;
+    var email = form.querySelector('input[type="email"]').value;
+    var phone = form.querySelector('input[type="tel"]').value;
+    var message = form.querySelector('textarea').value;
 
-    const text = مرحباً، أريد التواصل معكم%0A%0Aالاسم: ${name}%0Aالبريد الإلكتروني: ${email}%0Aالهاتف: ${phone}%0Aالرسالة: ${message};
+    // استخدام طريقة الربط البسيطة لتجنب أخطاء النسخ
+    var text = "الاسم: " + name + "%0A" +
+               "البريد: " + email + "%0A" +
+               "الهاتف: " + phone + "%0A" +
+               "الرسالة: " + message;
 
-    window.open(https://wa.me/0645717242?text=${text}, '_blank');
+    var url = "https://wa.me/0645717242?text=" + text;
+    window.open(url, '_blank');
 }
 
-// تأثير الهيدر الشفاف عند النزول (Sticky Header)
+// الهيدر الشفاف
 window.addEventListener("scroll", function () {
     var header = document.querySelector("header");
     if (header) {
-        header.classList.toggle("sticky", window.scrollY>0);
-}
+        header.classList.toggle("sticky", window.scrollY > 0);
+    }
 });

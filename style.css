@@ -1154,3 +1154,28 @@ footer {
         margin: 0;
         >>>>>>>653fee8551f748e506348e3fd52fa3dd2bc5832b
     }
+    /* --- كود تشغيل القائمة في الموبايل --- */
+@media (max-width: 768px) {
+    /* إخفاء القائمة افتراضياً */
+    nav ul {
+        display: none; /* أو transform: translateX... حسب تصميمك القديم */
+        flex-direction: column;
+        position: absolute;
+        top: 70px; /* تحت الهيدر */
+        right: 0;
+        width: 100%;
+        background-color: #fff; /* لون الخلفية */
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+
+    /* هذا هو الكلاس السحري الذي يضيفه الجافاسكريبت */
+    nav ul.show {
+        display: flex !important; /* إجبار القائمة على الظهور */
+    }
+    
+    nav ul li {
+        margin: 15px 0;
+        text-align: center;
+}
+}
