@@ -366,7 +366,7 @@ footer {
 @media (max-width: 768px) {
     .hero {
         /* 1. تقليل الارتفاع في الموبايل */
-        min-height: 300px !important; /* قلل هذا الرقم إذا أردت الصورة أصغر */
+        min-height: 100px !important; /* قلل هذا الرقم إذا أردت الصورة أصغر */
         padding: 50px 0 !important;
 
         /* 2. ضبط موضع الصورة */
