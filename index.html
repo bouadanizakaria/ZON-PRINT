@@ -10,6 +10,28 @@
 </head>
 
 <body>
+    <style>
+        @media (max-width: 768px) {
+            nav ul {
+                /* لون أبيض شفاف بقوة !important لإلغاء الأزرق */
+                background-color: rgba(255, 255, 255, 0.95) !important;
+                backdrop-filter: blur(10px) !important;
+                border-top: 1px solid #eee;
+            }
+
+            /* تغيير لون الروابط للأسود لتظهر بوضوح على الخلفية البيضاء */
+            nav ul li a {
+                color: #333 !important;
+            }
+
+            /* عند لمس الرابط */
+            nav ul li a:hover, nav ul li a.active {
+                background-color: #e74c3c !important; /* اللون البرتقالي */
+                color: #fff !important;
+            }
+        }
+    </style>
+
     <!-- الترويسة -->
     <header>
         <div class="container">
