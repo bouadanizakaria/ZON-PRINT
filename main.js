@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 2. تعريف العناصر
     const mobileMenu = document.querySelector('.mobile-menu');
     const navUl = document.querySelector('nav ul');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-link, .footer-links a')
     const pages = document.querySelectorAll('.page');
 
     // 3. تشغيل زر القائمة (الموبايل)
