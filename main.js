@@ -71,24 +71,35 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// دالة الواتساب (تم تبسيطها لمنع الأخطاء)
-function sendToWhatsApp() {
-    var form = document.getElementById('contactForm');
-    if (!form) return;
+// دالة إرسال الواتساب الجديدة (مع التحقق)
+function sendToWhatsApp(e) {
+    // 1. منع إعادة تحميل الصفحة
+    e.preventDefault();
 
-    var name = form.querySelector('input[type="text"]').value;
-    var email = form.querySelector('input[type="email"]').value;
-    var phone = form.querySelector('input[type="tel"]').value;
-    var message = form.querySelector('textarea').value;
+    // 2. جلب القيم
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var phone = document.getElementById('phone').value;
+    var message = document.getElementById('message').value;
 
-    // استخدام طريقة الربط البسيطة لتجنب أخطاء النسخ
-    var text = "الاسم: " + name + "%0A" +
+    // 3. (اختياري) تحقق إضافي في الجافاسكريبت
+    if (name === "" || email === "" || message === "") {
+        alert("المرجو ملء جميع الحقول الضرورية");
+        return;
+    }
+
+    // 4. تجهيز الرسالة والرابط
+    var text = "طلب تواصل جديد من الموقع" + "%0A" +
+               "---------------------------" + "%0A" +
+               "الاسم: " + name + "%0A" +
                "البريد: " + email + "%0A" +
                "الهاتف: " + phone + "%0A" +
-               "الرسالة: " + message;
+               "الرسالة: " + "%0A" + message;
 
-    var url = "https://wa.me/0645717242?text=" + text;
-    window.open(url, '_blank');
+    var url = "https://wa.me/212645717242?text=" + text;
+
+    // 5. فتح الواتساب
+    window.open(url, '_blank');
 }
 
 // الهيدر الشفاف

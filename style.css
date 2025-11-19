@@ -361,6 +361,46 @@ footer {
     border-radius: 10px;
     transition: 0.3s;
 }
+/* --- تحسين تصميم نموذج الاتصال --- */
+.contact-form {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    max-width: 600px; /* عرض مناسب */
+    margin: 0 auto;   /* توسيط النموذج */
+}
+
+.form-group {
+    margin-bottom: 20px; /* مسافة بين كل حقل */
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;       /* ليمتد الحقل للنهاية */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--secondary); /* تلوين الإطار عند الكتابة */
+}
+
+.contact-form textarea {
+    height: 150px;     /* طول مناسب للرسالة */
+    resize: vertical;  /* السماح بتطويل المربع عمودياً فقط */
+}
+
+.contact-form button {
+    width: 100%;       /* الزر بعرض كامل */
+    font-size: 18px;
+    cursor: pointer;
+}
 .product-gallery-grid img:hover { transform: scale(1.05); }
 /* --- إصلاح صورة الهيرو في الموبايل --- */
 @media (max-width: 768px) {
