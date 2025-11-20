@@ -121,10 +121,37 @@ function sendToWhatsApp(e) {
     window.open(url, '_blank');
 }
 
-// الهيدر الشفاف
+// --- كود التحكم في ألوان الهيدر والأيقونة عند النزول ---
 window.addEventListener("scroll", function () {
+
+    // 1. تحديد العناصر
     var header = document.querySelector("header");
-    if (header) {
-        header.classList.toggle("sticky", window.scrollY > 0);
+    var menuIcon = document.querySelector(".mobile-menu i"); // الأيقونة
+    var logoText = document.querySelector(".logo-container h1"); // اسم الموقع
+    var navLinks = document.querySelectorAll("header .nav-link"); // الروابط (للكمبيوتر)
+
+    // 2. إذا نزلنا للأسفل (أكثر من 0 بكسل)
+    if (window.scrollY > 0) {
+        if (header) header.classList.add("sticky");
+
+        // إجبار الألوان على أن تكون بيضاء
+        if (menuIcon) menuIcon.style.color = "#ffffff";
+        if (logoText) logoText.style.color = "#ffffff";
+
+        navLinks.forEach(link => {
+            link.style.color = "#ffffff";
+        });
+
+    } else {
+        // 3. إذا عدنا للقمة
+        if (header) header.classList.remove("sticky");
+
+        // إجبار الألوان على أن تكون داكنة (لأن الخلفية بيضاء)
+        if (menuIcon) menuIcon.style.color = "#333333";
+        if (logoText) logoText.style.color = "#333333";
+
+        navLinks.forEach(link => {
+            link.style.color = "#333333";
+        });
     }
 });

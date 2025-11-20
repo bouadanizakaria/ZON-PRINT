@@ -40,31 +40,12 @@ header {
     padding: 20px 40px;
 }
 
-/* الهيدر عند النزول (Sticky) */
-header.sticky {
-    padding: 10px 40px;
-    background: rgba(9, 16, 72, 0.95);
-    /* خلفية زرقاء داكنة */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* تغيير ألوان النصوص عند النزول */
-header.sticky .logo-container h1 {
-    color: #ffffff;
-    transition: color 0.3s;
-}
-
-header.sticky .nav-link {
-    color: #ffffff !important;
-}
-
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* اللوجو */
 .logo-container {
     display: flex;
     align-items: center;
@@ -74,14 +55,12 @@ header.sticky .nav-link {
     width: 60px;
     height: auto;
     margin-right: 15px;
-    /* مسافة بين الصورة والنص */
 }
 
 .logo-container h1 {
     font-size: 1.8rem;
     margin: 0;
     color: #333;
-    /* اللون الافتراضي */
 }
 
 .logo-container h1 span {
@@ -100,7 +79,6 @@ nav ul li {
 
 nav ul li a {
     color: #333;
-    /* لون الروابط الافتراضي للكمبيوتر */
     text-decoration: none;
     font-weight: 500;
     padding: 5px 10px;
@@ -114,100 +92,20 @@ nav ul li a.active {
     color: white !important;
 }
 
-/* زر القائمة للموبايل */
 .mobile-menu {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
 }
 
-/* ========================
-   تنسيق الموبايل (المهم جداً)
-   ======================== */
-@media (max-width: 768px) {
-    .mobile-menu {
-        display: block;
-        color: #333;
-    }
-
-    /* القائمة المنسدلة */
-    nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 80px;
-        /* تحت الهيدر */
-        right: 0;
-        width: 100%;
-
-        /* --- التعديل لجعله أبيض شفاف --- */
-        background-color: rgba(255, 255, 255, 0.95) !important;
-        backdrop-filter: blur(10px);
-        /* تأثير الزجاج */
-        /* ----------------------------- */
-
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        padding: 20px 0;
-        text-align: center;
-        border-top: 1px solid #eee;
-    }
-
-    nav ul.show {
-        display: flex !important;
-    }
-
-    nav ul li {
-        margin: 10px 0;
-        width: 100%;
-    }
-
-    /* تصحيح لون الروابط في الموبايل */
-    nav ul li a {
-        color: #333 !important;
-        /* أسود ليظهر على الخلفية البيضاء */
-        display: block;
-        padding: 15px;
-        font-weight: bold;
-    }
-
-    nav ul li a:hover {
-        background-color: #f0f0f0;
-        /* رمادي فاتح عند اللمس */
-        color: var(--secondary) !important;
-    }
-
-    /* تصحيح حجم اللوقو في الموبايل */
-    .logo-container img {
-        width: 50px;
-        margin-right: 10px;
-    }
-
-    .logo-container h1 {
-        font-size: 1.4rem;
-    }
-
-    /* تعديل الهيرو للموبايل */
-    .hero {
-        padding: 100px 0;
-    }
-
-    .hero h2 {
-        font-size: 1.8rem;
-    }
-}
-
-/* تصميم الهيرو للكمبيوتر والشاشات الكبيرة */
+/* قسم الهيرو */
 .hero {
     background: url('images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    /* --- هذا هو السطر السحري --- */
     background-attachment: fixed;
-    /* يجعل الصورة ثابتة والموقع يتحرك فوقها */
-    /* -------------------------- */
-
+    /* Parallax */
     color: white;
     padding: 150px 0;
     text-align: center;
@@ -217,11 +115,8 @@ nav ul li a.active {
     justify-content: center;
     flex-direction: column;
     position: relative;
-    /* مهم لإضافة طبقة شفافة إذا أردت */
 }
 
-/* إضافة طبقة سوداء خفيفة فوق الصورة (Overlay) لجعل النص الأبيض واضحاً جداً */
-/* (هذا الجزء اختياري لكنه يجعل التصميم أجمل) */
 .hero::before {
     content: '';
     position: absolute;
@@ -230,11 +125,9 @@ nav ul li a.active {
     width: 100%;
     height: 100%;
     background-color: rgba(53, 52, 52, 0.4);
-    /* لون أسود شفاف بنسبة 40% */
     z-index: 1;
 }
 
-/* التأكد أن النص يظهر فوق الطبقة السوداء */
 .hero .container {
     position: relative;
     z-index: 2;
@@ -269,7 +162,7 @@ nav ul li a.active {
     transform: translateY(-3px);
 }
 
-/* العناوين والقوائم */
+/* العناوين والشبكات */
 .section-title {
     text-align: center;
     margin-bottom: 50px;
@@ -293,7 +186,6 @@ nav ul li a.active {
     background-color: var(--secondary);
 }
 
-/* الشبكات (Grids) */
 .features-grid,
 .products-grid,
 .services-grid,
@@ -317,7 +209,7 @@ nav ul li a.active {
     background-color: var(--light);
 }
 
-/* البطاقات (Cards) */
+/* البطاقات */
 .feature-card,
 .service-card,
 .product-card {
@@ -360,7 +252,6 @@ nav ul li a.active {
     margin-left: 10px;
 }
 
-/* صور المنتجات */
 .product-img {
     height: 200px;
     background-size: cover;
@@ -392,17 +283,98 @@ nav ul li a.active {
     border-radius: 8px;
 }
 
-/* =================================
-   تصميم الفوتر الاحترافي الجديد
-   ================================= */
+/* قسم آراء الزبناء (Parallax) */
+.reviews {
+    background-image: url('images/hero-bg.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 80px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.reviews::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(53, 52, 52, 0.6);
+    z-index: -1;
+}
+
+.reviews .section-title h2 {
+    color: white !important;
+    position: relative;
+    z-index: 2;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.review-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
+    border: 1px solid #eee;
+}
+
+.review-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.review-icon {
+    font-size: 40px;
+    color: var(--secondary);
+    opacity: 0.2;
+    margin-bottom: 20px;
+}
+
+.review-text {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.stars {
+    color: #f1c40f;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.client-name {
+    color: var(--primary);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.client-role {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* الفوتر */
 .footer-area {
     background-color: #1a252f;
-    /* لون داكن وأنيق */
     color: #ecf0f1;
     padding-top: 70px;
     position: relative;
     border-top: 5px solid #e74c3c;
-    /* خط برتقالي علوي */
 }
 
 .footer-grid {
@@ -412,7 +384,6 @@ nav ul li a.active {
     margin-bottom: 50px;
 }
 
-/* العمود 1: اللوجو */
 .footer-logo {
     display: flex;
     align-items: center;
@@ -422,7 +393,6 @@ nav ul li a.active {
 .footer-logo img {
     width: 50px;
     margin-left: 10px;
-    /* مسافة لأن الموقع عربي RTL */
 }
 
 .footer-logo h2 {
@@ -437,21 +407,20 @@ nav ul li a.active {
 .footer-desc {
     font-size: 15px;
     color: #bdc3c7;
-    /* رمادي فاتح */
     line-height: 1.8;
     margin-bottom: 20px;
 }
 
-/* أيقونات السوشيال ميديا */
 .social-links {
     display: flex;
     gap: 10px;
+    margin-top: 20px;
 }
 
 .social-links a {
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -465,7 +434,6 @@ nav ul li a.active {
     transform: translateY(-3px);
 }
 
-/* عناوين الأعمدة */
 .footer-col h3 {
     font-size: 20px;
     margin-bottom: 25px;
@@ -478,13 +446,11 @@ nav ul li a.active {
     position: absolute;
     bottom: 0;
     right: 0;
-    /* لأن الموقع عربي */
-    width: 50px;
+    width: 50%;
     height: 2px;
     background: #e74c3c;
 }
 
-/* الروابط */
 .footer-links,
 .contact-info {
     list-style: none;
@@ -504,10 +470,8 @@ nav ul li a.active {
 .footer-links a:hover {
     color: #e74c3c;
     transform: translateX(-5px);
-    /* حركة بسيطة لليسار */
 }
 
-/* معلومات الاتصال */
 .contact-info li {
     display: flex;
     align-items: center;
@@ -520,10 +484,8 @@ nav ul li a.active {
     color: #e74c3c;
     font-size: 18px;
     margin-left: 15px;
-    /* مسافة بين الأيقونة والنص */
 }
 
-/* النشرة البريدية */
 .newsletter-form {
     position: relative;
     margin-top: 15px;
@@ -533,7 +495,6 @@ nav ul li a.active {
     width: 100%;
     padding: 15px;
     padding-left: 50px;
-    /* مكان للزر */
     background: rgba(255, 255, 255, 0.1);
     border: none;
     border-radius: 5px;
@@ -551,7 +512,6 @@ nav ul li a.active {
     border: none;
     color: white;
     border-radius: 5px 0 0 5px;
-    /* تدوير الحواف اليسرى فقط */
     cursor: pointer;
     transition: 0.3s;
 }
@@ -560,10 +520,8 @@ nav ul li a.active {
     background: #c0392b;
 }
 
-/* الشريط السفلي */
 .footer-bottom {
     background: #131b22;
-    /* لون أغمق قليلاً */
     padding: 20px 0;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -574,52 +532,45 @@ nav ul li a.active {
     font-size: 14px;
 }
 
-/* الموبايل */
-@media (max-width: 768px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
-        /* عمود واحد */
-        gap: 30px;
-    }
+/* نموذج الاتصال */
+.contact-form {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.social-links {
-    display: flex;
-    margin-top: 20px;
+.form-group {
+    margin-bottom: 20px;
 }
 
-.social-links a {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    margin-left: 10px;
-    color: white;
-    text-decoration: none;
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s;
 }
 
-.social-links a:hover {
-    background: var(--secondary);
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--secondary);
 }
 
-.copyright {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid #444;
+.contact-form textarea {
+    height: 150px;
+    resize: vertical;
 }
 
-/* صفحات منفصلة */
-.page {
-    display: none;
-    padding-top: 100px;
-    min-height: 80vh;
-}
-
-.page.active {
-    display: block;
+.contact-form button {
+    width: 100%;
+    font-size: 18px;
+    cursor: pointer;
 }
 
 /* معرض الصور (Gallery) */
@@ -638,200 +589,101 @@ nav ul li a.active {
     transition: 0.3s;
 }
 
-/* --- تحسين تصميم نموذج الاتصال --- */
-.contact-form {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    max-width: 600px;
-    /* عرض مناسب */
-    margin: 0 auto;
-    /* توسيط النموذج */
-}
-
-.form-group {
-    margin-bottom: 20px;
-    /* مسافة بين كل حقل */
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    /* ليمتد الحقل للنهاية */
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    outline: none;
-    transition: border 0.3s;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    border-color: var(--secondary);
-    /* تلوين الإطار عند الكتابة */
-}
-
-.contact-form textarea {
-    height: 150px;
-    /* طول مناسب للرسالة */
-    resize: vertical;
-    /* السماح بتطويل المربع عمودياً فقط */
-}
-
-.contact-form button {
-    width: 100%;
-    /* الزر بعرض كامل */
-    font-size: 18px;
-    cursor: pointer;
-}
-
 .product-gallery-grid img:hover {
     transform: scale(1.05);
 }
 
-/* --- إصلاح صورة الهيرو في الموبايل --- */
+/* الصفحات */
+.page {
+    display: none;
+    padding-top: 100px;
+    min-height: 80vh;
+}
+
+.page.active {
+    display: block;
+}
+
+/* ========================
+   تنسيق الموبايل (التجاوب)
+   ======================== */
 @media (max-width: 768px) {
+    .mobile-menu {
+        display: block;
+        color: #333;
+    }
+
+    /* لون أيقونة افتراضي */
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        /* خلفية بيضاء شفافة */
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+        text-align: center;
+        border-top: 1px solid #eee;
+    }
+
+    nav ul.show {
+        display: flex !important;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+        width: 100%;
+    }
+
+    /* روابط الموبايل (داكنة) */
+    nav ul li a,
+    header .nav-link,
+    header.sticky .nav-link {
+        color: #333333 !important;
+        /* لون داكن */
+        display: block;
+        padding: 15px;
+        font-weight: bold;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+        color: #e74c3c !important;
+        background-color: #f9f9f9;
+    }
+
+    .logo-container img {
+        width: 50px;
+        margin-right: 10px;
+    }
+
+    .logo-container h1 {
+        font-size: 1.4rem;
+    }
+
+    /* الهيرو في الموبايل */
     .hero {
-        /* 1. تقليل الارتفاع في الموبايل */
-        min-height: 100px !important;
-        /* قلل هذا الرقم إذا أردت الصورة أصغر */
-        padding: 50px 0 !important;
-
-        /* 2. ضبط موضع الصورة */
-        background-position: center center !important;
-
-        /* 3. مهم جداً: منع التثبيت في الموبايل لأنه يسبب التكبير الزائد */
+        padding: 100px 0 !important;
+        min-height: 300px !important;
         background-attachment: scroll !important;
-
-        /* 4. خيار إضافي: إذا كنت تريد ظهور الصورة كاملة حتى لو ظهر فراغ أبيض فوقها وتحتها */
-        /* background-size: contain !important; /  / جرب تفعيل هذا السطر فقط إذا لم يعجبك الحل الأول */
+        background-position: center center !important;
     }
 
     .hero h2 {
-        font-size: 1.5rem !important;
-        /* تصغير الخط قليلاً ليتناسب */
+        font-size: 1.8rem;
     }
-}
 
-/* --- قسم آراء الزبناء (تصحيح الصورة) --- */
-.reviews {
-    /* 1. تحديد الصورة بوضوح */
-    background-image: url('images/hero-bg.jpg');
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
 
-    /* 2. تثبيت الصورة (Parallax) */
-    background-attachment: fixed;
-
-    /* 3. تغطية المساحة */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    padding: 80px 0;
-    position: relative;
-    z-index: 1;
-    /* ضروري لترتيب الطبقات */
-}
-
-/* الطبقة السوداء الشفافة */
-.reviews::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    /* تأكد أن هذا الرقم 0.7 وليس 1 (لتبقى شفافة) */
-    background-color: rgba(53, 52, 52, 0.4);
-
-    z-index: -1;
-    /* لتكون خلف النصوص ولكن فوق الصورة */
-}
-
-/* تنسيق العنوان */
-.reviews .section-title h2 {
-    color: white !important;
-    position: relative;
-    z-index: 2;
-}
-
-/* تنسيق البطاقات */
-.review-card {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    transition: transform 0.3s ease;
-    position: relative;
-    z-index: 2;
-    /* لتظهر فوق الطبقة السوداء */
-}
-
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.review-card {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    border: 1px solid #eee;
-}
-
-.review-card:hover {
-    transform: translateY(-10px);
-    /* حركة للأعلى عند اللمس */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-.review-icon {
-    font-size: 40px;
-    color: var(--secondary);
-    /* اللون البرتقالي */
-    opacity: 0.2;
-    /* شفافية للأيقونة */
-    margin-bottom: 20px;
-}
-
-.review-text {
-    font-size: 1.1rem;
-    color: #555;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    font-style: italic;
-}
-
-.stars {
-    color: #f1c40f;
-    /* لون ذهبي للنجوم */
-    margin-bottom: 15px;
-    font-size: 1.2rem;
-}
-
-.client-name {
-    color: var(--primary);
-    /* اللون الكحلي */
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.client-role {
-    color: #888;
-    font-size: 0.9rem;
-}
-
-/* تحسين للموبايل */
-@media (max-width: 768px) {
     .review-card {
         padding: 20px;
     }
@@ -841,51 +693,73 @@ nav ul li a.active {
     }
 }
 
-/* --- إصلاح اختفاء القائمة عند النزول --- */
+/* ==========================================
+   (هام) تعديلات Sticky Header (توضع في النهاية)
+   ========================================== */
 
-/* عندما ينزل الهيدر (Sticky)، نجعل خلفيته زرقاء داكنة */
+/* خلفية زرقاء عند النزول */
 header.sticky {
     background-color: #2c3e50 !important;
-    /* نفس لون الفوتر */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    /* ظل خفيف */
 }
 
-/* أهم جزء: تغيير لون أيقونة القائمة للأبيض عند النزول */
-header.sticky .mobile-menu i {
-    color: #ffffff !important;
-}
-
-/* تغيير لون اسم الموقع (Zon) للأبيض عند النزول */
-header.sticky .logo-container h1 {
-    color: #ffffff !important;
-}
-
-/* تغيير لون الروابط للأبيض (للكمبيوتر) */
+/* إجبار الأيقونة واللوجو والروابط (في الكمبيوتر فقط) أن تكون بيضاء */
+header.sticky .logo-container h1,
 header.sticky .nav-link {
     color: #ffffff !important;
 }
 
-/* --- إصلاح ألوان القائمة في الموبايل --- */
+/* هذه هي القاعدة التي كانت تسبب المشكلة، الآن وضعناها في الأخير لتفوز */
+/* تغيير لون أيقونة القائمة للأبيض عند النزول */
+header.sticky .mobile-menu i {
+    color: #ffffff !important;
+}
+
+/* --- كود أمان نهائي للموبايل --- */
 @media (max-width: 768px) {
 
-    /* جعل الروابط باللون الداكن لتظهر على الخلفية البيضاء */
-    nav ul li a,
-    header .nav-link,
-    header.sticky .nav-link {
+    /* إجبار الروابط أن تكون داكنة في القائمة المنسدلة مهما حدث */
+    nav ul li a {
         color: #333333 !important;
-        /* لون رمادي غامق */
-        font-weight: bold;
-        border-bottom: 1px solid #f0f0f0;
-        /* خط فاصل خفيف بين الروابط */
     }
 
-    /* لون الرابط عند الضغط عليه */
-    nav ul li a:hover,
+    /* إبقاء الرابط النشط (البرتقالي) بنص أبيض */
     nav ul li a.active {
-        color: #e74c3c !important;
-        /* اللون البرتقالي */
-        background-color: #f9f9f9;
-        /* خلفية رمادية خفيفة جداً */
+        color: #ffffff !important;
     }
+}
+/* ==================================================
+   إصلاح نهائي لمشكلة اختفاء الروابط في الموبايل
+   ================================================== */
+
+@media (max-width: 768px) {
+    
+    /* 1. إجبار روابط القائمة في الموبايل أن تكون داكنة دائماً */
+    /* نستخدم !important لإلغاء تأثير الجافاسكريبت */
+    header nav ul li a,
+    header.sticky nav ul li a,
+    header .nav-link,
+    header.sticky .nav-link {
+        color: #333333 !important; /* لون رمادي غامق */
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* 2. استثناء: الرابط النشط (البرتقالي) يبقى أبيض */
+    header nav ul li a.active,
+    header.sticky nav ul li a.active {
+        color: #ffffff !important;
+        background-color: #e74c3c !important;
+    }
+
+    /* 3. التأكد من أن أيقونة القائمة (الهمبرغر) تظهر */
+    /* في الأعلى (بدون نزول) تكون داكنة */
+    .mobile-menu i {
+        color: #333333 !important;
+    }
+    
+    /* عند النزول (Sticky) تصبح بيضاء لتظهر فوق الأزرق */
+    header.sticky .mobile-menu i {
+        color: #ffffff !important;
+    }
 }
