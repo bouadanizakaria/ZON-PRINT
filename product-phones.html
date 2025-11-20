@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zon Print - أغطية الهواتف</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=phones">
+    <style>
+        header { background-color: #2c3e50; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        header .nav-link { color: #ffffff !important; }
+        @media (max-width: 768px) {
+            nav ul { background-color: rgba(255, 255, 255, 0.95) !important; backdrop-filter: blur(10px); border-top: 1px solid #eee; }
+            nav ul li a { color: #333 !important; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container"><img src="images/logo.png.png" alt="ZonPrint"><h1>Zon<span>Print</span></h1></div>
+                <div class="mobile-menu"><i class="fas fa-bars" style="color: white;"></i></div>
+                <nav><ul>
+                    <li><a href="index.html" style="color: white !important;">الرئيسية</a></li>
+                    <li><a href="index.html#services" style="color: white !important;">الخدمات</a></li>
+                    <li><a href="#" class="active" style="color: #fffcfb !important;">المنتجات</a></li>
+                    <li><a href="index.html#contact" style="color: white !important;">اتصل بنا</a></li>
+                </ul></nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header" style="padding-top: 120px; text-align: center; background: #f9f9f9; padding-bottom: 40px;">
+        <div class="container">
+            <h2>أغطية الهواتف (Phone Covers)</h2>
+            <p>تميز بحماية هاتفك بتصاميم تعبر عن شخصيتك</p>
+        </div>
+    </section>
+
+    <section class="product-gallery" style="padding: 50px 0;">
+        <div class="container">
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('images/phone-iphone.jpg'); height: 300px;"></div>
+                    <div class="product-info">
+                        <h3>كفر iPhone مخصص</h3>
+                        <p>طباعة عالية الدقة لجميع موديلات آيفون</p>
+                        <div class="product-price">50 درهم</div>
+                        <a href="https://wa.me/212645717242?text=أريد طلب كفر آيفون" target="_blank" class="btn" style="width: 100%;"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('images/phone-samsung.jpg'); height: 300px;"></div>
+                    <div class="product-info">
+                        <h3>كفر Samsung / Android</h3>
+                        <p>متوفر لسامسونج، شاومي، وهواوي</p>
+                        <div class="product-price">45 درهم</div>
+                        <a href="https://wa.me/212645717242?text=أريد طلب كفر أندرويد" target="_blank" class="btn" style="width: 100%;"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('images/phone-transparent.jpg'); height: 300px;"></div>
+                    <div class="product-info">
+                        <h3>كفر شفاف مع صورة</h3>
+                        <p>تصميم بسيط يظهر لون الهاتف</p>
+                        <div class="product-price">40 درهم</div>
+                        <a href="https://wa.me/212645717242?text=أريد طلب كفر شفاف" target="_blank" class="btn" style="width: 100%;"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('images/phone-tough.jpg'); height: 300px;"></div>
+                    <div class="product-info">
+                        <h3>كفر حماية قصوى (Anti-shock)</h3>
+                        <p>حماية قوية مع طباعة خلفية</p>
+                        <div class="product-price">70 درهم</div>
+                        <a href="https://wa.me/212645717242?text=أريد طلب كفر حماية قصوى" target="_blank" class="btn" style="width: 100%;"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('images/phone-socket.jpg'); height: 300px;"></div>
+                    <div class="product-info">
+                        <h3>ماسكة هاتف (PopSocket)</h3>
+                        <p>طباعة صورتك على حامل الهاتف</p>
+                        <div class="product-price">20 درهم</div>
+                        <a href="https://wa.me/212645717242?text=أريد طلب بوب سوكيت" target="_blank" class="btn" style="width: 100%;"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-area"><div class="container"><div class="footer-bottom"><p>جميع الحقوق محفوظة &copy; 2025 <strong>Zon Print</strong></p></div></div></footer>
+    <script>
+        // 1. كود تشغيل القائمة في الموبايل
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navUl = document.querySelector('nav ul');
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', () => {
+                navUl.classList.toggle('show');
+            });
+        }
+
+        // 2. كود تحويل الهيدر من شفاف إلى ملون عند النزول
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            // إذا نزلنا أكثر من 0 بكسل، أضف كلاس sticky
+            header.classList.toggle("sticky", window.scrollY > 0);
+        });
+    </script>
+</body>
+</html>

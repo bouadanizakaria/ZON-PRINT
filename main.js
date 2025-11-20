@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    
+
     // 1. إصلاح مشكلة التمرير (البدء من الأعلى)
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
@@ -7,19 +7,18 @@ document.addEventListener('DOMContentLoaded', function () {
     window.scrollTo(0, 0);
 
     // 2. تعريف العناصر
+    // نختار روابط الهيدر وروابط الفوتر معاً
+    const navLinks = document.querySelectorAll('.nav-link, .footer-links a');
+    const pages = document.querySelectorAll('.page');
     const mobileMenu = document.querySelector('.mobile-menu');
     const navUl = document.querySelector('nav ul');
-    const navLinks = document.querySelectorAll('.nav-link, .footer-links a')
-    const pages = document.querySelectorAll('.page');
 
     // 3. تشغيل زر القائمة (الموبايل)
     if (mobileMenu && navUl) {
-        console.log('تم العثور على زر القائمة');
         mobileMenu.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             navUl.classList.toggle('show');
-            console.log('تم الضغط على القائمة');
         });
     }
 
@@ -32,80 +31,100 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // 4. التنقل بين الصفحات
+    // 4. دالة التنقل بين الصفحات (Show Page)
     function showPage(pageId) {
-        // إخفاء الصفحات
-        pages.forEach(page => page.classList.remove('active'));
-        
-        // إظهار الصفحة المطلوبة
-        const targetPage = document.getElementById(pageId);
-        if (targetPage) {
-            targetPage.classList.add('active');
-            window.scrollTo(0, 0);
-        }
+        const targetSection = document.getElementById(pageId);
 
-        // تحديث الروابط
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('data-page') === pageId) {
-                link.classList.add('active');
-            }
-        });
+        if (targetSection) {
+            // إخفاء كل الصفحات
+            pages.forEach(page => page.classList.remove('active'));
+
+            // إظهار الصفحة المطلوبة
+            targetSection.classList.add('active');
+            window.scrollTo(0, 0);
+
+            // تحديث الروابط النشطة (اللون البرتقالي)
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // نفحص data-page أو href
+                const linkPage = link.getAttribute('data-page');
+                const linkHref = link.getAttribute('href');
+
+                if (linkPage === pageId || (linkHref && linkHref.includes(pageId))) {
+                    link.classList.add('active');
+                }
+            });
+        }
     }
 
-    // تفعيل الأزرار
+    // 5. تفعيل الأزرار (الكود الذكي الجديد)
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
-            e.preventDefault();
-            const pageId = this.getAttribute('data-page');
-            if (pageId) {
+            // محاولة معرفة القسم المطلوب سواء من data-page أو href
+            let pageId = this.getAttribute('data-page');
+
+            // إذا لم يكن هناك data-page، نحاول استخراجه من الرابط (مثل #contact)
+            if (!pageId && this.getAttribute('href').includes('#')) {
+                pageId = this.getAttribute('href').split('#')[1];
+            }
+
+            // إذا وجدنا القسم في الصفحة الحالية، نذهب إليه
+            if (pageId && document.getElementById(pageId)) {
+                e.preventDefault(); // منع إعادة التحميل
                 showPage(pageId);
-                // إغلاق القائمة بعد الاختيار
+
+                // إغلاق القائمة في الموبايل
                 if (navUl) navUl.classList.remove('show');
             }
+            // إذا كان الرابط يذهب لصفحة أخرى (مثل المنتجات)، نتركه يعمل طبيعياً
         });
     });
 
-    // تشغيل الرئيسية افتراضياً
-    showPage('home');
-});
+    // 6. فحص الرابط عند فتح الموقع (للذهاب للقسم مباشرة من صفحة خارجية)
+    const hash = window.location.hash.substring(1); // نحذف رمز #
+    if (hash && document.getElementById(hash)) {
+        showPage(hash);
+        setTimeout(() => {
+            document.getElementById(hash).scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    } else {
+        showPage('home'); // الافتراضي
+    }
+
+}); // <--- (مهم جداً) إغلاق دالة DOMContentLoaded هنا
 
 
-// دالة إرسال الواتساب الجديدة (مع التحقق)
+// --- دوال خارجية (يجب أن تكون خارج القوس الكبير لتعمل مع HTML) ---
+
+// دالة إرسال الواتساب
 function sendToWhatsApp(e) {
-    // 1. منع إعادة تحميل الصفحة
-    e.preventDefault();
+    if (e) e.preventDefault();
 
-    // 2. جلب القيم
     var name = document.getElementById('name').value;
     var email = document.getElementById('email').value;
     var phone = document.getElementById('phone').value;
     var message = document.getElementById('message').value;
 
-    // 3. (اختياري) تحقق إضافي في الجافاسكريبت
     if (name === "" || email === "" || message === "") {
         alert("المرجو ملء جميع الحقول الضرورية");
         return;
     }
 
-    // 4. تجهيز الرسالة والرابط
     var text = "طلب تواصل جديد من الموقع" + "%0A" +
-               "---------------------------" + "%0A" +
-               "الاسم: " + name + "%0A" +
-               "البريد: " + email + "%0A" +
-               "الهاتف: " + phone + "%0A" +
-               "الرسالة: " + "%0A" + message;
+        "---------------------------" + "%0A" +
+        "الاسم: " + name + "%0A" +
+        "البريد: " + email + "%0A" +
+        "الهاتف: " + phone + "%0A" +
+        "الرسالة: " + "%0A" + message;
 
     var url = "https://wa.me/212645717242?text=" + text;
-
-    // 5. فتح الواتساب
-    window.open(url, '_blank');
+    window.open(url, '_blank');
 }
 
 // الهيدر الشفاف
 window.addEventListener("scroll", function () {
     var header = document.querySelector("header");
     if (header) {
-        header.classList.toggle("sticky", window.scrollY > 0);
-    }
+        header.classList.toggle("sticky", window.scrollY > 0);
+    }
 });
