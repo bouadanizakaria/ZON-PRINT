@@ -669,10 +669,13 @@ nav ul li a.active {
 
     /* الهيرو في الموبايل */
     .hero {
-        padding: 100px 0 !important;
-        min-height: 300px !important;
+        padding: 50px 0 !important;
+        min-height: 500px !important;
+        /* استخدام الصورة العمودية المخصصة للموبايل */
+        background-image: url('images/hero-mobile.jpg') !important;
         background-attachment: scroll !important;
         background-position: center center !important;
+        background-size: 100% 100% !important;
     }
 
     .hero h2 {
