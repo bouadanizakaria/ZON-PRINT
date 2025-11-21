@@ -771,3 +771,85 @@ header.sticky .mobile-menu i {
         color: #7c3030 !important;
     }
 }
+
+/* --- تنسيق قسم الأسئلة الشائعة --- */
+.faq-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    /* توسيط القائمة */
+}
+
+.faq-item {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    /* مهم لإخفاء الجواب */
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* السؤال (الرأس) */
+.faq-question {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+}
+
+.faq-question h3 {
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin: 0;
+}
+
+.faq-question i {
+    color: var(--secondary);
+    transition: transform 0.3s ease;
+}
+
+/* الجواب (مخفي افتراضياً) */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: #fff;
+    border-top: 1px solid transparent;
+}
+
+.faq-answer p {
+    padding: 20px;
+    color: #666;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- الكلاس الذي يضيفه الجافاسكريبت عند الفتح --- */
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    /* ارتفاع يكفي للنص */
+    border-top-color: #eee;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(45deg);
+    /* تدوير علامة الزائد لتصبح ضرب */
+    color: #e74c3c;
+}
+
+.faq-item.active {
+    border-color: var(--secondary);
+    /* تلوين الإطار */
+}

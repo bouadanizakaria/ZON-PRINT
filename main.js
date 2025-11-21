@@ -154,4 +154,21 @@ window.addEventListener("scroll", function () {
             link.style.color = "#333333";
         });
     }
+    // --- كود تشغيل الأسئلة الشائعة ---
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            // 1. إغلاق جميع الأسئلة الأخرى (اختياري - ليبقى واحد مفتوح فقط)
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+
+            // 2. فتح أو إغلاق السؤال الحالي
+            item.classList.toggle('active');
+        });
+    });
 });
