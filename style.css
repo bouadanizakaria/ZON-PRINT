@@ -856,6 +856,7 @@ header.sticky .mobile-menu i {
     border-color: var(--secondary);
     /* تلوين الإطار */
 }
+
 /* --- تنسيق قسم الفيديو --- */
 .video-section {
     padding: 80px 0;
@@ -864,13 +865,17 @@ header.sticky .mobile-menu i {
 }
 
 .video-wrapper {
-    max-width: 900px; /* عرض مناسب للفيديو */
+    max-width: 900px;
+    /* عرض مناسب للفيديو */
     margin: 0 auto;
     position: relative;
     border-radius: 20px;
-    overflow: hidden; /* لقص الحواف الزائدة */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* ظل قوي ليعطي عمقاً */
-    border: 5px solid #fff; /* إطار أبيض جميل */
+    overflow: hidden;
+    /* لقص الحواف الزائدة */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    /* ظل قوي ليعطي عمقاً */
+    border: 5px solid #fff;
+    /* إطار أبيض جميل */
 }
 
 .video-wrapper video {
@@ -884,6 +889,65 @@ header.sticky .mobile-menu i {
 @media (max-width: 768px) {
     .video-wrapper {
         width: 100%;
-        border-radius: 10px;
-    }
+        border-radius: 10px;
+    }
+}
+
+/* =========================================
+   تنسيق زر واتساب العائم (النسخة النهائية)
+   ========================================= */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50%;
+    /* دائرة مثالية */
+    text-align: center;
+    font-size: 32px;
+    z-index: 10000;
+    text-decoration: none;
+
+   
+
+    /* --- 2. كود الحركة الناعمة (مهم جداً) --- */
+    /* هذا السطر يجعل التكبير يحدث بنعومة وليس فجأة */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* حركة ناعمة تشبه النابض */
+
+    /* ظل خفيف في الحالة العادية */
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+/* --- 3. كود التكبير عند المرور (Hover) --- */
+.whatsapp-float:hover {
+    background-color: #128C7E;
+    /* تغيير اللون للأغمق */
+
+    /* 👇👇👇 هذا هو السطر المسؤول عن التكبير 👇👇👇 */
+    transform: scale(1.15);
+    /* تكبير بنسبة 15% */
+
+    /* جعل الظل أكبر لتبدو وكأنها تقفز */
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+/* --- تنسيق الموبايل --- */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 55px;
+        /* حجم مناسب للموبايل */
+        height: 55px;
+        bottom: 25px;
+        right: 25px;
+        font-size: 28px;
+    }
+    
 }
