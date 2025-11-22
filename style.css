@@ -856,3 +856,34 @@ header.sticky .mobile-menu i {
     border-color: var(--secondary);
     /* تلوين الإطار */
 }
+/* --- تنسيق قسم الفيديو --- */
+.video-section {
+    padding: 80px 0;
+    background-color: #fff;
+    text-align: center;
+}
+
+.video-wrapper {
+    max-width: 900px; /* عرض مناسب للفيديو */
+    margin: 0 auto;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden; /* لقص الحواف الزائدة */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* ظل قوي ليعطي عمقاً */
+    border: 5px solid #fff; /* إطار أبيض جميل */
+}
+
+.video-wrapper video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+}
+
+/* تحسين للموبايل */
+@media (max-width: 768px) {
+    .video-wrapper {
+        width: 100%;
+        border-radius: 10px;
+    }
+}
