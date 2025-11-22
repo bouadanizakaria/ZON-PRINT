@@ -911,7 +911,7 @@ header.sticky .mobile-menu i {
     z-index: 10000;
     text-decoration: none;
 
-   
+
 
     /* --- 2. كود الحركة الناعمة (مهم جداً) --- */
     /* هذا السطر يجعل التكبير يحدث بنعومة وليس فجأة */
@@ -949,5 +949,78 @@ header.sticky .mobile-menu i {
         right: 25px;
         font-size: 28px;
     }
-    
+}
+
+/* --- تنسيق قسم كيف تطلب --- */
+.how-it-works {
+    padding: 80px 0;
+    background-color: #fff;
+    text-align: center;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.step-card {
+    padding: 20px;
+    position: relative;
+}
+
+.step-icon {
+    width: 100px;
+    height: 100px;
+    background: #f9f9f9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.step-icon i {
+    font-size: 40px;
+    color: var(--primary);
+}
+
+.step-number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: var(--secondary);
+    /* لون برتقالي */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid #fff;
+}
+
+.step-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+.step-card p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.step-card:hover .step-icon {
+    background: var(--secondary);
+    transform: translateY(-10px);
+}
+
+.step-card:hover .step-icon i {
+    color: white;
 }
