@@ -90,7 +90,24 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         showPage('home'); // الافتراضي
     }
+// --- كود ميزة "صمم بنفسك" (معاينة الصورة) ---
+    // نستخدم الشرط (if) لكي لا يحدث خطأ في الصفحات الأخرى
+    const uploadInput = document.getElementById('imageUpload');
+    const previewImage = document.getElementById('user-design-preview');
 
+    if (uploadInput && previewImage) {
+        uploadInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
 }); // <--- (مهم جداً) إغلاق دالة DOMContentLoaded هنا
 
 
@@ -172,34 +189,18 @@ window.addEventListener("scroll", function () {
         });
     });
 });
-// --- كود ميزة "صمم بنفسك" ---
-
-// 1. الاستماع عند رفع صورة
-const imageUpload = document.getElementById('imageUpload');
-const userPreview = document.getElementById('user-design-preview');
-
-if (imageUpload) {
-    imageUpload.addEventListener('change', function (event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                // عرض الصورة المرفوعة
-                userPreview.src = e.target.result;
-                userPreview.style.display = 'block'; // إظهار الصورة
-            }
-
-            reader.readAsDataURL(file); // قراءة الملف
-        }
-    });
-}
-
-// 2. دالة طلب التصميم المخصص
+// --- دالة زر "إرسال الطلب" (للتصميم الخاص) ---
 function orderCustomDesign() {
-    // بما أننا لا نستطيع إرسال الصورة مباشرة عبر رابط واتساب، نرسل رسالة نصية
-    const text = "مرحباً Zon Print، لقد قمت بتجربة تصميم خاص على الموقع وأريد إرسال الصورة لكم الآن لاعتماد الطلب.";
-    const url = https://wa.me/212645717242?text=${encodeURIComponent(text)};
-        window.open(url, '_blank');
+    const previewImage = document.getElementById('user-design-preview');
+    
+    // التحقق من وجود صورة مرفوعة
+    if (!previewImage || previewImage.src === "" || previewImage.style.display === "none") {
+        alert("المرجو اختيار صورة أولاً قبل الطلب");
+        return;
+    }
+
+    const text = "مرحباً Zon Print، لقد قمت باختيار صورة لطباعتها، سأقوم بإرسال الصورة لكم الآن هنا 👇";
+    const url = "https://wa.me/212645717242?text=" + encodeURIComponent(text);
+    window.open(url, '_blank');
 }
 

@@ -139,7 +139,7 @@
         </div>
             
     </section>
-    <section class="custom-design-section" style="background: #fff; padding: 60px 0;">
+  <section class="custom-design-section" style="background: #fff; padding: 60px 0;">
         <div class="container">
             <div class="section-title">
                 <h2>صمم تيشرتك بنفسك 🎨</h2>
@@ -171,7 +171,6 @@
             
     </section>
 
-
     <section class="product-gallery" style="padding: 50px 0;">
         <div class="container">
             <div class="products-grid">
@@ -184,12 +183,12 @@
                         <div class="product-price">65 درهم</div>
                         <a href="https://wa.me/212645717242?text=أريد طلب تيشرت قطن أبيض" target="_blank" class="btn"
                             style="width: 100%; text-align: center;">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>اطلب عبر واتساب
-                        <p style="font-size: 12px; color: #e74c3c; margin-top: 5px; font-weight: bold;">
-                            * مطلوب دفع 50% مسبقاً لتأكيد الطلب
-                        </p>
-
+                            <i class="fab fa-whatsapp"></i> 
+                             </a>اطلب عبر واتساب
+                            <p style="font-size: 12px; color: #e74c3c; margin-top: 5px; font-weight: bold;">
+                                * مطلوب دفع 50% مسبقاً لتأكيد الطلب
+                            </p>
+                       
                     </div>
                 </div>
 
@@ -203,11 +202,11 @@
                         <a href="https://wa.me/212645717242?text=أريد طلب هودي قطني أبيض (Hoodie)" target="_blank"
                             class="btn" style="width: 100%;">
                             <i class="fab fa-whatsapp"></i> اطلب الآن
-                        </a>
-                        <p style="font-size: 12px; color: #e74c3c; margin-top: 5px; font-weight: bold;">
-                            * مطلوب دفع 50% مسبقاً لتأكيد الطلب
-                        </p>
-
+                            </a>
+                            <p style="font-size: 12px; color: #e74c3c; margin-top: 5px; font-weight: bold;">
+                                * مطلوب دفع 50% مسبقاً لتأكيد الطلب
+                            </p>
+                        
                     </div>
                               
                 </div>
@@ -221,11 +220,11 @@
                         <a href="https://wa.me/212645717242?text=أريد طلب تيشرت بولو" target="_blank" class="btn"
                             style="width: 100%; text-align: center;">
                             <i class="fab fa-whatsapp"></i> اطلب عبر واتساب
-                        </a>
-                        <p style="font-size: 12px; color: #e74c3c; margin-top: 5px; font-weight: bold;">
-                            * مطلوب دفع 50% مسبقاً لتأكيد الطلب
-                        </p>
-
+                            </a>
+                            <p style="font-size: 12px; color: #e74c3c; margin-top: 5px; font-weight: bold;">
+                                * مطلوب دفع 50% مسبقاً لتأكيد الطلب
+                            </p>
+                        
                     </div>
                 </div>
 
@@ -257,55 +256,8 @@
             // إذا نزلنا أكثر من 0 بكسل، أضف كلاس sticky
             header.classList.toggle("sticky", window.scrollY > 0);
         });
-    </script>
-    <script>
-        // 1. كود رفع وعرض الصورة
-        const uploadInput = document.getElementById('imageUpload');
-        const previewImage = document.getElementById('user-design-preview');
-
-        if (uploadInput) {
-            uploadInput.addEventListener('change', function (event) {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        previewImage.src = e.target.result;
-                        previewImage.style.display = 'block';
-                    }
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
-
-        // 2. كود زر إرسال الطلب (المصحح)
-        function orderCustomDesign() {
-            // نتأكد أولاً هل رفع الزبون صورة أم لا؟
-            if (previewImage.src === "" || previewImage.style.display === "none") {
-                alert("المرجو اختيار صورة أولاً قبل الطلب");
-                return;
-            }
-
-            // رسالة جاهزة تشرح للزبون ماذا يفعل
-            const text = "مرحباً Zon Print، لقد قمت باختيار صورة لطباعتها على تيشرت، سأقوم بإرسال الصورة لكم الآن هنا 👇";
-
-            // رابط الواتساب
-            const url = "https://wa.me/212645717242?text=" + encodeURIComponent(text);
-
-            // فتح الرابط
-            window.open(url, '_blank');
-        }
-    </script>
-</body>
-
-</html>
-
-</body>
-
-</html>
-
-</body>
-
-</html>
+  </script>
+  <script src="main.js?v=final2"></script>
 </body>
 
 </html>
