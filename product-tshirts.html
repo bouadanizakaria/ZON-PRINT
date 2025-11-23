@@ -240,23 +240,7 @@
     </footer>
 
 
-    <script>
-        // 1. كود تشغيل القائمة في الموبايل
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navUl = document.querySelector('nav ul');
-        if (mobileMenu) {
-            mobileMenu.addEventListener('click', () => {
-                navUl.classList.toggle('show');
-            });
-        }
-
-        // 2. كود تحويل الهيدر من شفاف إلى ملون عند النزول
-        window.addEventListener("scroll", function () {
-            var header = document.querySelector("header");
-            // إذا نزلنا أكثر من 0 بكسل، أضف كلاس sticky
-            header.classList.toggle("sticky", window.scrollY > 0);
-        });
-  </script>
+    
   <script src="main.js?v=final2"></script>
 </body>
 
