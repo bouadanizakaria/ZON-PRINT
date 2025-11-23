@@ -139,6 +139,35 @@
         </div>
             
     </section>
+    <section class="custom-design-section" style="background: #fff; padding: 60px 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>صمم تيشرتك بنفسك 🎨</h2>
+                <p>ارفع صورتك وشاهد كيف ستبدو على التيشرت فوراً!</p>
+            </div>
+
+            <div class="design-container">
+                <div class="preview-area">
+                    <img src="images/tshirt-blank.jpg" alt="تيشرت فارغ" class="product-base">
+                    <img id="user-design-preview" class="design-overlay" src="" alt="">
+                </div>
+
+                <div class="controls-area">
+                    <h3>1. ارفع صورتك</h3>
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                    <label for="imageUpload" class="btn upload-btn">
+                        <i class="fas fa-cloud-upload-alt"></i> اختيار صورة
+                    </label>
+
+                    <h3>2. اطلب التصميم</h3>
+                    <p style="font-size: 13px; color: #666; margin-bottom: 10px;">هل أعجبتك النتيجة؟ اطلبها الآن.</p>
+                    <a href="javascript:void(0)" onclick="orderCustomDesign()" class="btn" style="background-color: #25d366; border: none;">
+                        <i class="fab fa-whatsapp"></i> إرسال الطلب
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <section class="product-gallery" style="padding: 50px 0;">
@@ -227,6 +256,31 @@
             header.classList.toggle("sticky", window.scrollY > 0);
         });
     </script>
+    <script>
+        const uploadInput = document.getElementById('imageUpload');
+        const previewImage = document.getElementById('user-design-preview');
+
+        if (uploadInput) {
+            uploadInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                
+                if (file) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        // وضع الصورة في المكان المخصص وإظهارها
+                        previewImage.src = e.target.result;
+                        previewImage.style.display = 'block';
+                    }
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
 </body>
 
 </html>

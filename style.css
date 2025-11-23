@@ -1024,3 +1024,93 @@ header.sticky .mobile-menu i {
 .step-card:hover .step-icon i {
     color: white;
 }
+/* تعديل لتقريب العناصر من بعضها */
+.design-container {
+    display: flex;
+    flex-wrap: wrap;
+    
+    /* هذا الأمر يجمعهم في الوسط بدلاً من تفريقهم */
+    justify-content: center; 
+    
+    /* مسافة ثابتة ومعقولة بين الأزرار والتيشرت */
+    gap: 10px; 
+    
+    align-items: center;
+    
+    /* تحديد عرض أقصى للقسم حتى لا يتوسع كثيراً في الشاشات الكبيرة */
+    max-width: 900px; 
+    margin: 0 auto; /* توسيط القسم كله */
+}
+
+/* منطقة المعاينة */
+.preview-area {
+    position: relative; /* ضروري جداً */
+    width: 300px;
+    height: 300px;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f9f9f9;
+}
+
+.product-base {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* لإظهار التيشرت كاملاً */
+}
+
+/* صورة الزبون (الطبقة العلوية) */
+.design-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* توسيط الصورة بدقة */
+    max-width: 120px; /* حجم منطقة الطباعة التقريبي */
+    max-height: 150px;
+    border: 1px dashed rgba(0,0,0,0.2); /* حدود وهمية ليرى الزبون حدود صورته */
+}
+
+/* منطقة الأزرار */
+.controls-area {
+    text-align: center;
+    max-width: 3000px;
+}
+
+.upload-btn {
+    display: inline-block;
+    cursor: pointer;
+    background-color: #3498db;
+    margin-bottom: 20px;
+}
+
+.upload-btn:hover {
+    background-color: #2980b9;
+}
+/* تعديل هام لظهور الصورة فوق التيشرت */
+.preview-area {
+    position: relative; /* ضروري جداً */
+    width: 300px;
+    height: 300px;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    margin: 0 auto; /* توسيط */
+}
+
+.product-base {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1; /* الطبقة السفلى */
+}
+
+.design-overlay {
+    position: absolute; /* لتكون عائمة */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* توسيط دقيق */
+    width: 120px; /* حجم مبدئي للصورة */
+    height: auto;
+    z-index: 10; /* الطبقة العليا (فوق التيشرت) */
+    display: none; /* مخفية في البداية */
+}

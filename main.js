@@ -169,6 +169,37 @@ window.addEventListener("scroll", function () {
 
             // 2. فتح أو إغلاق السؤال الحالي
             item.classList.toggle('active');
-        });
-    });
+        });
+    });
 });
+// --- كود ميزة "صمم بنفسك" ---
+
+// 1. الاستماع عند رفع صورة
+const imageUpload = document.getElementById('imageUpload');
+const userPreview = document.getElementById('user-design-preview');
+
+if (imageUpload) {
+    imageUpload.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                // عرض الصورة المرفوعة
+                userPreview.src = e.target.result;
+                userPreview.style.display = 'block'; // إظهار الصورة
+            }
+
+            reader.readAsDataURL(file); // قراءة الملف
+        }
+    });
+}
+
+// 2. دالة طلب التصميم المخصص
+function orderCustomDesign() {
+    // بما أننا لا نستطيع إرسال الصورة مباشرة عبر رابط واتساب، نرسل رسالة نصية
+    const text = "مرحباً Zon Print، لقد قمت بتجربة تصميم خاص على الموقع وأريد إرسال الصورة لكم الآن لاعتماد الطلب.";
+    const url = https://wa.me/212645717242?text=${encodeURIComponent(text)};
+        window.open(url, '_blank');
+}
+
