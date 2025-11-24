@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة غير موجودة - Zon Print</title>
+    <link rel="icon" href="images/logo.png.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- تصميم الصفحة الداخلي (لضمان العمل دائماً) --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: #f9f9f9; color: #333; }
+
+        /* الهيدر */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background-color: #2c3e50; /* خلفية زرقاء داكنة */
+            padding: 20px 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        
+        /* اللوجو والرابط */
+        .logo-container a { text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo-container img { width: 50px; }
+        .logo-container h1 { font-size: 1.8rem; margin: 0; color: #ffffff; } /* نص أبيض */
+        .logo-container span { color: #e74c3c; }
+
+        /* القائمة */
+        .mobile-menu { display: none; color: #fff; font-size: 1.5rem; }
+        nav ul { display: flex; list-style: none; gap: 20px; }
+        nav ul li a { color: #fff; text-decoration: none; font-weight: bold; }
+
+        /* منطقة الخطأ */
+        .error-container {
+            height: 100vh; /* ملء الشاشة */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .error-icon { font-size: 80px; color: #e74c3c; margin-bottom: 20px; }
+        .error-code { font-size: 100px; font-weight: bold; color: #2c3e50; line-height: 1; }
+        .error-message { font-size: 24px; color: #555; margin: 20px 0; }
+        
+        .btn {
+            display: inline-block; background-color: #e74c3c; color: white; 
+            padding: 15px 40px; border-radius: 5px; text-decoration: none; 
+            font-weight: bold; transition: 0.3s; margin-top: 20px;
+        }
+        .btn:hover { background-color: #c0392b; }
+
+        /* الموبايل */
+        @media (max-width: 768px) {
+            nav { display: none; } /* إخفاء القائمة في صفحة الخطأ للموبايل للتبسيط */
+            .mobile-menu { display: block; }
+            .error-code { font-size: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <a href="/">
+                        <img src="images/logo.png.png" alt="ZonPrint">
+                        <h1>Zon<span>Print</span></h1>
+                    </a>
+                </div>
+                <div class="mobile-menu">
+                    <a href="/" style="color: white;"><i class="fas fa-home"></i></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/">الرئيسية</a></li>
+                        <li><a href="/#contact">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="error-container">
+        <div class="error-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div class="error-code">404</div>
+        <div class="error-message">عذراً، الصفحة غير موجودة!</div>
+        <p style="color: #777; max-width: 500px;">يبدو أن الرابط الذي تحاول الوصول إليه غير صحيح أو تم حذفه.</p>
+        <a href="/" class="btn"><i class="fas fa-home"></i> العودة للرئيسية</a>
+    </section>
+
+</body>
+</html>
