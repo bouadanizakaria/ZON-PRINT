@@ -203,4 +203,3 @@ function orderCustomDesign() {
     const url = "https://wa.me/212645717242?text=" + encodeURIComponent(text);
     window.open(url, '_blank');
 }
-
