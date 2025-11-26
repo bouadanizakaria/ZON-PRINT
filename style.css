@@ -659,12 +659,12 @@ nav ul li a.active {
     }
 
     .logo-container img {
-        width: 50px;
-        margin-right: 10px;
+        width: 35px !important;
+        margin-right: 8px !important;
     }
 
     .logo-container h1 {
-        font-size: 1.4rem;
+        font-size: 1.3rem !important;
     }
 
     /* الهيرو في الموبايل */
@@ -1114,3 +1114,5 @@ header.sticky .mobile-menu i {
     z-index: 10; /* الطبقة العليا (فوق التيشرت) */
     display: none; /* مخفية في البداية */
 }
+    /* 4. ضبط خط الشريط العلوي ليكون صغيراً ومقروءاً */
+    
