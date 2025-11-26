@@ -57,6 +57,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // --- ج. تشغيل الأسئلة الشائعة (FAQ) ---
+    const faqItems = document.querySelectorAll('.faq-item');
+    if (faqItems.length > 0) {
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            if(question) {
+                question.addEventListener('click', () => {
+                    faqItems.forEach(other => {
+                        if (other !== item) other.classList.remove('active');
+                    });
+                    item.classList.toggle('active');
+                });
+            }
+        });
+    }
+
     // 5. تفعيل الأزرار (الكود الذكي الجديد)
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
@@ -171,23 +187,7 @@ window.addEventListener("scroll", function () {
             link.style.color = "#333333";
         });
     }
-    // --- كود تشغيل الأسئلة الشائعة ---
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            // 1. إغلاق جميع الأسئلة الأخرى (اختياري - ليبقى واحد مفتوح فقط)
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                }
-            });
-
-            // 2. فتح أو إغلاق السؤال الحالي
-            item.classList.toggle('active');
-        });
-    });
+    
 });
 // --- دالة زر "إرسال الطلب" (للتصميم الخاص) ---
 function orderCustomDesign() {
@@ -203,3 +203,4 @@ function orderCustomDesign() {
     const url = "https://wa.me/212645717242?text=" + encodeURIComponent(text);
     window.open(url, '_blank');
 }
+
