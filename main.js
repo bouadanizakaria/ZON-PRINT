@@ -38,7 +38,22 @@ document.addEventListener('DOMContentLoaded', function () {
         if (targetSection) {
             // إخفاء كل الصفحات
             pages.forEach(page => page.classList.remove('active'));
+             targetSection.classList.add('active');
+            window.scrollTo(0, 0);
 
+            // 👇👇 أضف هذا السطر الجديد هنا 👇👇
+            // هذا السطر يخبر المتصفح أننا انتقلنا لصفحة جديدة، لكي يعمل زر العودة
+            if(window.location.hash !== '#' + pageId) {
+                history.pushState({ page: pageId }, null, '#' + pageId);
+            }
+            // 👆👆 نهاية السطر الجديد 👆👆
+navLinks.forEach(link => {
+                link.classList.remove('active');
+                const linkPage = link.getAttribute('data-page');
+                const linkHref = link.getAttribute('href');
+                if (linkPage === pageId || (linkHref && linkHref.includes(pageId))) {
+                    link.classList.add('active');
+                }});
             // إظهار الصفحة المطلوبة
             targetSection.classList.add('active');
             window.scrollTo(0, 0);
@@ -124,6 +139,15 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+// تشغيل زر "العودة" في المتصفح/الهاتف
+    window.addEventListener('popstate', function(event) {
+        if (event.state && event.state.page) {
+            showPage(event.state.page);
+        } else {
+            // إذا لم يكن هناك حالة مسجلة، عد للرئيسية أو القسم الافتراضي
+            showPage('home');
+        }
+    });
 }); // <--- (مهم جداً) إغلاق دالة DOMContentLoaded هنا
 
 
