@@ -283,7 +283,7 @@ function typingEffect() {
         if (word.length > 0) {
             element.innerHTML += word.shift();
         } else {
-            setTimeout(deletingEffect, 2000); // انتظر ثانيتين قبل المسح
+            setTimeout(deletingEffect, 1000); // انتظر ثانيتين قبل المسح
             return false;
         }
         timer = setTimeout(loopTyping, 100);

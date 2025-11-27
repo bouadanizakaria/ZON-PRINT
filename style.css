@@ -1127,7 +1127,7 @@ header.sticky .mobile-menu i {
     .whatsapp-float { display: none !important; }
 
     /* إضافة مساحة في أسفل الصفحة لكي لا يغطي الشريط على المحتوى */
-    body { padding-bottom: 80px; }
+    body { padding-bottom: 60px; }
 
     .bottom-nav {
         display: flex;
@@ -1141,12 +1141,12 @@ header.sticky .mobile-menu i {
         box-shadow: 0 -2px 20px rgba(0,0,0,0.1);
         padding: 10px 0;
         z-index: 9999;
-        border-top: 1px solid #eee;
+        border-top: 2px solid #eee;
     }
 
     .nav-item {
         text-decoration: none;
-        color: #888;
+        color: #343131;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1168,17 +1168,17 @@ header.sticky .mobile-menu i {
     .nav-item.special {
         background-color: #25d366;
         color: white;
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         justify-content: center;
-        margin-top: -15px; /* يخرج للأعلى قليلاً */
+        margin-top: -10px; /* يخرج للأعلى قليلاً */
         box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
         border: 5px solid #f9f9f9; /* حدود بيضاء لدمجه مع الخلفية */
         animation: pulse-green 2s infinite;
     }
     
-    .nav-item.special i { font-size: 30px; margin: 0; }
+    .nav-item.special i { font-size: 20px; margin: 0; }
 }
 
 /* حركة النبض للزر */
