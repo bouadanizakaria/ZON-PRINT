@@ -227,4 +227,45 @@ function orderCustomDesign() {
     const url = "https://wa.me/212645717242?text=" + encodeURIComponent(text);
     window.open(url, '_blank');
 }
+// =========================================
+// ⏳ عداد تنازلي لكأس أفريقيا 2025
+// =========================================
+function startCanCountdown() {
+    const countdownElement = document.getElementById('countdown');
+    if (!countdownElement) return;
+
+    // تاريخ الافتتاح التقريبي (21 ديسمبر 2025)
+    const countDate = new Date('Dec 21, 2025 00:00:00').getTime();
+
+    setInterval(() => {
+        const now = new Date().getTime();
+        const gap = countDate - now;
+
+        // حساب الوقت
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+
+        const d = Math.floor(gap / day);
+        const h = Math.floor((gap % day) / hour);
+        const m = Math.floor((gap % hour) / minute);
+        const s = Math.floor((gap % minute) / second);
+
+        // تصميم المربعات
+        const boxStyle = "background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); padding: 10px; border-radius: 8px; width: 70px; color: white;";
+        const numStyle = "font-size: 24px; font-weight: bold; display: block;";
+        const labelStyle = "font-size: 12px; opacity: 0.8;";
+
+        countdownElement.innerHTML = `
+            <div style="${boxStyle}"><span style="${numStyle}">${d}</span><span style="${labelStyle}">يوم</span></div>
+            <div style="${boxStyle}"><span style="${numStyle}">${h}</span><span style="${labelStyle}">ساعة</span></div>
+            <div style="${boxStyle}"><span style="${numStyle}">${m}</span><span style="${labelStyle}">دقيقة</span></div>
+            <div style="${boxStyle}"><span style="${numStyle}">${s}</span><span style="${labelStyle}">ثانية</span></div>
+        `;
+    }, 1000);
+}
+
+// تشغيل العداد عند التحميل
+document.addEventListener('DOMContentLoaded', startCanCountdown);
 

@@ -1115,4 +1115,75 @@ header.sticky .mobile-menu i {
     display: none; /* مخفية في البداية */
 }
     /* 4. ضبط خط الشريط العلوي ليكون صغيراً ومقروءاً */
+ /* =========================================
+   شريط التنقل السفلي (App Style)
+   ========================================= */
+.bottom-nav {
+    display: none; /* مخفي في الكمبيوتر */
+}
+
+@media (max-width: 768px) {
+    /* إخفاء زر الواتساب العائم القديم لتجنب التكرار */
+    .whatsapp-float { display: none !important; }
+
+    /* إضافة مساحة في أسفل الصفحة لكي لا يغطي الشريط على المحتوى */
+    body { padding-bottom: 80px; }
+
+    .bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 -2px 20px rgba(0,0,0,0.1);
+        padding: 10px 0;
+        z-index: 9999;
+        border-top: 1px solid #eee;
+    }
+
+    .nav-item {
+        text-decoration: none;
+        color: #888;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 11px;
+        gap: 5px;
+        transition: 0.3s;
+    }
+
+    .nav-item i {
+        font-size: 20px;
+        margin-bottom: 2px;
+    }
     
+    .nav-item:hover, .nav-item:active {
+        color: #2c3e50;
+    }
+
+    /* الزر المميز في الوسط (واتساب) */
+    .nav-item.special {
+        background-color: #25d366;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        justify-content: center;
+        margin-top: -15px; /* يخرج للأعلى قليلاً */
+        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        border: 5px solid #f9f9f9; /* حدود بيضاء لدمجه مع الخلفية */
+        animation: pulse-green 2s infinite;
+    }
+    
+    .nav-item.special i { font-size: 30px; margin: 0; }
+}
+
+/* حركة النبض للزر */
+@keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
