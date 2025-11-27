@@ -269,3 +269,49 @@ function startCanCountdown() {
 // تشغيل العداد عند التحميل
 document.addEventListener('DOMContentLoaded', startCanCountdown);
 
+// تأثير الآلة الكاتبة
+const words = ["التيشرتات 👕", "الأكواب ☕",  "القبعات 🧢"];
+let i = 0;
+let timer;
+
+function typingEffect() {
+    const element = document.getElementById('typewriter');
+    if (!element) return;
+    
+    let word = words[i].split("");
+    let loopTyping = function() {
+        if (word.length > 0) {
+            element.innerHTML += word.shift();
+        } else {
+            setTimeout(deletingEffect, 2000); // انتظر ثانيتين قبل المسح
+            return false;
+        }
+        timer = setTimeout(loopTyping, 100);
+    };
+    loopTyping();
+}
+
+function deletingEffect() {
+    const element = document.getElementById('typewriter');
+    let word = words[i].split("");
+    let loopDeleting = function() {
+        if (word.length > 0) {
+            word.pop();
+            element.innerHTML = word.join("");
+        } else {
+            if (words.length > (i + 1)) {
+                i++;
+            } else {
+                i = 0;
+            }
+            typingEffect();
+            return false;
+        }
+        timer = setTimeout(loopDeleting, 50);
+    };
+    loopDeleting();
+}
+
+document.addEventListener('DOMContentLoaded', typingEffect);
+
+
