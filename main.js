@@ -29,7 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 navUl.classList.remove('show');
             }
         }
+        
     });
+    
 
     // 4. دالة التنقل بين الصفحات (Show Page)
     function showPage(pageId) {
@@ -103,6 +105,7 @@ navLinks.forEach(link => {
             if (pageId && document.getElementById(pageId)) {
                 e.preventDefault(); // منع إعادة التحميل
                 showPage(pageId);
+                
 
                 // إغلاق القائمة في الموبايل
                 if (navUl) navUl.classList.remove('show');
