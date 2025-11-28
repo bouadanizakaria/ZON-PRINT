@@ -1,80 +1,99 @@
+// =================================================
+// 1. المتغيرات العامة (Global Variables)
+// =================================================
+let activePromo = ""; 
+
+// =================================================
+// 2. كود تشغيل الموقع (عند تحميل الصفحة)
+// =================================================
 document.addEventListener('DOMContentLoaded', function () {
 
-    // 1. إصلاح مشكلة التمرير (البدء من الأعلى)
+    // --- أ. أساسيات الموقع (التمرير والقائمة) ---
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
 
-    // 2. تعريف العناصر
-    // نختار روابط الهيدر وروابط الفوتر معاً
-    const navLinks = document.querySelectorAll('.nav-link, .footer-links a');
-    const pages = document.querySelectorAll('.page');
+    // القائمة الجانبية
     const mobileMenu = document.querySelector('.mobile-menu');
     const navUl = document.querySelector('nav ul');
 
-    // 3. تشغيل زر القائمة (الموبايل)
     if (mobileMenu && navUl) {
         mobileMenu.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             navUl.classList.toggle('show');
         });
+
+        document.addEventListener('click', function (e) {
+            if (navUl.classList.contains('show')) {
+                if (!navUl.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    navUl.classList.remove('show');
+                }
+            }
+        });
     }
 
-    // إغلاق القائمة عند النقر خارجها
-    document.addEventListener('click', function (e) {
-        if (navUl && navUl.classList.contains('show')) {
-            if (!navUl.contains(e.target) && !mobileMenu.contains(e.target)) {
-                navUl.classList.remove('show');
-            }
-        }
-        
-    });
-    
+    // --- ب. التنقل والروابط ---
+    const navLinks = document.querySelectorAll('.nav-link, .footer-links a, .bottom-nav a');
+    const pages = document.querySelectorAll('.page');
 
-    // 4. دالة التنقل بين الصفحات (Show Page)
+    // دالة إظهار الصفحة
     function showPage(pageId) {
         const targetSection = document.getElementById(pageId);
-
         if (targetSection) {
-            // إخفاء كل الصفحات
-            pages.forEach(page => page.classList.remove('active'));
-             targetSection.classList.add('active');
-            window.scrollTo(0, 0);
-
-            // 👇👇 أضف هذا السطر الجديد هنا 👇👇
-            // هذا السطر يخبر المتصفح أننا انتقلنا لصفحة جديدة، لكي يعمل زر العودة
-            if(window.location.hash !== '#' + pageId) {
-                history.pushState({ page: pageId }, null, '#' + pageId);
+            if(pages.length > 0) {
+                pages.forEach(p => p.classList.remove('active'));
+                targetSection.classList.add('active');
             }
-            // 👆👆 نهاية السطر الجديد 👆👆
-navLinks.forEach(link => {
-                link.classList.remove('active');
-                const linkPage = link.getAttribute('data-page');
-                const linkHref = link.getAttribute('href');
-                if (linkPage === pageId || (linkHref && linkHref.includes(pageId))) {
-                    link.classList.add('active');
-                }});
-            // إظهار الصفحة المطلوبة
-            targetSection.classList.add('active');
-            window.scrollTo(0, 0);
-
-            // تحديث الروابط النشطة (اللون البرتقالي)
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                // نفحص data-page أو href
-                const linkPage = link.getAttribute('data-page');
-                const linkHref = link.getAttribute('href');
-
-                if (linkPage === pageId || (linkHref && linkHref.includes(pageId))) {
-                    link.classList.add('active');
-                }
-            });
+            targetSection.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
-    // --- ج. تشغيل الأسئلة الشائعة (FAQ) ---
+    // تفعيل النقر على الروابط
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            let pageId = this.getAttribute('data-page');
+            
+            // استخراج القسم من الرابط إذا كان يحتوي على #
+            if (!pageId && this.getAttribute('href') && this.getAttribute('href').includes('#')) {
+                try { pageId = this.getAttribute('href').split('#')[1]; } catch(err) {}
+            }
+
+            // إذا كان القسم موجوداً
+            if (pageId && document.getElementById(pageId)) {
+                e.preventDefault();
+                // إذا كنا بالفعل في القسم، لا نفعل شيئاً سوى التمرير
+                const targetSection = document.getElementById(pageId);
+                if (targetSection.classList.contains('active')) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                    if (navUl) navUl.classList.remove('show');
+                    return;
+                }
+                
+                showPage(pageId);
+                if (navUl) navUl.classList.remove('show');
+                // تحديث التاريخ لزر الرجوع
+                history.pushState(null, null, '#' + pageId);
+            }
+        });
+    });
+
+    // فحص الرابط عند الفتح
+    const hash = window.location.hash.substring(1);
+    if (hash && document.getElementById(hash)) {
+        showPage(hash);
+    } else {
+        if(document.getElementById('home')) {
+            // تفعيل الصفحة الرئيسية افتراضياً
+            pages.forEach(p => p.classList.remove('active'));
+            document.getElementById('home').classList.add('active');
+        }
+    }
+
+    // --- ج. ميزات إضافية (FAQ + Design + Countdown) ---
+    
+    // 1. الأسئلة الشائعة
     const faqItems = document.querySelectorAll('.faq-item');
     if (faqItems.length > 0) {
         faqItems.forEach(item => {
@@ -90,161 +109,43 @@ navLinks.forEach(link => {
         });
     }
 
-    // 5. تفعيل الأزرار (الكود الذكي الجديد)
-    navLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            // محاولة معرفة القسم المطلوب سواء من data-page أو href
-            let pageId = this.getAttribute('data-page');
-
-            // إذا لم يكن هناك data-page، نحاول استخراجه من الرابط (مثل #contact)
-            if (!pageId && this.getAttribute('href').includes('#')) {
-                pageId = this.getAttribute('href').split('#')[1];
-            }
-
-            // إذا وجدنا القسم في الصفحة الحالية، نذهب إليه
-            if (pageId && document.getElementById(pageId)) {
-                e.preventDefault(); // منع إعادة التحميل
-                showPage(pageId);
-                
-
-                // إغلاق القائمة في الموبايل
-                if (navUl) navUl.classList.remove('show');
-            }
-            // إذا كان الرابط يذهب لصفحة أخرى (مثل المنتجات)، نتركه يعمل طبيعياً
-        });
-    });
-
-    // 6. فحص الرابط عند فتح الموقع (للذهاب للقسم مباشرة من صفحة خارجية)
-    const hash = window.location.hash.substring(1); // نحذف رمز #
-    if (hash && document.getElementById(hash)) {
-        showPage(hash);
-        setTimeout(() => {
-            document.getElementById(hash).scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-    } else {
-        showPage('home'); // الافتراضي
-    }
-// --- كود ميزة "صمم بنفسك" (معاينة الصورة) ---
-    // نستخدم الشرط (if) لكي لا يحدث خطأ في الصفحات الأخرى
+    // 2. أداة "صمم بنفسك" (رفع الصور)
     const uploadInput = document.getElementById('imageUpload');
     const previewImage = document.getElementById('user-design-preview');
-
     if (uploadInput && previewImage) {
         uploadInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
+            if (event.target.files && event.target.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     previewImage.src = e.target.result;
                     previewImage.style.display = 'block';
                 }
-                reader.readAsDataURL(file);
+                reader.readAsDataURL(event.target.files[0]);
             }
-        });
-    }
-// تشغيل زر "العودة" في المتصفح/الهاتف
-    window.addEventListener('popstate', function(event) {
-        if (event.state && event.state.page) {
-            showPage(event.state.page);
-        } else {
-            // إذا لم يكن هناك حالة مسجلة، عد للرئيسية أو القسم الافتراضي
-            showPage('home');
-        }
-    });
-}); // <--- (مهم جداً) إغلاق دالة DOMContentLoaded هنا
-
-
-// --- دوال خارجية (يجب أن تكون خارج القوس الكبير لتعمل مع HTML) ---
-
-// دالة إرسال الواتساب
-function sendToWhatsApp(e) {
-    if (e) e.preventDefault();
-
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var phone = document.getElementById('phone').value;
-    var message = document.getElementById('message').value;
-
-    if (name === "" || email === "" || message === "") {
-        alert("المرجو ملء جميع الحقول الضرورية");
-        return;
-    }
-
-    var text = "طلب تواصل جديد من الموقع" + "%0A" +
-        "---------------------------" + "%0A" +
-        "الاسم: " + name + "%0A" +
-        "البريد: " + email + "%0A" +
-        "الهاتف: " + phone + "%0A" +
-        "الرسالة: " + "%0A" + message;
-
-    var url = "https://wa.me/212645717242?text=" + text;
-    window.open(url, '_blank');
-}
-
-// --- كود التحكم في ألوان الهيدر والأيقونة عند النزول ---
-window.addEventListener("scroll", function () {
-
-    // 1. تحديد العناصر
-    var header = document.querySelector("header");
-    var menuIcon = document.querySelector(".mobile-menu i"); // الأيقونة
-    var logoText = document.querySelector(".logo-container h1"); // اسم الموقع
-    var navLinks = document.querySelectorAll("header .nav-link"); // الروابط (للكمبيوتر)
-
-    // 2. إذا نزلنا للأسفل (أكثر من 0 بكسل)
-    if (window.scrollY > 0) {
-        if (header) header.classList.add("sticky");
-
-        // إجبار الألوان على أن تكون بيضاء
-        if (menuIcon) menuIcon.style.color = "#ffffff";
-        if (logoText) logoText.style.color = "#ffffff";
-
-        navLinks.forEach(link => {
-            link.style.color = "#ffffff";
-        });
-
-    } else {
-        // 3. إذا عدنا للقمة
-        if (header) header.classList.remove("sticky");
-
-        // إجبار الألوان على أن تكون داكنة (لأن الخلفية بيضاء)
-        if (menuIcon) menuIcon.style.color = "#333333";
-        if (logoText) logoText.style.color = "#333333";
-
-        navLinks.forEach(link => {
-            link.style.color = "#333333";
         });
     }
     
-});
-// --- دالة زر "إرسال الطلب" (للتصميم الخاص) ---
-function orderCustomDesign() {
-    const previewImage = document.getElementById('user-design-preview');
-    
-    // التحقق من وجود صورة مرفوعة
-    if (!previewImage || previewImage.src === "" || previewImage.style.display === "none") {
-        alert("المرجو اختيار صورة أولاً قبل الطلب");
-        return;
-    }
-
-    const text = "مرحباً Zon Print، لقد قمت باختيار صورة لطباعتها، سأقوم بإرسال الصورة لكم الآن هنا 👇";
-    const url = "https://wa.me/212645717242?text=" + encodeURIComponent(text);
-    window.open(url, '_blank');
-}
-// =========================================
-// ⏳ عداد تنازلي لكأس أفريقيا 2025
-// =========================================
-function startCanCountdown() {
+    // 3. عداد الكان (المغرب 2025)
     const countdownElement = document.getElementById('countdown');
-    if (!countdownElement) return;
+    if (countdownElement) {
+        startCanCountdown(countdownElement);
+    }
 
-    // تاريخ الافتتاح التقريبي (21 ديسمبر 2025)
+}); // <--- نهاية DOMContentLoaded (لا تحذف هذا القوس!)
+
+
+// =================================================
+// 3. الدوال الخارجية (تعمل مع أزرار HTML)
+// =================================================
+
+// 1. دالة عداد الكان
+function startCanCountdown(element) {
     const countDate = new Date('Dec 21, 2025 00:00:00').getTime();
 
     setInterval(() => {
         const now = new Date().getTime();
         const gap = countDate - now;
 
-        // حساب الوقت
         const second = 1000;
         const minute = second * 60;
         const hour = minute * 60;
@@ -255,66 +156,192 @@ function startCanCountdown() {
         const m = Math.floor((gap % hour) / minute);
         const s = Math.floor((gap % minute) / second);
 
-        // تصميم المربعات
-        const boxStyle = "background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); padding: 10px; border-radius: 8px; width: 70px; color: white;";
-        const numStyle = "font-size: 24px; font-weight: bold; display: block;";
-        const labelStyle = "font-size: 12px; opacity: 0.8;";
+        const boxStyle = "background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 10px; border-radius: 8px; width: 60px; color: white; backdrop-filter: blur(5px);";
+        const numStyle = "font-size: 18px; font-weight: bold; display: block;";
+        const labelStyle = "font-size: 11px; opacity: 0.9;";
 
-        countdownElement.innerHTML = `
+        element.innerHTML = `
             <div style="${boxStyle}"><span style="${numStyle}">${d}</span><span style="${labelStyle}">يوم</span></div>
             <div style="${boxStyle}"><span style="${numStyle}">${h}</span><span style="${labelStyle}">ساعة</span></div>
             <div style="${boxStyle}"><span style="${numStyle}">${m}</span><span style="${labelStyle}">دقيقة</span></div>
-            <div style="${boxStyle}"><span style="${numStyle}">${s}</span><span style="${labelStyle}">ثانية</span></div>
+            <div style="${boxStyle}"><span style="${numStyle}">${s}</span><span style="${labelStyle}">ث</span></div>
         `;
     }, 1000);
 }
 
-// تشغيل العداد عند التحميل
-document.addEventListener('DOMContentLoaded', startCanCountdown);
-
-// تأثير الآلة الكاتبة
-const words = ["التيشرتات 👕", "الأكواب ☕",  "القبعات 🧢"];
-let i = 0;
-let timer;
-
-function typingEffect() {
-    const element = document.getElementById('typewriter');
-    if (!element) return;
+// 2. دالة طلب أقمصة المنتخب (والباقة)
+function orderJersey(productName, nameId, numId) {
+    var nameInput = document.getElementById(nameId);
+    var numInput = document.getElementById(numId);
     
-    let word = words[i].split("");
-    let loopTyping = function() {
-        if (word.length > 0) {
-            element.innerHTML += word.shift();
-        } else {
-            setTimeout(deletingEffect, 1000); // انتظر ثانيتين قبل المسح
-            return false;
-        }
-        timer = setTimeout(loopTyping, 100);
-    };
-    loopTyping();
+    var name = nameInput ? nameInput.value : "";
+    var num = numInput ? numInput.value : "";
+    
+    var details = "";
+    if (name && num) details = ` (الاسم: ${name} - الرقم: ${num})`;
+    else if (name) details = ` (الاسم: ${name})`;
+    else details = " (بدون تخصيص)";
+    
+    var text = `سلام Zon Print، بغيت ${productName} 🇲🇦 ${details}`;
+    var url = "https://wa.me/212645717242?text=" + encodeURIComponent(text);
+    window.open(url, '_blank');
 }
 
-function deletingEffect() {
-    const element = document.getElementById('typewriter');
-    let word = words[i].split("");
-    let loopDeleting = function() {
-        if (word.length > 0) {
-            word.pop();
-            element.innerHTML = word.join("");
-        } else {
-            if (words.length > (i + 1)) {
-                i++;
-            } else {
-                i = 0;
+// 3. دالة مسابقة التوقعات
+function sendPrediction() {
+    var scoreMa = document.getElementById('scoreMa').value;
+    var scoreOther = document.getElementById('scoreOther').value;
+    
+    if(scoreMa !== "" && scoreOther !== "") {
+        var text = `توقعي لمباراة المغرب: المغرب ${scoreMa} - ${scoreOther} الخصم.`;
+        window.open(`https://wa.me/212645717242?text=${encodeURIComponent(text)}`, '_blank');
+    } else {
+        alert("المرجو كتابة التوقع");
+    }
+}
+
+// 4. حاسبة التوصيل
+function calculateGlobalShipping() {
+    const city = document.getElementById('globalCitySelect').value;
+    const result = document.getElementById('globalShippingResult');
+    
+    if (!result) return;
+    if (!city) { result.style.display = "none"; return; }
+
+    let price = "", time = "", color = "#2c3e50";
+    if (city === "casa") { price = "20 درهم"; time = "24 ساعة"; color = "#27ae60"; }
+    else if (city === "rabat") { price = "30 درهم"; time = "24-48 ساعة"; color = "#2980b9"; }
+    else if (city === "major") { price = "40 درهم"; time = "2-3 أيام"; color = "#e67e22"; }
+    else if (city === "far") { price = "50 درهم"; time = "3-5 أيام"; color = "#c0392b"; }
+
+    result.style.display = "block";
+    result.style.color = color;
+    result.innerHTML = `<i class="fas fa-truck"></i> التوصيل: ${price} <br> <span style="font-size:14px; color:#666">${time}</span>`;
+}
+
+// 5. دالة الكوبون
+function checkPromo() {
+    const input = document.getElementById('promoInput');
+    const message = document.getElementById('promoMessage');
+    if (!input || !message) return;
+
+    const code = input.value.toUpperCase().trim();
+    if (code === "ZON2025") {
+        message.style.color = "#27ae60";
+        message.innerText = "✅ مبروك! تم تفعيل خصم 10%";
+        activePromo = " (مع كود خصم 10%: ZON2025) 🎁";
+        input.disabled = true;
+        input.style.borderColor = "#27ae60";
+    } else if (code === "") {
+        message.style.color = "#e74c3c"; message.innerText = "⚠️ المرجو كتابة الكود";
+    } else {
+        message.style.color = "#e74c3c"; message.innerText = "❌ الكود غير صحيح"; activePromo = "";
+    }
+}
+
+// 6. دالة إرسال الواتساب العامة
+function sendToWhatsApp(e) {
+    if (e) e.preventDefault();
+    var nameEl = document.getElementById('name');
+    var emailEl = document.getElementById('email');
+    var msgEl = document.getElementById('message');
+
+    if (nameEl && msgEl && nameEl.value) {
+        var text = `الاسم: ${nameEl.value}%0Aالبريد: ${emailEl.value}%0Aالرسالة: ${msgEl.value} ${activePromo}`;
+        window.open(`https://wa.me/212645717242?text=${text}`, '_blank');
+    } else {
+        alert("المرجو ملء المعلومات");
+    }
+}
+
+// 7. دالة "إرسال الطلب" (تصميم خاص)
+function orderCustomDesign() {
+    const img = document.getElementById('user-design-preview');
+    if (!img || img.style.display === "none" || img.src === "") {
+        alert("المرجو اختيار صورة أولاً");
+        return;
+    }
+    const text = "مرحباً Zon Print، لقد قمت باختيار صورة لطباعتها، سأرسلها لكم الآن 👇" + activePromo;
+    window.open(`https://wa.me/212645717242?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+// 8. الهيدر الشفاف
+window.addEventListener("scroll", function () {
+    var header = document.querySelector("header");
+    if (header) {
+        header.classList.toggle("sticky", window.scrollY > 0);
+    }
+});
+
+// 9. زر العودة (Browser Back Button)
+window.addEventListener('popstate', function(event) {
+    if(window.location.hash) {
+        // العودة للقسم الموجود في الهاش
+        const pageId = window.location.hash.substring(1);
+        if(document.getElementById(pageId)) {
+            const pages = document.querySelectorAll('.page');
+            if(pages.length > 0) {
+                pages.forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId).classList.add('active');
             }
-            typingEffect();
-            return false;
         }
-        timer = setTimeout(loopDeleting, 50);
-    };
-    loopDeleting();
+    } else {
+        // العودة للرئيسية
+        if(document.getElementById('home')) {
+            const pages = document.querySelectorAll('.page');
+            if(pages.length > 0) {
+                pages.forEach(p => p.classList.remove('active'));
+                document.getElementById('home').classList.add('active');
+            }
+        }
+    }
+});
+// =========================================
+// ⚽ نظام تغيير الخصم تلقائياً (جدول المباريات)
+// =========================================
+
+function updateMatchInfo() {
+    const flagElement = document.getElementById('opponentFlag');
+    const nameElement = document.getElementById('opponentName');
+    
+    if (!flagElement || !nameElement) return;
+
+    // قائمة المباريات (يمكنك إضافة المزيد هنا)
+    // التاريخ: متى تنتهي المباراة ويظهر الخصم التالي؟
+    const matches = [
+        {
+            date: "2025-12-21", // تاريخ المباراة الأولى
+            name: "جزر القمر",
+            flag: "https://upload.wikimedia.org/wikipedia/commons/9/94/Flag_of_the_Comoros.svg"
+        },
+        {
+            date: "2025-12-26", // تاريخ المباراة الثانية
+            name: "مالي ",
+            flag: "https://upload.wikimedia.org/wikipedia/commons/9/92/Flag_of_Mali.svg"
+        },
+        {
+            date: "2025-12-29", // تاريخ المباراة الثالثة
+            name: " زامبيا ",
+            flag: "https://upload.wikimedia.org/wikipedia/commons/0/06/Flag_of_Zambia.svg"
+        }
+    ];
+
+    const today = new Date().toISOString().split('T')[0]; // تاريخ اليوم (YYYY-MM-DD)
+
+    // البحث عن المباراة القادمة
+    for (let i = 0; i < matches.length; i++) {
+        // إذا كان تاريخ المباراة في المستقبل أو هو اليوم
+        if (matches[i].date >= today) {
+            nameElement.innerText = matches[i].name;
+            flagElement.src = matches[i].flag;
+            return; // وجدنا المباراة، نتوقف هنا
+        }
+    }
+
+    // إذا انتهت كل المباريات في الجدول، نظهر رسالة افتراضية
+    nameElement.innerText = "قريباً...";
+    flagElement.src = "images/logo.png.png"; // أو أي صورة
 }
 
-document.addEventListener('DOMContentLoaded', typingEffect);
-
-
+// تشغيل الدالة عند تحميل الموقع
+document.addEventListener('DOMContentLoaded', updateMatchInfo);

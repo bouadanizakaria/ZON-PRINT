@@ -123,7 +123,55 @@
                             بالمغرب:</p>
                         <div id="countdown" style="display: inline-flex; gap: 15px; direction: ltr;">
                                </div>
+                    
+                <section class="prediction-section" style="margin: 40px 0; text-align: center;">
+                    <div class="prediction-box"
+                        style="background: white; max-width: 600px; margin: 0 auto; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border: 2px dashed #c1272d;">
+                        <h3 style="color: #c1272d; font-size: 1.5rem; margin-bottom: 10px;">⚽ مسابقة توقع واربح!</h3>
+                        <p style="color: #555; margin-bottom: 20px;">توقع نتيجة مباراة المنتخب القادمة واربح قميصاً
+                            مجانياً!</p>
+
+                        <div class="match-teams"
+                            style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="text-align: center;">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Morocco.svg"
+                                    alt="المغرب"
+                                    style="width: 40px; height: 30px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <p style="font-weight: bold; margin-top: 5px; font-size: 14px;">المغرب</p>
+                            </div>
+
+                            <span style="font-weight: bold; font-size: 20px; color: #333;">VS</span>
+
+                            <div style="text-align: center;">
+                                <img id="opponentFlag"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_C%C3%B4te_d%27Ivoire.svg"
+                                    alt="الخصم"
+                                    style="width: 40px; height: 30px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+
+                                <p id="opponentName" style="font-weight: bold; margin-top: 5px; font-size: 14px;">كوت
+                                    ديفوار</p>
+                            </div>
+                        </div>
+
+                        <div class="score-inputs"
+                            style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                            <input type="number" id="scoreMa" placeholder="0"
+                                style="width: 60px; padding: 10px; text-align: center; font-size: 18px; border: 1px solid #ddd; border-radius: 8px; outline: none;">
+                            <span style="font-size: 24px; font-weight: bold; color: #333;">-</span>
+                            <input type="number" id="scoreOther" placeholder="0"
+                                style="width: 60px; padding: 10px; text-align: center; font-size: 18px; border: 1px solid #ddd; border-radius: 8px; outline: none;">
+                        </div>
+
+                        <input type="text" id="predictorName" placeholder="اكتب اسمك هنا"
+                            style="width: 80%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; text-align: center;">
+
+                        <button onclick="sendPrediction()" class="btn"
+                            style="width: 80%; background-color: #006233; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s;">
+                            <i class="fab fa-whatsapp"></i> إرسال التوقع
+                        </button>
                     </div>
+                </section>
+                </div>
                     <p style="color: #f0f0f0;">تشكيلة حصرية من أقمصة المنتخب المغربي بجودة عالية</p>
                 </div>
 
@@ -665,7 +713,7 @@
     <script src="main.js?v=555"></script>
     <a href="https://wa.me/212645717242" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
-            </a>
+    </a>
     <div class="bottom-nav">
         <a href="/" class="nav-item">
             <i class="fas fa-home"></i>
@@ -677,7 +725,13 @@
         </a>
         <a href="https://wa.me/212645717242" class="nav-item special">
             <i class="fab fa-whatsapp"></i>
+
         </a>
+        <a href="index.html#contact" class="nav-item">
+            <i class="fas fa-envelope"></i>
+            <span>اتصل</span>
+        </a>
+
         </a>
     </div>
 </body>
