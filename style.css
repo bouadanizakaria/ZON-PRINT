@@ -1275,3 +1275,21 @@ header.sticky .mobile-menu i {
 .share-btn.copy {
     background-color: #333;
 }
+
+/* حركة النبض للوجو */
+@keyframes pulse {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+}

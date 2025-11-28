@@ -1,7 +1,7 @@
 // =================================================
 // 1. المتغيرات العامة (Global Variables)
 // =================================================
-let activePromo = ""; 
+let activePromo = "";
 
 // =================================================
 // 2. كود تشغيل الموقع (عند تحميل الصفحة)
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function showPage(pageId) {
         const targetSection = document.getElementById(pageId);
         if (targetSection) {
-            if(pages.length > 0) {
+            if (pages.length > 0) {
                 pages.forEach(p => p.classList.remove('active'));
                 targetSection.classList.add('active');
             }
@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', function () {
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             let pageId = this.getAttribute('data-page');
-            
+
             // استخراج القسم من الرابط إذا كان يحتوي على #
             if (!pageId && this.getAttribute('href') && this.getAttribute('href').includes('#')) {
-                try { pageId = this.getAttribute('href').split('#')[1]; } catch(err) {}
+                try { pageId = this.getAttribute('href').split('#')[1]; } catch (err) { }
             }
 
             // إذا كان القسم موجوداً
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (navUl) navUl.classList.remove('show');
                     return;
                 }
-                
+
                 showPage(pageId);
                 if (navUl) navUl.classList.remove('show');
                 // تحديث التاريخ لزر الرجوع
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (hash && document.getElementById(hash)) {
         showPage(hash);
     } else {
-        if(document.getElementById('home')) {
+        if (document.getElementById('home')) {
             // تفعيل الصفحة الرئيسية افتراضياً
             pages.forEach(p => p.classList.remove('active'));
             document.getElementById('home').classList.add('active');
@@ -92,13 +92,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // --- ج. ميزات إضافية (FAQ + Design + Countdown) ---
-    
+
     // 1. الأسئلة الشائعة
     const faqItems = document.querySelectorAll('.faq-item');
     if (faqItems.length > 0) {
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
-            if(question) {
+            if (question) {
                 question.addEventListener('click', () => {
                     faqItems.forEach(other => {
                         if (other !== item) other.classList.remove('active');
@@ -113,10 +113,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const uploadInput = document.getElementById('imageUpload');
     const previewImage = document.getElementById('user-design-preview');
     if (uploadInput && previewImage) {
-        uploadInput.addEventListener('change', function(event) {
+        uploadInput.addEventListener('change', function (event) {
             if (event.target.files && event.target.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     previewImage.src = e.target.result;
                     previewImage.style.display = 'block';
                 }
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-    
+
     // 3. عداد الكان (المغرب 2025)
     const countdownElement = document.getElementById('countdown');
     if (countdownElement) {
@@ -173,15 +173,15 @@ function startCanCountdown(element) {
 function orderJersey(productName, nameId, numId) {
     var nameInput = document.getElementById(nameId);
     var numInput = document.getElementById(numId);
-    
+
     var name = nameInput ? nameInput.value : "";
     var num = numInput ? numInput.value : "";
-    
+
     var details = "";
     if (name && num) details = ` (الاسم: ${name} - الرقم: ${num})`;
     else if (name) details = ` (الاسم: ${name})`;
     else details = " (بدون تخصيص)";
-    
+
     var text = `سلام Zon Print، بغيت ${productName} 🇲🇦 ${details}`;
     var url = "https://wa.me/212645717242?text=" + encodeURIComponent(text);
     window.open(url, '_blank');
@@ -191,14 +191,14 @@ function orderJersey(productName, nameId, numId) {
 function sendPrediction() {
     var scoreMa = document.getElementById('scoreMa').value;
     var scoreOther = document.getElementById('scoreOther').value;
-    
-    if(scoreMa !== "" && scoreOther !== "") {
+
+    if (scoreMa !== "" && scoreOther !== "") {
         var text = `توقعي لمباراة المغرب: المغرب ${scoreMa} - ${scoreOther} الخصم.`;
         window.open(`https://wa.me/212645717242?text=${encodeURIComponent(text)}`, '_blank');
     } else {
         alert("المرجو كتابة التوقع");
     }
-} 
+}
 
 // 6. دالة إرسال الواتساب العامة
 function sendToWhatsApp(e) {
@@ -235,22 +235,22 @@ window.addEventListener("scroll", function () {
 });
 
 // 9. زر العودة (Browser Back Button)
-window.addEventListener('popstate', function(event) {
-    if(window.location.hash) {
+window.addEventListener('popstate', function (event) {
+    if (window.location.hash) {
         // العودة للقسم الموجود في الهاش
         const pageId = window.location.hash.substring(1);
-        if(document.getElementById(pageId)) {
+        if (document.getElementById(pageId)) {
             const pages = document.querySelectorAll('.page');
-            if(pages.length > 0) {
+            if (pages.length > 0) {
                 pages.forEach(p => p.classList.remove('active'));
                 document.getElementById(pageId).classList.add('active');
             }
         }
     } else {
         // العودة للرئيسية
-        if(document.getElementById('home')) {
+        if (document.getElementById('home')) {
             const pages = document.querySelectorAll('.page');
-            if(pages.length > 0) {
+            if (pages.length > 0) {
                 pages.forEach(p => p.classList.remove('active'));
                 document.getElementById('home').classList.add('active');
             }
@@ -264,7 +264,7 @@ window.addEventListener('popstate', function(event) {
 function updateMatchInfo() {
     const flagElement = document.getElementById('opponentFlag');
     const nameElement = document.getElementById('opponentName');
-    
+
     if (!flagElement || !nameElement) return;
 
     // قائمة المباريات (يمكنك إضافة المزيد هنا)
@@ -323,12 +323,12 @@ function shareProduct(platform) {
         // مشاركة عبر واتساب
         const url = `https://wa.me/?text=${encodeURIComponent(text)} ${encodeURIComponent(currentUrl)}`;
         window.open(url, '_blank');
-        
+
     } else if (platform === 'facebook') {
         // مشاركة عبر فيسبوك
         const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
         window.open(url, '_blank');
-        
+
     } else if (platform === 'copy') {
         // نسخ الرابط
         navigator.clipboard.writeText(currentUrl).then(() => {
@@ -341,7 +341,7 @@ function shareProduct(platform) {
 // =========================================
 // ⌨️ تأثير الآلة الكاتبة (Typewriter Effect)
 // =========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const element = document.getElementById('typewriter');
     if (!element) return;
 
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function type() {
         const currentWord = words[wordIndex];
-        
+
         if (isDeleting) {
             // مسح الحروف
             element.textContent = currentWord.substring(0, charIndex - 1);
@@ -386,3 +386,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // تشغيل الدالة
     type();
 });
+// --- إخفاء شاشة التحميل ---
+const preloader = document.getElementById('preloader');
+if (preloader) {
+    window.addEventListener('load', function () {
+        setTimeout(() => {
+            preloader.style.opacity = "0"; // تلاشي تدريجي
+            setTimeout(() => {
+                preloader.style.display = "none"; // إخفاء نهائي
+            }, 500);
+        }, 1000); // انتظر ثانية واحدة على الأقل ليراها الزبون
+    });
+}
