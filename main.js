@@ -130,6 +130,23 @@ document.addEventListener('DOMContentLoaded', function () {
     if (countdownElement) {
         startCanCountdown(countdownElement);
     }
+    // =========================================
+    // 🧊 تشغيل تأثير 3D للبطاقات
+    // =========================================
+    
+    // نختار البطاقات التي نريد تطبيق التأثير عليها
+    // (بطاقات المنتجات، بطاقات الميزات، بطاقات الخطوات)
+    const tiltCards = document.querySelectorAll('.product-card, .feature-card, .step-card, .review-card');
+
+    if (typeof VanillaTilt !== 'undefined' && tiltCards.length > 0) {
+        VanillaTilt.init(tiltCards, {
+            max: 15,            // درجة الميلان (كلما زاد الرقم زاد الميلان)
+            speed: 400,         // سرعة الحركة
+            glare: true,        // تفعيل لمعة الضوء
+            "max-glare": 0.3,   // قوة اللمعة (من 0 إلى 1)
+            scale: 1.05         // تكبير بسيط عند اللمس
+        });
+    }
 
 }); // <--- نهاية DOMContentLoaded (لا تحذف هذا القوس!)
 
