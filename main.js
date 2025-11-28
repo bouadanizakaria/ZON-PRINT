@@ -198,46 +198,7 @@ function sendPrediction() {
     } else {
         alert("المرجو كتابة التوقع");
     }
-}
-
-// 4. حاسبة التوصيل
-function calculateGlobalShipping() {
-    const city = document.getElementById('globalCitySelect').value;
-    const result = document.getElementById('globalShippingResult');
-    
-    if (!result) return;
-    if (!city) { result.style.display = "none"; return; }
-
-    let price = "", time = "", color = "#2c3e50";
-    if (city === "casa") { price = "20 درهم"; time = "24 ساعة"; color = "#27ae60"; }
-    else if (city === "rabat") { price = "30 درهم"; time = "24-48 ساعة"; color = "#2980b9"; }
-    else if (city === "major") { price = "40 درهم"; time = "2-3 أيام"; color = "#e67e22"; }
-    else if (city === "far") { price = "50 درهم"; time = "3-5 أيام"; color = "#c0392b"; }
-
-    result.style.display = "block";
-    result.style.color = color;
-    result.innerHTML = `<i class="fas fa-truck"></i> التوصيل: ${price} <br> <span style="font-size:14px; color:#666">${time}</span>`;
-}
-
-// 5. دالة الكوبون
-function checkPromo() {
-    const input = document.getElementById('promoInput');
-    const message = document.getElementById('promoMessage');
-    if (!input || !message) return;
-
-    const code = input.value.toUpperCase().trim();
-    if (code === "ZON2025") {
-        message.style.color = "#27ae60";
-        message.innerText = "✅ مبروك! تم تفعيل خصم 10%";
-        activePromo = " (مع كود خصم 10%: ZON2025) 🎁";
-        input.disabled = true;
-        input.style.borderColor = "#27ae60";
-    } else if (code === "") {
-        message.style.color = "#e74c3c"; message.innerText = "⚠️ المرجو كتابة الكود";
-    } else {
-        message.style.color = "#e74c3c"; message.innerText = "❌ الكود غير صحيح"; activePromo = "";
-    }
-}
+} 
 
 // 6. دالة إرسال الواتساب العامة
 function sendToWhatsApp(e) {
@@ -345,3 +306,83 @@ function updateMatchInfo() {
 
 // تشغيل الدالة عند تحميل الموقع
 document.addEventListener('DOMContentLoaded', updateMatchInfo);
+// رقم عشوائي للمخزون
+document.querySelectorAll('.stock-count').forEach(el => {
+    // رقم عشوائي بين 2 و 8
+    el.innerText = Math.floor(Math.random() * (8 - 2 + 1) + 2);
+});
+// =========================================
+// 📢 دالة مشاركة المنتج
+// =========================================
+function shareProduct(platform) {
+    // 1. جلب رابط الصفحة الحالية تلقائياً
+    const currentUrl = window.location.href;
+    const text = "شوف هذا المنتج الرائع من Zon Print! 😍👇";
+
+    if (platform === 'whatsapp') {
+        // مشاركة عبر واتساب
+        const url = `https://wa.me/?text=${encodeURIComponent(text)} ${encodeURIComponent(currentUrl)}`;
+        window.open(url, '_blank');
+        
+    } else if (platform === 'facebook') {
+        // مشاركة عبر فيسبوك
+        const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+        window.open(url, '_blank');
+        
+    } else if (platform === 'copy') {
+        // نسخ الرابط
+        navigator.clipboard.writeText(currentUrl).then(() => {
+            alert("تم نسخ الرابط بنجاح! ✅");
+        }).catch(err => {
+            console.error('فشل النسخ', err);
+        });
+    }
+}
+// =========================================
+// ⌨️ تأثير الآلة الكاتبة (Typewriter Effect)
+// =========================================
+document.addEventListener('DOMContentLoaded', function() {
+    const element = document.getElementById('typewriter');
+    if (!element) return;
+
+    const words = ["التيشرتات 👕", "الأكواب ☕", "الهواتف 📱", "القبعات 🧢", "الهدايا 🎁"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100; // سرعة الكتابة
+
+    function type() {
+        const currentWord = words[wordIndex];
+        
+        if (isDeleting) {
+            // مسح الحروف
+            element.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+            typeSpeed = 50; // سرعة المسح أسرع
+        } else {
+            // كتابة الحروف
+            element.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+            typeSpeed = 150; // سرعة الكتابة عادية
+        }
+
+        if (!isDeleting && charIndex === currentWord.length) {
+            // انتهت الكلمة، انتظر قليلاً ثم ابدأ المسح
+            isDeleting = true;
+            typeSpeed = 1000; // انتظر ثانيتين قبل المسح
+        } else if (isDeleting && charIndex === 0) {
+            // انتهى المسح، انتقل للكلمة التالية
+            isDeleting = false;
+            wordIndex++;
+            if (wordIndex === words.length) {
+                wordIndex = 0; // العودة للكلمة الأولى
+            }
+            typeSpeed = 500; // انتظر نصف ثانية قبل البدء
+        }
+
+        setTimeout(type, typeSpeed);
+    }
+
+    // تشغيل الدالة
+    type();
+});

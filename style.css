@@ -3,7 +3,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Cairo', sans-serif; /* هذا هو التغيير */
+    font-family: 'Cairo', sans-serif;
+    /* هذا هو التغيير */
 }
 
 :root {
@@ -715,7 +716,7 @@ header.sticky .nav-link {
 /* هذه هي القاعدة التي كانت تسبب المشكلة، الآن وضعناها في الأخير لتفوز */
 /* تغيير لون أيقونة القائمة للأبيض عند النزول */
 header.sticky .mobile-menu i {
-    color: #ffffff !important;
+    color: #000000 !important;
 }
 
 /* --- كود أمان نهائي للموبايل --- */
@@ -1024,27 +1025,30 @@ header.sticky .mobile-menu i {
 .step-card:hover .step-icon i {
     color: white;
 }
+
 /* تعديل لتقريب العناصر من بعضها */
 .design-container {
     display: flex;
     flex-wrap: wrap;
-    
+
     /* هذا الأمر يجمعهم في الوسط بدلاً من تفريقهم */
-    justify-content: center; 
-    
+    justify-content: center;
+
     /* مسافة ثابتة ومعقولة بين الأزرار والتيشرت */
-    gap: 10px; 
-    
+    gap: 10px;
+
     align-items: center;
-    
+
     /* تحديد عرض أقصى للقسم حتى لا يتوسع كثيراً في الشاشات الكبيرة */
-    max-width: 900px; 
-    margin: 0 auto; /* توسيط القسم كله */
+    max-width: 900px;
+    margin: 0 auto;
+    /* توسيط القسم كله */
 }
 
 /* منطقة المعاينة */
 .preview-area {
-    position: relative; /* ضروري جداً */
+    position: relative;
+    /* ضروري جداً */
     width: 300px;
     height: 300px;
     border: 2px dashed #ddd;
@@ -1056,7 +1060,8 @@ header.sticky .mobile-menu i {
 .product-base {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* لإظهار التيشرت كاملاً */
+    object-fit: contain;
+    /* لإظهار التيشرت كاملاً */
 }
 
 /* صورة الزبون (الطبقة العلوية) */
@@ -1064,10 +1069,13 @@ header.sticky .mobile-menu i {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* توسيط الصورة بدقة */
-    max-width: 120px; /* حجم منطقة الطباعة التقريبي */
+    transform: translate(-50%, -50%);
+    /* توسيط الصورة بدقة */
+    max-width: 120px;
+    /* حجم منطقة الطباعة التقريبي */
     max-height: 150px;
-    border: 1px dashed rgba(0,0,0,0.2); /* حدود وهمية ليرى الزبون حدود صورته */
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    /* حدود وهمية ليرى الزبون حدود صورته */
 }
 
 /* منطقة الأزرار */
@@ -1084,16 +1092,19 @@ header.sticky .mobile-menu i {
 }
 
 .upload-btn:hover {
-    background-color: #2980b9;
+    background-color: #2980b9;
 }
+
 /* تعديل هام لظهور الصورة فوق التيشرت */
 .preview-area {
-    position: relative; /* ضروري جداً */
+    position: relative;
+    /* ضروري جداً */
     width: 300px;
     height: 300px;
     background-color: #f0f0f0;
     overflow: hidden;
-    margin: 0 auto; /* توسيط */
+    margin: 0 auto;
+    /* توسيط */
 }
 
 .product-base {
@@ -1101,33 +1112,46 @@ header.sticky .mobile-menu i {
     height: 100%;
     object-fit: contain;
     position: relative;
-    z-index: 1; /* الطبقة السفلى */
+    z-index: 1;
+    /* الطبقة السفلى */
 }
 
 .design-overlay {
-    position: absolute; /* لتكون عائمة */
+    position: absolute;
+    /* لتكون عائمة */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* توسيط دقيق */
-    width: 120px; /* حجم مبدئي للصورة */
+    transform: translate(-50%, -50%);
+    /* توسيط دقيق */
+    width: 120px;
+    /* حجم مبدئي للصورة */
     height: auto;
-    z-index: 10; /* الطبقة العليا (فوق التيشرت) */
-    display: none; /* مخفية في البداية */
+    z-index: 10;
+    /* الطبقة العليا (فوق التيشرت) */
+    display: none;
+    /* مخفية في البداية */
 }
-    /* 4. ضبط خط الشريط العلوي ليكون صغيراً ومقروءاً */
- /* =========================================
+
+/* 4. ضبط خط الشريط العلوي ليكون صغيراً ومقروءاً */
+/* =========================================
    شريط التنقل السفلي (App Style)
    ========================================= */
 .bottom-nav {
-    display: none; /* مخفي في الكمبيوتر */
+    display: none;
+    /* مخفي في الكمبيوتر */
 }
 
 @media (max-width: 768px) {
+
     /* إخفاء زر الواتساب العائم القديم لتجنب التكرار */
-    .whatsapp-float { display: none !important; }
+    .whatsapp-float {
+        display: none !important;
+    }
 
     /* إضافة مساحة في أسفل الصفحة لكي لا يغطي الشريط على المحتوى */
-    body { padding-bottom: 60px; }
+    body {
+        padding-bottom: 60px;
+    }
 
     .bottom-nav {
         display: flex;
@@ -1138,7 +1162,7 @@ header.sticky .mobile-menu i {
         left: 0;
         width: 100%;
         background-color: #fff;
-        box-shadow: 0 -2px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
         padding: 10px 0;
         z-index: 9999;
         border-top: 2px solid #eee;
@@ -1159,8 +1183,9 @@ header.sticky .mobile-menu i {
         font-size: 20px;
         margin-bottom: 2px;
     }
-    
-    .nav-item:hover, .nav-item:active {
+
+    .nav-item:hover,
+    .nav-item:active {
         color: #2c3e50;
     }
 
@@ -1172,18 +1197,81 @@ header.sticky .mobile-menu i {
         height: 50px;
         border-radius: 50%;
         justify-content: center;
-        margin-top: -15px; /* يخرج للأعلى قليلاً */
+        margin-top: -15px;
+        /* يخرج للأعلى قليلاً */
         box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-        border: 5px solid #f9f9f9; /* حدود بيضاء لدمجه مع الخلفية */
+        border: 5px solid #f9f9f9;
+        /* حدود بيضاء لدمجه مع الخلفية */
         animation: pulse-green 2s infinite;
     }
-    
-    .nav-item.special i { font-size: 20px; margin: 0; }
+
+    .nav-item.special i {
+        font-size: 20px;
+        margin: 0;
+    }
 }
 
 /* حركة النبض للزر */
 @keyframes pulse-green {
-    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* --- تنسيق أزرار المشاركة --- */
+.share-container {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #ddd;
+    text-align: center;
+}
+
+.share-container p {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: transform 0.2s;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+}
+
+.share-btn.whatsapp {
+    background-color: #25d366;
+}
+
+.share-btn.facebook {
+    background-color: #1877f2;
+}
+
+.share-btn.copy {
+    background-color: #333;
 }
