@@ -425,28 +425,61 @@ function closeGiftQuiz() {
     resetQuiz();
 }
 
+// =========================================
+// 🎁 مستشار الهدايا الذكي (Random Gift Generator)
+// =========================================
+
+// 1. قاعدة بيانات المنتجات المقترحة
+const giftSuggestions = {
+    man: [
+        { img: 'images/maroc-red.jpg', title: 'قميص المنتخب الرسمي 🇲🇦', link: 'index.html#products' },
+        { img: 'images/mugwhite.jpg', title: 'كوب قهوة بتصميم خاص ☕', link: 'product-mugs.html' },
+        { img: 'images/capusho2.jpg', title: 'هودي مريح وعصري 🧥', link: 'product-tshirts.html' },
+        { img: 'images/hats3.jpg', title: 'قبعة رياضية مميزة 🧢', link: 'product-hats.html' }
+    ],
+    woman: [
+        { img: 'images/mugmagic.jpg', title: 'كوب سحري يظهر الصورة بالحرارة ✨', link: 'product-mugs.html' },
+        { img: 'images/totbag.jpg', title: 'حقيبة قماشية أنيقة (Tote Bag) 👜', link: 'product-accessories.html' },
+        { img: 'images/Coussin.jpg', title: 'وسادة مطبوعة بصورة شخصية 🧸', link: 'product-accessories.html' },
+        
+    ],
+    kid: [
+        { img: 'images/coton.jpg', title: 'تيشرت قطني بصورة كرتونية 👶', link: 'product-tshirts.html' },
+        { img: 'images/hats2.jpg', title: 'قبعة أطفال ملونة 🧢', link: 'product-hats.html' },
+        { img: 'images/mug.jpg', title: 'كوب خاص للمدرسة 🥛', link: 'product-mugs.html' },
+        { img: 'images/clé2.jpg', title: 'ميدالية باسم الطفل او صورته 🔑', link: 'product-accessories.html' }
+    ]
+};
+
+function openGiftQuiz() {
+    const modal = document.getElementById('giftModal');
+    if(modal) modal.style.display = 'flex';
+}
+
+function closeGiftQuiz() {
+    const modal = document.getElementById('giftModal');
+    if(modal) {
+        modal.style.display = 'none';
+        resetQuiz(); // إعادة تعيين عند الإغلاق
+    }
+}
+
 function nextStep(choice) {
     document.getElementById('step1').style.display = 'none';
     document.getElementById('step2').style.display = 'block';
-
+    
     const img = document.getElementById('resultImg');
     const title = document.getElementById('resultTitle');
     const link = document.getElementById('resultLink');
 
-    // منطق الاقتراحات (يمكنك تغييره)
-    if (choice === 'man') {
-        img.src = 'images/maroc-red.jpg'; // قميص المنتخب
-        title.innerText = "قميص المنتخب الرسمي 🇲🇦";
-        link.href = "index.html#products"; // أو رابط صفحة الرياضة
-    } else if (choice === 'woman') {
-        img.src = 'images/mugmagic.jpg'; // كوب
-        title.innerText = "كوب سحري بصورة خاصة ✨";
-        link.href = "product-mugs.html";
-    } else {
-        img.src = 'images/capusho2.jpg'; // تيشرت
-        title.innerText = "هودي قطني مريح للأطفال 👶";
-        link.href = "product-tshirts.html";
-    }
+    // اختيار منتج عشوائي من القائمة المناسبة
+    const products = giftSuggestions[choice];
+    const randomProduct = products[Math.floor(Math.random() * products.length)];
+
+    // عرض النتيجة
+    if (img) img.src = randomProduct.img;
+    if (title) title.innerText = randomProduct.title;
+    if (link) link.href = randomProduct.link;
 }
 
 function resetQuiz() {
