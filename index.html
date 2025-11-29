@@ -649,6 +649,34 @@
             </div>
         </div>
     </section>
+    <button onclick="openGiftQuiz()" class="gift-btn">
+        🎁 محتار؟ دعنا نساعدك!
+    </button>
+
+    <div id="giftModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGiftQuiz()">&times;</span>
+
+            <div id="step1">
+                <h3>لمن الهدية؟ 🤔</h3>
+                <div class="quiz-options">
+                    <button onclick="nextStep('man')">👨 رجل</button>
+                    <button onclick="nextStep('woman')">👩 امرأة</button>
+                    <button onclick="nextStep('kid')">👶 طفل</button>
+                </div>
+            </div>
+
+            <div id="step2" style="display: none;">
+                <h3>نقترح عليك هذا المنتج الرائع! 🎉</h3>
+                <img id="resultImg" src="" style="width: 150px; border-radius: 10px; margin: 15px 0;">
+                <h4 id="resultTitle"></h4>
+                <a id="resultLink" href="#" class="btn">شاهد التفاصيل</a>
+                <button onclick="resetQuiz()"
+                    style="margin-top: 10px; background: none; border: none; color: #666; text-decoration: underline; cursor: pointer;">جرب
+                    مرة أخرى</button>
+            </div>
+        </div>
+    </div>
 
     <!-- التذييل -->
     <footer class="footer-area">
@@ -728,7 +756,7 @@
         </div>
 
     </footer>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script src="main.js?v=555"></script>
     <a href="https://wa.me/212645717242" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
@@ -753,7 +781,7 @@
 
         </a>
     </div>
-    
+
 </body>
 
 </html>

@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // =========================================
     // 🧊 تشغيل تأثير 3D للبطاقات
     // =========================================
-    
+
     // نختار البطاقات التي نريد تطبيق التأثير عليها
     // (بطاقات المنتجات، بطاقات الميزات، بطاقات الخطوات)
     const tiltCards = document.querySelectorAll('.product-card, .feature-card, .step-card, .review-card');
@@ -414,4 +414,42 @@ if (preloader) {
             }, 500);
         }, 1000); // انتظر ثانية واحدة على الأقل ليراها الزبون
     });
+}
+// --- مستشار الهدايا ---
+function openGiftQuiz() {
+    document.getElementById('giftModal').style.display = 'flex';
+}
+
+function closeGiftQuiz() {
+    document.getElementById('giftModal').style.display = 'none';
+    resetQuiz();
+}
+
+function nextStep(choice) {
+    document.getElementById('step1').style.display = 'none';
+    document.getElementById('step2').style.display = 'block';
+
+    const img = document.getElementById('resultImg');
+    const title = document.getElementById('resultTitle');
+    const link = document.getElementById('resultLink');
+
+    // منطق الاقتراحات (يمكنك تغييره)
+    if (choice === 'man') {
+        img.src = 'images/maroc-red.jpg'; // قميص المنتخب
+        title.innerText = "قميص المنتخب الرسمي 🇲🇦";
+        link.href = "index.html#products"; // أو رابط صفحة الرياضة
+    } else if (choice === 'woman') {
+        img.src = 'images/mugmagic.jpg'; // كوب
+        title.innerText = "كوب سحري بصورة خاصة ✨";
+        link.href = "product-mugs.html";
+    } else {
+        img.src = 'images/capusho2.jpg'; // تيشرت
+        title.innerText = "هودي قطني مريح للأطفال 👶";
+        link.href = "product-tshirts.html";
+    }
+}
+
+function resetQuiz() {
+    document.getElementById('step1').style.display = 'block';
+    document.getElementById('step2').style.display = 'none';
 }
