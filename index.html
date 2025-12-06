@@ -27,7 +27,9 @@
     <link rel="icon" href="images/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css?v=fixmenu">
-    <!-- Google Tag Manager -->
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start':
@@ -36,7 +38,6 @@
                 j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-N6G2XF4N');</script>
-    <!-- End Google Tag Manager -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
 </head>
 
@@ -50,10 +51,8 @@
                 التحميل...</p>
         </div>
     </div>
-    <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6G2XF4N" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <style>
         @media (max-width: 768px) {
             nav ul {
@@ -78,10 +77,9 @@
         }
     </style>
     <div style="background: #078d14; color: white; text-align: center; padding: 12px; font-weight: bold;">
-        ⚽ عرض خاص: احصل على طباعة اسمك ورقمك مجاناً عند شراء قميص المنتخب! 🇲🇦
+        ⚽ عرض خاص: احصل على طباعة اسمك ورقمك مجاناً عند شراء قميص المنتخب! 🇲🇦
     </div>
 
-    <!-- الترويسة -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -109,20 +107,18 @@
     </header>
 
 
-    <!-- الصفحة الرئيسية -->
     <section id="home" class="page active">
-        <!-- قسم الهيرو -->
         <div class="hero">
             <div class="container">
-                <h2>طباعة حرارية على <span id="typewriter" style="color: #e74c3c;"></span></h2>
-                <p>نقدم خدمات طباعة حرارية احترافية على مختلف المنتجات والأقمشة بأعلى جودة وأفضل الأسعار</p>
-                <a href="#" class="btn nav-link" data-page="products">المنتجات</a>
+                <h2 data-aos="fade-down" data-aos-duration="1000">طباعة حرارية على <span id="typewriter" style="color: #e74c3c;"></span></h2>
+                <p data-aos="fade-up" data-aos-delay="200">نقدم خدمات طباعة احترافية على مختلف المنتجات والأقمشة بأعلى جودة وأفضل الأسعار</p>
+                <a href="#" class="btn nav-link" data-page="products" data-aos="zoom-in" data-aos-delay="400">المنتجات</a>
             </div>
         </div>
         <section class="morocco-section"
             style="background: linear-gradient(135deg, #c1272d 0%, #006233 100%); padding: 60px 0; color: white;">
             <div class="container">
-                <div class="section-title">
+                <div class="section-title" data-aos="fade-up">
                     <h2 style="color: white !important; text-shadow: 0 2px 5px rgba(0,0,0,0.3);">
                         شجع المنتخب في كأس افريقيا
                     </h2>
@@ -130,7 +126,7 @@
                         <p style="font-size: 16px; color: #e0e0e0; margin-bottom: 10px;">باقي على انطلاق العرس الأفريقي
                             بالمغرب:</p>
                         <div id="countdown" style="display: inline-flex; gap: 15px; direction: ltr;">
-                               </div>
+                               </div>
 
                         <section class="prediction-section" style="margin: 40px 0; text-align: center;">
                             <div class="prediction-box"
@@ -188,7 +184,7 @@
 
                 <div class="products-grid">
 
-                    <div class="product-card" style="border: 3px solid #c1272d;">
+                    <div class="product-card" style="border: 3px solid #c1272d;" data-aos="fade-up" data-aos-delay="100">
                         <div class="product-img" style="background-image: url('images/maroc-red.jpg'); height: 400px;">
                         </div>
                         <div class="product-info" style="color: #000000;">
@@ -206,7 +202,7 @@
                         </div>
                     </div>
 
-                    <div class="product-card" style="border: 3px solid #006233;">
+                    <div class="product-card" style="border: 3px solid #006233;" data-aos="fade-up" data-aos-delay="200">
                         <div class="product-img"
                             style="background-image: url('images/maroc-white.jpg'); height: 400px;"></div>
                         <div class="product-info" style="color: #000000;">
@@ -224,7 +220,7 @@
                         </div>
                     </div>
 
-                    <div class="product-card" style="border: 3px solid #e74c3c;">
+                    <div class="product-card" style="border: 3px solid #e74c3c;" data-aos="fade-up" data-aos-delay="300">
                         <div class="product-img" style="background-image: url('images/maroc-fan.jpg'); height: 400px;">
                         </div>
                         <div class="product-info" style="color: #000000;">
@@ -240,32 +236,31 @@
 
                 </div>
             </div>
-                
+                
         </section>
 
 
-        <!-- قسم الميزات -->
         <div class="features">
             <div class="container">
-                <div class="section-title">
+                <div class="section-title" data-aos="fade-up">
                     <h2>لماذا تختار Zon Print؟</h2>
                 </div>
                 <div class="features-grid">
-                    <div class="feature-card">
+                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
                         <div class="feature-icon">
                             <i class="fas fa-tachometer-alt"></i>
                         </div>
                         <h3>سرعة في التنفيذ</h3>
                         <p>ننفذ طلباتك في أسرع وقت ممكن مع الحفاظ على الجودة العالية</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
                         <div class="feature-icon">
                             <i class="fas fa-award"></i>
                         </div>
                         <h3>جودة عالية</h3>
                         <p>نستخدم أحدث التقنيات وافضل المواد لضمان جودة الطباعة ودوامها</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
                         <div class="feature-icon">
                             <i class="fas fa-headset"></i>
                         </div>
@@ -275,7 +270,7 @@
                 </div>
             </div>
         </div>
-        <section class="video-section">
+        <section class="video-section" data-aos="fade-up">
             <div class="container">
                 <div class="section-title">
                     <h2>شاهد جودة أعمالنا</h2>
@@ -289,7 +284,7 @@
                 </div>
             </div>
         </section>
-        <section class="how-it-works">
+        <section class="how-it-works" data-aos="fade-up">
             <div class="container">
                 <div class="section-title">
                     <h2>كيف تطلب من Zon Print؟</h2>
@@ -297,7 +292,7 @@
                 </div>
 
                 <div class="steps-grid">
-                    <div class="step-card">
+                    <div class="step-card" data-aos="flip-left" data-aos-delay="100">
                         <div class="step-icon">
                             <i class="fas fa-hand-pointer"></i>
                             <span class="step-number">1</span>
@@ -306,7 +301,7 @@
                         <p>تصفح المنتجات واختر التيشرت، الكوب، أو الهدية التي تريدها.</p>
                     </div>
 
-                    <div class="step-card">
+                    <div class="step-card" data-aos="flip-left" data-aos-delay="200">
                         <div class="step-icon">
                             <i class="fab fa-whatsapp"></i>
                             <span class="step-number">2</span>
@@ -315,28 +310,28 @@
                         <p>اضغط على زر الطلب وتواصل معنا عبر واتساب لإرسال الصورة أو النص.</p>
                     </div>
 
-                    <div class="step-card">
+                    <div class="step-card" data-aos="flip-left" data-aos-delay="300">
                         <div class="step-icon">
                             <i class="fas fa-hand-holding-usd" style="font-size: 40px; color: #2c3e50;"></i>
                             <span class="step-number">3</span>
                         </div>
                         <h3>تأكيد الطلب</h3>
                         <p>دفع <strong>50% تسبيق</strong> لضمان جدية الطلب والبدء في الطباعة، والباقي عند الاستلام.</p>
-                                  
+                                    
                     </div>
                 </div>
             </div>
-                
+                
         </section>
 
-        <section id="reviews" class="reviews">
+        <section id="reviews" class="reviews" data-aos="fade-in">
             <div class="container">
                 <div class="section-title">
                     <h2>ماذا يقول عملاؤنا؟</h2>
                 </div>
 
                 <div class="reviews-grid">
-                    <div class="review-card">
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="review-icon">
                             <i class="fas fa-quote-right"></i>
                         </div>
@@ -354,7 +349,7 @@
                         <span class="client-role">مدرب رياضي</span>
                     </div>
 
-                    <div class="review-card">
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="review-icon">
                             <i class="fas fa-quote-right"></i>
                         </div>
@@ -372,7 +367,7 @@
                         <span class="client-role">مصممة جرافيك</span>
                     </div>
 
-                    <div class="review-card">
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="300">
                         <div class="review-icon">
                             <i class="fas fa-quote-right"></i>
                         </div>
@@ -393,13 +388,13 @@
         </section>
         <section class="faq-section">
             <div class="container">
-                <div class="section-title">
+                <div class="section-title" data-aos="fade-up">
                     <h2>أسئلة شائعة</h2>
                     <p>إجابات على أكثر الاستفسارات التي تصلنا</p>
                 </div>
 
                 <div class="faq-container">
-                    <div class="faq-item">
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
                         <div class="faq-question">
                             <h3>كم تستغرق عملية الطباعة والتوصيل؟</h3>
                             <i class="fas fa-plus"></i>
@@ -410,7 +405,7 @@
                         </div>
                     </div>
 
-                    <div class="faq-item">
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
                         <div class="faq-question">
                             <h3>هل يمكنني الدفع عند الاستلام؟</h3>
                             <i class="fas fa-plus"></i>
@@ -420,11 +415,11 @@
                                 <strong>تسبيقاً (Avance) بنسبة 50%</strong> عبر البنك أو التطبيق البنكي لتأكيد الطلب
                                 والبدء في العمل.
                             </p>
-                                      
+                                    
                         </div>
                     </div>
 
-                    <div class="faq-item">
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
                         <div class="faq-question">
                             <h3>هل يمكنني طباعة تصميمي الخاص؟</h3>
                             <i class="fas fa-plus"></i>
@@ -436,7 +431,7 @@
                         </div>
                     </div>
 
-                    <div class="faq-item">
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
                         <div class="faq-question">
                             <h3>هل يوجد تخفيض للكميات الكبيرة؟</h3>
                             <i class="fas fa-plus"></i>
@@ -448,12 +443,25 @@
                     </div>
                 </div>
             </div>
-                
+                
         </section>
+        <div class="shipping-calculator" data-aos="zoom-in"
+            style="background: #e8eef5; padding: 15px; border-radius: 15px; margin: 15px 0; border: 2px dashed #791515;">
+            <p style="font-size: 14px; font-weight: bold; margin-bottom: 10px; color: #2c3e50;">🚚 كم ثمن التوصيل لمدينتي؟</p>
 
+            <select id="globalCitySelect" onchange="calculateGlobalShipping()"
+                style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                <option value="">اختر مدينتك...</option>
+                <option value="casa">الدار البيضاء (Casablanca)</option>
+                <option value="rabat">الرباط / سلا (Rabat/Salé)</option>
+                <option value="major">المدن الكبرى (Marrakech, Tanger, Fes...)</option>
+                <option value="far">مدن الجنوب والشرق (Laayoune, Oujda...)</option>
+            </select>
+
+            <div id="globalShippingResult" style="margin-top: 10px; font-size: 14px; font-weight: bold; display: none;"></div>
+        </div>
     </section>
 
-    <!-- صفحة الخدمات -->
     <section id="services" class="page">
         <div class="services">
             <div class="container">
@@ -461,28 +469,28 @@
                     <h2>خدماتنا</h2>
                 </div>
                 <div class="services-grid">
-                    <div class="service-card">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                         <h3><i class="fas fa-palette"></i> تصميم جرافيك</h3>
                         <p>نقدم خدمات تصميم جرافيك احترافية لإنشاء تصاميم متميزة تناسب احتياجاتك. فريقنا من المصممين
                             المحترفين جاهز لتحويل أفكارك إلى واقع ملموس.</p>
                         <a href="https://wa.me/0645717242?text=أريد الاستفسار عن خدمة التصميم الجرافيكي" class="btn"
                             target="_blank">اطلب الخدمة</a>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                         <h3><i class="fas fa-print"></i> طباعة حرارية</h3>
                         <p>نقوم بالطباعة الحرارية على مختلف المنتجات باستخدام أحدث التقنيات. نضمن لك جودة عالية ودقة في
                             الطباعة مع استخدام أفضل المواد.</p>
                         <a href="https://wa.me/0645717242?text=أريد الاستفسار عن خدمة الطباعة الحرارية" class="btn"
                             target="_blank">اطلب الخدمة</a>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                         <h3><i class="fas fa-shipping-fast"></i> توصيل سريع</h3>
                         <p>نوفر خدمة توصيل سريعة وآمنة لجميع أنحاء المغرب . نضمن وصول طلباتك في الوقت المحدد وبأفضل
                             حالة.</p>
                         <a href="https://wa.me/0645717242?text=أريد الاستفسار عن خدمة التوصيل" class="btn"
                             target="_blank">اطلب الخدمة</a>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="400">
                         <h3><i class="fas fa-cogs"></i> صيانة المعدات</h3>
                         <p>نقدم خدمات صيانة وتحديث لمعدات الطباعة الحرارية. فريقنا الفني مؤهل للتعامل مع جميع أنواع
                             المعدات وضمان عملها بكفاءة.</p>
@@ -494,7 +502,6 @@
         </div>
     </section>
 
-    <!-- صفحة المنتجات -->
     <section id="products" class="page">
         <div class="products">
             <div class="container">
@@ -503,7 +510,7 @@
                 </div>
                 <div class="products-grid">
 
-                    <div class="product-card">
+                    <div class="product-card" data-aos="fade-up">
                         <a href="product-tshirts.html">
                             <div class="product-img" style="background-image: url('images/t-shert.jpg');"></div>
                         </a>
@@ -515,7 +522,7 @@
                         </div>
                     </div>
 
-                    <div class="product-card">
+                    <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                         <a href="product-mugs.html">
                             <div class="product-img" style="background-image: url('images/mugwhite1.png');"></div>
                         </a>
@@ -527,7 +534,7 @@
                         </div>
                     </div>
 
-                    <div class="product-card">
+                    <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                         <a href="product-sport.html">
                             <div class="product-img" style="background-image: url('images/tenu.jpg');"></div>
                         </a>
@@ -541,7 +548,7 @@
 
 
 
-                    <div class="product-card">
+                    <div class="product-card" data-aos="fade-up" data-aos-delay="300">
                         <a href="product-hats.html">
                             <div class="product-img" style="background-image: url('images/hats1.jpg');"></div>
                         </a>
@@ -553,7 +560,7 @@
                         </div>
                     </div>
 
-                    <div class="product-card">
+                    <div class="product-card" data-aos="fade-up" data-aos-delay="400">
                         <a href="product-accessories.html">
                             <div class="product-img" style="background-image: url('images/acssosoir.jpg');"></div>
                         </a>
@@ -568,9 +575,9 @@
 
                 </div>
             </div>
+        </div>
     </section>
 
-    <!-- صفحة من نحن -->
     <section id="about" class="page">
         <div class="about">
             <div class="container">
@@ -601,7 +608,6 @@
 
 
 
-    <!-- صفحة الاتصال -->
     <section id="contact" class="page">
         <div class="contact">
             <div class="container">
@@ -678,7 +684,6 @@
         </div>
     </div>
 
-    <!-- التذييل -->
     <footer class="footer-area">
         <div class="container">
             <div class="footer-grid">
@@ -758,6 +763,13 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script src="main.js?v=555"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, // Duration of animation
+            once: true,     // Whether animation should happen only once - while scrolling down
+        });
+    </script>
     <a href="https://wa.me/212645717242" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -781,6 +793,7 @@
 
         </a>
     </div>
+    
 
 </body>
 

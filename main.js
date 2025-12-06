@@ -486,3 +486,68 @@ function resetQuiz() {
     document.getElementById('step1').style.display = 'block';
     document.getElementById('step2').style.display = 'none';
 }
+// --- تشغيل مكتبة الحركات AOS ---
+    // (تأكد من وجود هذا الكود في الأعلى)
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000, // مدة الحركة (1 ثانية)
+            once: true,     // الحركة تحدث مرة واحدة فقط (لا تتكرر عند الصعود)
+            offset: 100     // تبدأ الحركة قبل وصول العنصر بـ 100 بكسل
+        });
+    }
+    // =========================================
+// 🚚 حاسبة رسوم التوصيل (الرئيسية)
+// =========================================
+function calculateGlobalShipping() {
+    // 1. جلب العناصر من HTML
+    const citySelect = document.getElementById('globalCitySelect');
+    const result = document.getElementById('globalShippingResult');
+    
+    // حماية: إذا لم يجد العناصر يتوقف لتجنب الأخطاء
+    if (!citySelect || !result) return;
+
+    const city = citySelect.value;
+
+    // 2. إذا أعاد الاختيار للأول (فراغ)، نخفي النتيجة
+    if (!city) {
+        result.style.display = "none";
+        return;
+    }
+
+    // 3. تحديد الأسعار والتوقيت حسب المدينة
+    let price = "";
+    let time = "";
+    let color = "#2c3e50"; // لون افتراضي
+
+    if (city === "casa") {
+        price = "10 درهم";
+        time = "يصلك خلال ساعات";
+        color = "#27ae60"; // أخضر
+    } else if (city === "rabat") {
+        price = "30 درهم";
+        time = "يصلك خلال 24 ساعة";
+        color = "#2980b9"; // أزرق
+    } else if (city === "major") {
+        price = "40 درهم";
+        time = "يصلك خلال 2-3 أيام";
+        color = "#e67e22"; // برتقالي
+    } else if (city === "far") {
+        price = "50 درهم";
+        time = "يصلك خلال 3-5 أيام";
+        color = "#c0392b"; // أحمر
+    }
+
+    // 4. عرض النتيجة في الموقع
+    result.style.display = "block";
+    result.style.border = "1px solid " + color; // تلوين الإطار
+    result.style.color = color; // تلوين النص
+    
+    result.innerHTML = `
+        <div style="font-size: 20px; margin-bottom: 5px;">
+            <i class="fas fa-truck"></i> التوصيل: <strong>${price}</strong>
+        </div>
+        <div style="font-size: 14px; color: #555;">
+            <i class="fas fa-clock"></i> التوقيت: ${time}
+        </div>
+    `;
+}
