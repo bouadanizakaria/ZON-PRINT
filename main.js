@@ -551,3 +551,78 @@ function calculateGlobalShipping() {
         </div>
     `;
 }
+// =========================================
+// 🛍️ إشعارات المبيعات الوهمية (Social Proof)
+// =========================================
+
+// بيانات عشوائية لتبدو واقعية
+const names = ["محمد", "ياسين", "فاطمة", "سارة", "كريم", "عمر", "سلمى", "هدى" ,"احمد","طه","سمير"];
+const cities = ["الدار البيضاء", "الرباط", "طنجة", "مراكش", "أكادير", "فاس", "مكناس","سلا","المحمدية","سطات"];
+const products = [
+    { name: "قميص المنتخب 🇲🇦", img: "images/maroc-red.jpg" },
+    { name: "كوب سحري ☕", img: "images/mugwhite1.png" },
+    { name: "تيشرت ديما مغرب", img: "images/maroc-fan.jpg" },
+    { name: " كوب ذهبي", img: "images/mugdoré.jpg" },
+    { name: "  طقم أكواب", img: "images/mugcoupel.jpg" },
+];
+
+
+// إنشاء عنصر الإشعار في HTML
+const notification = document.createElement('div');
+notification.classList.add('sales-notification');
+document.body.appendChild(notification);
+
+function showNotification() {
+    // اختيار بيانات عشوائية
+    const randomName = names[Math.floor(Math.random() * names.length)];
+    const randomCity = cities[Math.floor(Math.random() * cities.length)];
+    const randomProduct = products[Math.floor(Math.random() * products.length)];
+    const timeAgo = Math.floor(Math.random() * 50) + 2; // رقم بين 2 و 50
+
+    // تعبئة الإشعار
+    notification.innerHTML = `
+        <img src="${randomProduct.img}" alt="product">
+        <div>
+            <h4>قام ${randomName} بطلب طلبية</h4>
+            <p>من ${randomCity} - شراء <strong>${randomProduct.name}</strong></p>
+            <small style="color: #888; font-size: 10px;">منذ ${timeAgo} دقيقة</small>
+        </div>
+    `;
+
+    // إظهار الإشعار
+    notification.classList.add('show');
+
+    // إخفاء الإشعار بعد 4 ثوانٍ
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 8000);
+}
+
+// تشغيل الإشعار الأول بعد 5 ثوانٍ، ثم كل 20 ثانية
+setTimeout(showNotification, 5000);
+setInterval(showNotification, 15000);
+// إظهار زر الصعود عند النزول
+const scrollTopBtn = document.getElementById('scroll-top');
+
+window.addEventListener('scroll', function() {
+    if (window.scrollY > 500) { // يظهر بعد النزول بـ 500 بكسل
+        scrollTopBtn.classList.add('active');
+    } else {
+        scrollTopBtn.classList.remove('active');
+    }
+});
+
+// عند الضغط عليه يصعد بنعومة
+scrollTopBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+// تفعيل القائمة الثابتة عند التمرير
+window.addEventListener("scroll", function(){
+    var header = document.querySelector("header");
+    // عندما ننزل أكثر من 20 بكسل، نضيف كلاس "sticky"
+    header.classList.toggle("sticky", window.scrollY > 20);
+});

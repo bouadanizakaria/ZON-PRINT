@@ -1374,3 +1374,116 @@ header.sticky .mobile-menu i {
     background: #9b59b6;
     color: white;
 }
+/* =========================================
+   🎨 شريط تمرير مخصص (Scrollbar)
+   ========================================= */
+
+/* عرض الشريط */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* لون الخلفية (المسار) */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* لون المقبض (الجزء المتحرك) */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #c1272d, #006233); /* تدرج علم المغرب */
+    border-radius: 10px; /* حواف دائرية */
+    border: 3px solid #f1f1f1; /* مسافة بيضاء حول المقبض */
+}
+
+/* لون المقبض عند اللمس */
+::-webkit-scrollbar-thumb:hover {
+    background: #006233; /* يتحول للأخضر عند التمرير */
+}
+/* إشعار الشراء المنبثق */
+.sales-notification {
+    position: fixed;
+    bottom: 50px;
+    left: 20px; /* يظهر في اليسار */
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 9999;
+    border-right: 4px solid #006233; /* خط أخضر جمالي */
+    transform: translateX(-200%); /* مخفي في البداية */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-width: 300px;
+}
+
+.sales-notification.show {
+    transform: translateX(0); /* ظهور */
+}
+
+.sales-notification img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.sales-notification h4 {
+    font-size: 14px;
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.sales-notification p {
+    font-size: 12px;
+    margin: 0;
+    color: #666;
+}
+/* تنسيق زر الصعود */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 100px; /* فوق القائمة السفلية للموبايل */
+    right: 20px;
+    background: #c1272d; /* لون أحمر */
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 45px;
+    font-size: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 999;
+    transition: 0.3s;
+    opacity: 0; /* مخفي في البداية */
+    visibility: hidden;
+    text-decoration: none;
+}
+
+.scroll-top-btn:hover {
+    background: #006233; /* يتحول للأخضر */
+    transform: translateY(-5px);
+}
+
+.scroll-top-btn.active {
+    opacity: 1;
+    visibility: visible;
+}
+/* تأثير القائمة الثابتة */
+header.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85); /* أبيض شفاف */
+    backdrop-filter: blur(15px); /* تأثير الضبابية */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1); /* ظل خفيف */
+    z-index: 1000;
+    padding: 10px 0; /* تقليص الحجم قليلاً */
+    transition: 0.3s;
+}
+
+header.sticky .logo-container img {
+    width: 40px; /* تصغير اللوجو قليلاً عند النزول */
+}
