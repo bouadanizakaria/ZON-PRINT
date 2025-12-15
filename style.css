@@ -1537,38 +1537,3 @@ nav ul li a.active {
     background-color: #e74c3c !important; /* لون الخلفية برتقالي */
     color: #ffffff !important;            /* لون النص أبيض */
 }
-/* =========================================
-   تنسيق الهيدر في الصفحات الداخلية (المنتجات)
-   ========================================= */
-
-header.solid-header {
-    background-color: #2c3e50 !important; /* الأزرق الغامق (لون البراند) */
-    position: absolute !important;        /* ✅ هام: يجعله يختفي عند النزول */
-    width: 100%;
-    top: 0;
-    left: 0;
-    box-shadow: none;                     /* إزالة الظل ليكون نظيفاً */
-    padding: 15px 0;
-}
-
-/* جعل جميع الروابط بيضاء */
-header.solid-header .nav-link {
-    color: #ffffff !important;
-}
-
-/* جعل اللوجو (الاسم) أبيض */
-header.solid-header .logo-container h1 {
-    color: #ffffff !important;
-}
-
-/* جعل أيقونة القائمة (للموبايل) بيضاء */
-header.solid-header .mobile-menu i {
-    color: #ffffff !important;
-}
-
-/* الحفاظ على لون الزر النشط (البرتقالي) */
-header.solid-header .nav-link.active {
-    background-color: #e74c3c !important; 
-    color: #ffffff !important;
-    border-radius: 5px;
-}
