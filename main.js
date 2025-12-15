@@ -63,8 +63,20 @@ document.addEventListener('DOMContentLoaded', function () {
             // إذا كان القسم موجوداً
             if (pageId && document.getElementById(pageId)) {
                 e.preventDefault();
-                // إذا كنا بالفعل في القسم، لا نفعل شيئاً سوى التمرير
+
+                // تحديث أزرار القائمة (إزالة البرتقالي من الكل وإضافته للزر المضغوط)
+                document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
+                // نحاول تلوين الزر الذي تم ضغطه إذا كان من القائمة العلوية
+                if (this.classList.contains('nav-link')) {
+                    this.classList.add('active');
+                } else {
+                    // إذا ضغطنا رابطاً من الفوتر، نبحث عن الزر المقابل في الأعلى ونلونه
+                    const correspondingLink = document.querySelector(`.nav-link[data-page="${pageId}"]`);
+                    if(correspondingLink) correspondingLink.classList.add('active');
+                }
+
                 const targetSection = document.getElementById(pageId);
+                // إذا كنا بالفعل في القسم، لا نفعل شيئاً سوى التمرير
                 if (targetSection.classList.contains('active')) {
                     targetSection.scrollIntoView({ behavior: 'smooth' });
                     if (navUl) navUl.classList.remove('show');
@@ -79,17 +91,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // فحص الرابط عند الفتح
+    // ----------------------------------------------------
+    // 👇👇👇 هنا الإصلاح: فحص الرابط عند الفتح وتلوين الزر الصحيح 👇👇👇
+    // ----------------------------------------------------
     const hash = window.location.hash.substring(1);
+    
+    // 1. تنظيف كل الأزرار أولاً
+    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+
     if (hash && document.getElementById(hash)) {
+        // إذا كان هناك هاش (مثل #products)، أظهر القسم ولون زر المنتجات
         showPage(hash);
+        const activeBtn = document.querySelector(`.nav-link[href="#${hash}"], .nav-link[data-page="${hash}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
     } else {
+        // إذا لم يكن هناك هاش، أظهر الرئيسية ولون زر الرئيسية
         if (document.getElementById('home')) {
-            // تفعيل الصفحة الرئيسية افتراضياً
-            pages.forEach(p => p.classList.remove('active'));
-            document.getElementById('home').classList.add('active');
+            showPage('home'); // تأكد من وجود دالة showPage
+            const homeBtn = document.querySelector('.nav-link[data-page="home"]');
+            if (homeBtn) homeBtn.classList.add('active');
         }
     }
+    // ----------------------------------------------------
 
     // --- ج. ميزات إضافية (FAQ + Design + Countdown) ---
 
@@ -135,20 +158,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // =========================================
 
     // نختار البطاقات التي نريد تطبيق التأثير عليها
-    // (بطاقات المنتجات، بطاقات الميزات، بطاقات الخطوات)
     const tiltCards = document.querySelectorAll('.product-card, .feature-card, .step-card, .review-card');
 
     if (typeof VanillaTilt !== 'undefined' && tiltCards.length > 0) {
         VanillaTilt.init(tiltCards, {
-            max: 15,            // درجة الميلان (كلما زاد الرقم زاد الميلان)
+            max: 15,            // درجة الميلان
             speed: 400,         // سرعة الحركة
             glare: true,        // تفعيل لمعة الضوء
-            "max-glare": 0.3,   // قوة اللمعة (من 0 إلى 1)
-            scale: 1.05         // تكبير بسيط عند اللمس
+            "max-glare": 0.3,   // قوة اللمعة
+            scale: 1.05         // تكبير بسيط
         });
     }
 
-}); // <--- نهاية DOMContentLoaded (لا تحذف هذا القوس!)
+}); // <--- نهاية DOMContentLoaded
 
 
 // =================================================
@@ -254,8 +276,13 @@ window.addEventListener("scroll", function () {
 // 9. زر العودة (Browser Back Button)
 window.addEventListener('popstate', function (event) {
     if (window.location.hash) {
-        // العودة للقسم الموجود في الهاش
         const pageId = window.location.hash.substring(1);
+        
+        // تنظيف الأزرار وتلوين الزر الجديد عند الرجوع للخلف
+        document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.querySelector(`.nav-link[data-page="${pageId}"]`);
+        if(activeBtn) activeBtn.classList.add('active');
+
         if (document.getElementById(pageId)) {
             const pages = document.querySelectorAll('.page');
             if (pages.length > 0) {
@@ -265,6 +292,10 @@ window.addEventListener('popstate', function (event) {
         }
     } else {
         // العودة للرئيسية
+        document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
+        const homeBtn = document.querySelector('.nav-link[data-page="home"]');
+        if(homeBtn) homeBtn.classList.add('active');
+
         if (document.getElementById('home')) {
             const pages = document.querySelectorAll('.page');
             if (pages.length > 0) {
@@ -274,6 +305,7 @@ window.addEventListener('popstate', function (event) {
         }
     }
 });
+
 // =========================================
 // ⚽ نظام تغيير الخصم تلقائياً (جدول المباريات)
 // =========================================
@@ -284,8 +316,6 @@ function updateMatchInfo() {
 
     if (!flagElement || !nameElement) return;
 
-    // قائمة المباريات (يمكنك إضافة المزيد هنا)
-    // التاريخ: متى تنتهي المباراة ويظهر الخصم التالي؟
     const matches = [
         {
             date: "2025-12-21", // تاريخ المباراة الأولى
@@ -304,50 +334,43 @@ function updateMatchInfo() {
         }
     ];
 
-    const today = new Date().toISOString().split('T')[0]; // تاريخ اليوم (YYYY-MM-DD)
+    const today = new Date().toISOString().split('T')[0];
 
-    // البحث عن المباراة القادمة
     for (let i = 0; i < matches.length; i++) {
-        // إذا كان تاريخ المباراة في المستقبل أو هو اليوم
         if (matches[i].date >= today) {
             nameElement.innerText = matches[i].name;
             flagElement.src = matches[i].flag;
-            return; // وجدنا المباراة، نتوقف هنا
+            return;
         }
     }
 
-    // إذا انتهت كل المباريات في الجدول، نظهر رسالة افتراضية
     nameElement.innerText = "قريباً...";
-    flagElement.src = "images/logo.png.png"; // أو أي صورة
+    flagElement.src = "images/logo.png.png";
 }
 
-// تشغيل الدالة عند تحميل الموقع
 document.addEventListener('DOMContentLoaded', updateMatchInfo);
+
 // رقم عشوائي للمخزون
 document.querySelectorAll('.stock-count').forEach(el => {
-    // رقم عشوائي بين 2 و 8
     el.innerText = Math.floor(Math.random() * (8 - 2 + 1) + 2);
 });
+
 // =========================================
 // 📢 دالة مشاركة المنتج
 // =========================================
 function shareProduct(platform) {
-    // 1. جلب رابط الصفحة الحالية تلقائياً
     const currentUrl = window.location.href;
     const text = "شوف هذا المنتج الرائع من Zon Print! 😍👇";
 
     if (platform === 'whatsapp') {
-        // مشاركة عبر واتساب
         const url = `https://wa.me/?text=${encodeURIComponent(text)} ${encodeURIComponent(currentUrl)}`;
         window.open(url, '_blank');
 
     } else if (platform === 'facebook') {
-        // مشاركة عبر فيسبوك
         const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
         window.open(url, '_blank');
 
     } else if (platform === 'copy') {
-        // نسخ الرابط
         navigator.clipboard.writeText(currentUrl).then(() => {
             alert("تم نسخ الرابط بنجاح! ✅");
         }).catch(err => {
@@ -355,6 +378,7 @@ function shareProduct(platform) {
         });
     }
 }
+
 // =========================================
 // ⌨️ تأثير الآلة الكاتبة (Typewriter Effect)
 // =========================================
@@ -366,70 +390,55 @@ document.addEventListener('DOMContentLoaded', function () {
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    let typeSpeed = 100; // سرعة الكتابة
+    let typeSpeed = 100;
 
     function type() {
         const currentWord = words[wordIndex];
 
         if (isDeleting) {
-            // مسح الحروف
             element.textContent = currentWord.substring(0, charIndex - 1);
             charIndex--;
-            typeSpeed = 50; // سرعة المسح أسرع
+            typeSpeed = 50;
         } else {
-            // كتابة الحروف
             element.textContent = currentWord.substring(0, charIndex + 1);
             charIndex++;
-            typeSpeed = 150; // سرعة الكتابة عادية
+            typeSpeed = 150;
         }
 
         if (!isDeleting && charIndex === currentWord.length) {
-            // انتهت الكلمة، انتظر قليلاً ثم ابدأ المسح
             isDeleting = true;
-            typeSpeed = 1000; // انتظر ثانيتين قبل المسح
+            typeSpeed = 1000;
         } else if (isDeleting && charIndex === 0) {
-            // انتهى المسح، انتقل للكلمة التالية
             isDeleting = false;
             wordIndex++;
             if (wordIndex === words.length) {
-                wordIndex = 0; // العودة للكلمة الأولى
+                wordIndex = 0;
             }
-            typeSpeed = 500; // انتظر نصف ثانية قبل البدء
+            typeSpeed = 500;
         }
 
         setTimeout(type, typeSpeed);
     }
 
-    // تشغيل الدالة
     type();
 });
+
 // --- إخفاء شاشة التحميل ---
 const preloader = document.getElementById('preloader');
 if (preloader) {
     window.addEventListener('load', function () {
         setTimeout(() => {
-            preloader.style.opacity = "0"; // تلاشي تدريجي
+            preloader.style.opacity = "0";
             setTimeout(() => {
-                preloader.style.display = "none"; // إخفاء نهائي
+                preloader.style.display = "none";
             }, 500);
-        }, 1000); // انتظر ثانية واحدة على الأقل ليراها الزبون
+        }, 1000);
     });
 }
-// --- مستشار الهدايا ---
-function openGiftQuiz() {
-    document.getElementById('giftModal').style.display = 'flex';
-}
-
-function closeGiftQuiz() {
-    document.getElementById('giftModal').style.display = 'none';
-    resetQuiz();
-}
 
 // =========================================
-// 🎁 مستشار الهدايا الذكي (Random Gift Generator)
+// 🎁 مستشار الهدايا الذكي
 // =========================================
-
-// 1. قاعدة بيانات المنتجات المقترحة
 const giftSuggestions = {
     man: [
         { img: 'images/maroc-red.jpg', title: 'قميص المنتخب الرسمي 🇲🇦', link: 'index.html#products' },
@@ -440,8 +449,7 @@ const giftSuggestions = {
     woman: [
         { img: 'images/mugmagic.jpg', title: 'كوب سحري يظهر الصورة بالحرارة ✨', link: 'product-mugs.html' },
         { img: 'images/totbag.jpg', title: 'حقيبة قماشية أنيقة (Tote Bag) 👜', link: 'product-accessories.html' },
-        { img: 'images/Coussin.jpg', title: 'وسادة مطبوعة بصورة شخصية 🧸', link: 'product-accessories.html' },
-        
+        { img: 'images/Coussin.jpg', title: 'وسادة مطبوعة بصورة شخصية 🧸', link: 'product-accessories.html' }
     ],
     kid: [
         { img: 'images/coton.jpg', title: 'تيشرت قطني بصورة كرتونية 👶', link: 'product-tshirts.html' },
@@ -460,7 +468,7 @@ function closeGiftQuiz() {
     const modal = document.getElementById('giftModal');
     if(modal) {
         modal.style.display = 'none';
-        resetQuiz(); // إعادة تعيين عند الإغلاق
+        resetQuiz();
     }
 }
 
@@ -472,11 +480,9 @@ function nextStep(choice) {
     const title = document.getElementById('resultTitle');
     const link = document.getElementById('resultLink');
 
-    // اختيار منتج عشوائي من القائمة المناسبة
     const products = giftSuggestions[choice];
     const randomProduct = products[Math.floor(Math.random() * products.length)];
 
-    // عرض النتيجة
     if (img) img.src = randomProduct.img;
     if (title) title.innerText = randomProduct.title;
     if (link) link.href = randomProduct.link;
@@ -486,61 +492,57 @@ function resetQuiz() {
     document.getElementById('step1').style.display = 'block';
     document.getElementById('step2').style.display = 'none';
 }
+
 // --- تشغيل مكتبة الحركات AOS ---
-    // (تأكد من وجود هذا الكود في الأعلى)
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 1000, // مدة الحركة (1 ثانية)
-            once: true,     // الحركة تحدث مرة واحدة فقط (لا تتكرر عند الصعود)
-            offset: 100     // تبدأ الحركة قبل وصول العنصر بـ 100 بكسل
-        });
-    }
-    // =========================================
+if (typeof AOS !== 'undefined') {
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+    });
+}
+
+// =========================================
 // 🚚 حاسبة رسوم التوصيل (الرئيسية)
 // =========================================
 function calculateGlobalShipping() {
-    // 1. جلب العناصر من HTML
     const citySelect = document.getElementById('globalCitySelect');
     const result = document.getElementById('globalShippingResult');
     
-    // حماية: إذا لم يجد العناصر يتوقف لتجنب الأخطاء
     if (!citySelect || !result) return;
 
     const city = citySelect.value;
 
-    // 2. إذا أعاد الاختيار للأول (فراغ)، نخفي النتيجة
     if (!city) {
         result.style.display = "none";
         return;
     }
 
-    // 3. تحديد الأسعار والتوقيت حسب المدينة
     let price = "";
     let time = "";
-    let color = "#2c3e50"; // لون افتراضي
+    let color = "#2c3e50";
 
     if (city === "casa") {
         price = "10 درهم";
         time = "يصلك خلال ساعات";
-        color = "#27ae60"; // أخضر
+        color = "#27ae60";
     } else if (city === "rabat") {
         price = "30 درهم";
         time = "يصلك خلال 24 ساعة";
-        color = "#2980b9"; // أزرق
+        color = "#2980b9";
     } else if (city === "major") {
         price = "40 درهم";
         time = "يصلك خلال 2-3 أيام";
-        color = "#e67e22"; // برتقالي
+        color = "#e67e22";
     } else if (city === "far") {
         price = "50 درهم";
         time = "يصلك خلال 3-5 أيام";
-        color = "#c0392b"; // أحمر
+        color = "#c0392b";
     }
 
-    // 4. عرض النتيجة في الموقع
     result.style.display = "block";
-    result.style.border = "1px solid " + color; // تلوين الإطار
-    result.style.color = color; // تلوين النص
+    result.style.border = "1px solid " + color;
+    result.style.color = color;
     
     result.innerHTML = `
         <div style="font-size: 20px; margin-bottom: 5px;">
@@ -551,78 +553,76 @@ function calculateGlobalShipping() {
         </div>
     `;
 }
+
 // =========================================
 // 🛍️ إشعارات المبيعات الوهمية (Social Proof)
 // =========================================
-
-// بيانات عشوائية لتبدو واقعية
-const names = ["محمد", "ياسين", "فاطمة", "سارة", "كريم", "عمر", "سلمى", "هدى" ,"احمد","طه","سمير"];
-const cities = ["الدار البيضاء", "الرباط", "طنجة", "مراكش", "أكادير", "فاس", "مكناس","سلا","المحمدية","سطات"];
-const products = [
+const names2 = ["محمد", "ياسين", "فاطمة", "سارة", "كريم", "عمر", "سلمى", "هدى" ,"احمد","طه","سمير"];
+const cities2 = ["الدار البيضاء", "الرباط", "طنجة", "مراكش", "أكادير", "فاس", "مكناس","سلا","المحمدية","سطات"];
+const products2 = [
     { name: "قميص المنتخب 🇲🇦", img: "images/maroc-red.jpg" },
     { name: "كوب سحري ☕", img: "images/mugwhite1.png" },
     { name: "تيشرت ديما مغرب", img: "images/maroc-fan.jpg" },
     { name: " كوب ذهبي", img: "images/mugdoré.jpg" },
-    { name: "  طقم أكواب", img: "images/mugcoupel.jpg" },
+    { name: " طقم أكواب", img: "images/mugcoupel.jpg" },
 ];
 
-
-// إنشاء عنصر الإشعار في HTML
 const notification = document.createElement('div');
 notification.classList.add('sales-notification');
 document.body.appendChild(notification);
 
 function showNotification() {
-    // اختيار بيانات عشوائية
-    const randomName = names[Math.floor(Math.random() * names.length)];
-    const randomCity = cities[Math.floor(Math.random() * cities.length)];
-    const randomProduct = products[Math.floor(Math.random() * products.length)];
-    const timeAgo = Math.floor(Math.random() * 50) + 2; // رقم بين 2 و 50
+    const randomName = names2[Math.floor(Math.random() * names2.length)];
+    const randomCity = cities2[Math.floor(Math.random() * cities2.length)];
+    const randomProduct = products2[Math.floor(Math.random() * products2.length)];
+    const timeAgo = Math.floor(Math.random() * 50) + 2;
 
-    // تعبئة الإشعار
     notification.innerHTML = `
         <img src="${randomProduct.img}" alt="product">
         <div>
-            <h4>قام ${randomName} بطلب طلبية</h4>
+            <h4>قام(ة) ${randomName} بطلب طلبية</h4>
             <p>من ${randomCity} - شراء <strong>${randomProduct.name}</strong></p>
             <small style="color: #888; font-size: 10px;">منذ ${timeAgo} دقيقة</small>
         </div>
     `;
 
-    // إظهار الإشعار
     notification.classList.add('show');
 
-    // إخفاء الإشعار بعد 4 ثوانٍ
     setTimeout(() => {
         notification.classList.remove('show');
     }, 8000);
 }
 
-// تشغيل الإشعار الأول بعد 5 ثوانٍ، ثم كل 20 ثانية
 setTimeout(showNotification, 5000);
 setInterval(showNotification, 15000);
-// إظهار زر الصعود عند النزول
+
+// زر الصعود للأعلى
 const scrollTopBtn = document.getElementById('scroll-top');
-
-window.addEventListener('scroll', function() {
-    if (window.scrollY > 500) { // يظهر بعد النزول بـ 500 بكسل
-        scrollTopBtn.classList.add('active');
-    } else {
-        scrollTopBtn.classList.remove('active');
-    }
-});
-
-// عند الضغط عليه يصعد بنعومة
-scrollTopBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+if(scrollTopBtn) {
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 500) {
+            scrollTopBtn.classList.add('active');
+        } else {
+            scrollTopBtn.classList.remove('active');
+        }
     });
+
+    scrollTopBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// =========================================
+// 🥺 تغيير العنوان عند مغادرة التبويب
+// =========================================
+let docTitle2 = document.title;
+window.addEventListener("blur", () => {
+    document.title = "عد إلينا! 💔 لا تنسَ طلبك";
 });
-// تفعيل القائمة الثابتة عند التمرير
-window.addEventListener("scroll", function(){
-    var header = document.querySelector("header");
-    // عندما ننزل أكثر من 20 بكسل، نضيف كلاس "sticky"
-    header.classList.toggle("sticky", window.scrollY > 20);
+window.addEventListener("focus", () => {
+    document.title = docTitle2;
 });

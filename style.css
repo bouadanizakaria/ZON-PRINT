@@ -1487,3 +1487,88 @@ header.sticky {
 header.sticky .logo-container img {
     width: 40px; /* تصغير اللوجو قليلاً عند النزول */
 }
+/* خلفية متحركة لقسم المغرب */
+.morocco-section {
+    background: linear-gradient(-45deg, #c1272d, #006233, #e74c3c, #16a085);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    padding: 60px 0;
+    color: white;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+/* =================================================
+   ✨ تأثير التركيز السحري (Focus Blur Effect)
+   (كما في الصورة التي أرسلتها)
+   ================================================= */
+
+/* 1. تطبيق التأثير على شبكة المنتجات */
+.products-grid:has(.product-card:hover) .product-card:not(:hover) {
+    filter: blur(5px);       /* تضبيب العناصر غير المختارة */
+    opacity: 0.6;            /* تقليل وضوحها */
+    transform: scale(0.95);  /* تصغيرها قليلاً لإبراز العنصر المختار */
+}
+
+/* التأكد من سلاسة الحركة للمنتجات */
+.product-card {
+    transition: all 0.4s ease; /* نعومة في التحويل */
+}
+
+/* 2. تطبيق نفس التأثير على شبكة الميزات (Features) */
+.features-grid:has(.feature-card:hover) .feature-card:not(:hover) {
+    filter: blur(3px);
+    opacity: 0.7;
+    transform: scale(0.95);
+}
+
+/* 3. تطبيق التأثير على شبكة الخدمات */
+.services-grid:has(.service-card:hover) .service-card:not(:hover) {
+    filter: blur(3px);
+    opacity: 0.7;
+}
+
+/* 4. (إضافي) إصلاح لرابط "الرئيسية" البرتقالي */
+/* إذا كان الجافاسكريبت يضيف الكلاس active، هذا يضمن أن اللون يظهر */
+nav ul li a.active {
+    background-color: #e74c3c !important; /* لون الخلفية برتقالي */
+    color: #ffffff !important;            /* لون النص أبيض */
+}
+/* =========================================
+   تنسيق الهيدر في الصفحات الداخلية (المنتجات)
+   ========================================= */
+
+header.solid-header {
+    background-color: #2c3e50 !important; /* الأزرق الغامق (لون البراند) */
+    position: absolute !important;        /* ✅ هام: يجعله يختفي عند النزول */
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: none;                     /* إزالة الظل ليكون نظيفاً */
+    padding: 15px 0;
+}
+
+/* جعل جميع الروابط بيضاء */
+header.solid-header .nav-link {
+    color: #ffffff !important;
+}
+
+/* جعل اللوجو (الاسم) أبيض */
+header.solid-header .logo-container h1 {
+    color: #ffffff !important;
+}
+
+/* جعل أيقونة القائمة (للموبايل) بيضاء */
+header.solid-header .mobile-menu i {
+    color: #ffffff !important;
+}
+
+/* الحفاظ على لون الزر النشط (البرتقالي) */
+header.solid-header .nav-link.active {
+    background-color: #e74c3c !important; 
+    color: #ffffff !important;
+    border-radius: 5px;
+}
