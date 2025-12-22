@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     // إذا ضغطنا رابطاً من الفوتر، نبحث عن الزر المقابل في الأعلى ونلونه
                     const correspondingLink = document.querySelector(`.nav-link[data-page="${pageId}"]`);
-                    if(correspondingLink) correspondingLink.classList.add('active');
+                    if (correspondingLink) correspondingLink.classList.add('active');
                 }
 
                 const targetSection = document.getElementById(pageId);
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 👇👇👇 هنا الإصلاح: فحص الرابط عند الفتح وتلوين الزر الصحيح 👇👇👇
     // ----------------------------------------------------
     const hash = window.location.hash.substring(1);
-    
+
     // 1. تنظيف كل الأزرار أولاً
     document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
 
@@ -277,11 +277,11 @@ window.addEventListener("scroll", function () {
 window.addEventListener('popstate', function (event) {
     if (window.location.hash) {
         const pageId = window.location.hash.substring(1);
-        
+
         // تنظيف الأزرار وتلوين الزر الجديد عند الرجوع للخلف
         document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
         const activeBtn = document.querySelector(`.nav-link[data-page="${pageId}"]`);
-        if(activeBtn) activeBtn.classList.add('active');
+        if (activeBtn) activeBtn.classList.add('active');
 
         if (document.getElementById(pageId)) {
             const pages = document.querySelectorAll('.page');
@@ -294,7 +294,7 @@ window.addEventListener('popstate', function (event) {
         // العودة للرئيسية
         document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
         const homeBtn = document.querySelector('.nav-link[data-page="home"]');
-        if(homeBtn) homeBtn.classList.add('active');
+        if (homeBtn) homeBtn.classList.add('active');
 
         if (document.getElementById('home')) {
             const pages = document.querySelectorAll('.page');
@@ -461,12 +461,12 @@ const giftSuggestions = {
 
 function openGiftQuiz() {
     const modal = document.getElementById('giftModal');
-    if(modal) modal.style.display = 'flex';
+    if (modal) modal.style.display = 'flex';
 }
 
 function closeGiftQuiz() {
     const modal = document.getElementById('giftModal');
-    if(modal) {
+    if (modal) {
         modal.style.display = 'none';
         resetQuiz();
     }
@@ -475,7 +475,7 @@ function closeGiftQuiz() {
 function nextStep(choice) {
     document.getElementById('step1').style.display = 'none';
     document.getElementById('step2').style.display = 'block';
-    
+
     const img = document.getElementById('resultImg');
     const title = document.getElementById('resultTitle');
     const link = document.getElementById('resultLink');
@@ -508,7 +508,7 @@ if (typeof AOS !== 'undefined') {
 function calculateGlobalShipping() {
     const citySelect = document.getElementById('globalCitySelect');
     const result = document.getElementById('globalShippingResult');
-    
+
     if (!citySelect || !result) return;
 
     const city = citySelect.value;
@@ -543,7 +543,7 @@ function calculateGlobalShipping() {
     result.style.display = "block";
     result.style.border = "1px solid " + color;
     result.style.color = color;
-    
+
     result.innerHTML = `
         <div style="font-size: 20px; margin-bottom: 5px;">
             <i class="fas fa-truck"></i> التوصيل: <strong>${price}</strong>
@@ -557,8 +557,8 @@ function calculateGlobalShipping() {
 // =========================================
 // 🛍️ إشعارات المبيعات الوهمية (Social Proof)
 // =========================================
-const names2 = ["محمد", "ياسين", "فاطمة", "سارة", "كريم", "عمر", "سلمى", "هدى" ,"احمد","طه","سمير"];
-const cities2 = ["الدار البيضاء", "الرباط", "طنجة", "مراكش", "أكادير", "فاس", "مكناس","سلا","المحمدية","سطات"];
+const names2 = ["محمد", "ياسين", "فاطمة", "سارة", "كريم", "عمر", "سلمى", "هدى", "احمد", "طه", "سمير"];
+const cities2 = ["الدار البيضاء", "الرباط", "طنجة", "مراكش", "أكادير", "فاس", "مكناس", "سلا", "المحمدية", "سطات"];
 const products2 = [
     { name: "قميص المنتخب 🇲🇦", img: "images/maroc-red.jpg" },
     { name: "كوب سحري ☕", img: "images/mugwhite1.png" },
@@ -598,8 +598,8 @@ setInterval(showNotification, 15000);
 
 // زر الصعود للأعلى
 const scrollTopBtn = document.getElementById('scroll-top');
-if(scrollTopBtn) {
-    window.addEventListener('scroll', function() {
+if (scrollTopBtn) {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 500) {
             scrollTopBtn.classList.add('active');
         } else {
@@ -607,7 +607,7 @@ if(scrollTopBtn) {
         }
     });
 
-    scrollTopBtn.addEventListener('click', function(e) {
+    scrollTopBtn.addEventListener('click', function (e) {
         e.preventDefault();
         window.scrollTo({
             top: 0,
