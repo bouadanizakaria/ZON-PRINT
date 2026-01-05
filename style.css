@@ -1511,22 +1511,7 @@ header.sticky .logo-container img {
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-/* =================================================
-   ✨ تأثير التركيز السحري (Focus Blur Effect)
-   (كما في الصورة التي أرسلتها)
-   ================================================= */
 
-/* 1. تطبيق التأثير على شبكة المنتجات */
-.products-grid:has(.product-card:hover) .product-card:not(:hover) {
-    filter: blur(5px);       /* تضبيب العناصر غير المختارة */
-    opacity: 0.6;            /* تقليل وضوحها */
-    transform: scale(0.95);  /* تصغيرها قليلاً لإبراز العنصر المختار */
-}
-
-/* التأكد من سلاسة الحركة للمنتجات */
-.product-card {
-    transition: all 0.4s ease; /* نعومة في التحويل */
-}
 
 /* 2. تطبيق نفس التأثير على شبكة الميزات (Features) */
 .features-grid:has(.feature-card:hover) .feature-card:not(:hover) {
