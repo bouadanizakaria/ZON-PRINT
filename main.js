@@ -318,20 +318,11 @@ function updateMatchInfo() {
 
     const matches = [
         {
-            date: "2025-12-21", // تاريخ المباراة الأولى
+            date: "2026-01-09", // تاريخ المباراة الأولى
             name: "جزر القمر",
-            flag: "https://upload.wikimedia.org/wikipedia/commons/9/94/Flag_of_the_Comoros.svg"
+            flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/langfr-1280px-Flag_of_Cameroon.svg.png"
         },
-        {
-            date: "2025-12-26", // تاريخ المباراة الثانية
-            name: "مالي ",
-            flag: "https://upload.wikimedia.org/wikipedia/commons/9/92/Flag_of_Mali.svg"
-        },
-        {
-            date: "2025-12-29", // تاريخ المباراة الثالثة
-            name: " زامبيا ",
-            flag: "https://upload.wikimedia.org/wikipedia/commons/0/06/Flag_of_Zambia.svg"
-        }
+        
     ];
 
     const today = new Date().toISOString().split('T')[0];
