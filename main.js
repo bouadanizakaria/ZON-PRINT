@@ -514,7 +514,7 @@ function calculateGlobalShipping() {
     let color = "#2c3e50";
 
     if (city === "casa") {
-        price = "10 درهم";
+        price = "15 درهم";
         time = "يصلك خلال ساعات";
         color = "#27ae60";
     } else if (city === "rabat") {
@@ -551,9 +551,8 @@ function calculateGlobalShipping() {
 const names2 = ["محمد", "ياسين", "فاطمة", "سارة", "كريم", "عمر", "سلمى", "هدى", "احمد", "طه", "سمير"];
 const cities2 = ["الدار البيضاء", "الرباط", "طنجة", "مراكش", "أكادير", "فاس", "مكناس", "سلا", "المحمدية", "سطات"];
 const products2 = [
-    { name: "قميص المنتخب 🇲🇦", img: "images/maroc-red.jpg" },
     { name: "كوب سحري ☕", img: "images/mugwhite1.png" },
-    { name: "تيشرت ديما مغرب", img: "images/maroc-fan.jpg" },
+    { name: "تيشرت", img: "images/coton.jpg" },
     { name: " كوب ذهبي", img: "images/mugdoré.jpg" },
     { name: " طقم أكواب", img: "images/mugcoupel.jpg" },
 ];
